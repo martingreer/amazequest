@@ -23,6 +23,10 @@ public class MainMenu extends JFrame {
 		int i = 1;
 	}
 	
+	public void Johannes(){
+		System.out.println("The thug life chose me");
+	}
+	
 	public static void main(String[] args) {
 		MainMenu mainmenu = new MainMenu();
 		mainmenu.setVisible(true);

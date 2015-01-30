@@ -27,12 +27,14 @@ public class MainMenu extends JFrame {
 		System.out.println("The thug life chose me");
 	}
 	
+	public void David() {
+		System.out.println("hej på er");
+	}
+	
 	public static void main(String[] args) {
 		MainMenu mainmenu = new MainMenu();
 		mainmenu.setVisible(true);
 	}
-	public void David() {
-		System.out.println("hej på er");
-	}
+	
     
 }

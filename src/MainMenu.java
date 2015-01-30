@@ -9,7 +9,7 @@ public class MainMenu extends JFrame {
 	}
 	
 	public final void initUI(){
-		setTitle("A Maze Quest");
+		setTitle("A Maze Quest!");
 		setSize(700, 500);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -19,12 +19,22 @@ public class MainMenu extends JFrame {
 		System.out.println("Hello world!");
 	}
 	public void Jonas(){
-		System.out.println("Jonas was here");
+		System.out.println("Jonas was here"); 
+		int i = 1;
+	}
+	
+	public void Johannes(){
+		System.out.println("The thug life chose me");
+	}
+	
+	public void David() {
+		System.out.println("hej på er");
 	}
 	
 	public static void main(String[] args) {
 		MainMenu mainmenu = new MainMenu();
 		mainmenu.setVisible(true);
 	}
+	
     
 }

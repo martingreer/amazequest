@@ -18,6 +18,9 @@ public class MainMenu extends JFrame {
 	public void HelloWorld(){
 		System.out.println("Hello world!");
 	}
+	public void Jonas(){
+		System.out.println("Jonas was here");
+	}
 	
 	public void Johannes(){
 		System.out.println("The thug life chose me");

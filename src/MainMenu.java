@@ -19,7 +19,7 @@ public class MainMenu extends JFrame {
 		System.out.println("Hello world!");
 	}
 	public void Jonas(){
-		System.out.println("Jonas was here"); 
+		System.out.println("Jonas was here!!"); 
 		int i = 1;
 	}
 	
@@ -29,6 +29,10 @@ public class MainMenu extends JFrame {
 	
 	public void David() {
 		System.out.println("hej på er");
+	}
+	
+	public void Henrik() {
+		System.out.println("derp");
 	}
 	
 	public static void main(String[] args) {

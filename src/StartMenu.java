@@ -1,19 +1,26 @@
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
+
 import javax.swing.*;
 
 public class StartMenu {
 	public static void main(String[] args){
-		createWindow();
+		JFrame mainwindow = createWindow();
+		createMenuBar(mainwindow);
 	}
 	
-	public static void createWindow(){
+	public static JFrame createWindow(){
 		//Create window frame
 		JFrame mainwindow = new JFrame("AMazeQuest");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(1024, 768);
+		mainwindow.setResizable(false);
 		mainwindow.setVisible(true);
 		
+		return mainwindow;
+	}
+	
+	public static void createMenuBar(JFrame mainwindow){	
 		//Create menu bar
 		JMenuBar menuBar = new JMenuBar();
 		

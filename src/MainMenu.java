@@ -20,5 +20,11 @@ public class MainMenu extends JFrame {
 		MainMenu mainmenu = new MainMenu();
 		mainmenu.setVisible(true);
 	}
+	public void test() {
+		
+		
+		
+		System.out.println("hej på er");
+	}
     
 }

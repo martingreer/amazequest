@@ -11,7 +11,7 @@ public class StartMenu {
 	
 	public static JFrame createWindow(){
 		//Create window frame
-		JFrame mainwindow = new JFrame("AMazeQuest");
+		JFrame mainwindow = new JFrame("A Maze Quest");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(1024, 768);
 		mainwindow.setResizable(false);

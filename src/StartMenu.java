@@ -11,10 +11,10 @@ public class StartMenu {
 	
 	public static JFrame createWindow(){
 		//Create window frame
-		JFrame mainwindow = new JFrame("AMazeQuest");
+		JFrame mainwindow = new JFrame("A MazeQuest");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(1024, 768);
-		mainwindow.setResizable(false);
+		mainwindow.setResizable(true);
 		mainwindow.setVisible(true);
 		
 		return mainwindow;

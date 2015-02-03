@@ -71,7 +71,7 @@ public class GameWindow {
 public static void createButtons(JFrame mainwindow){
 		
 		//PlayButton
-		JButton playButton = new JButton("Play!");
+		final JButton playButton = new JButton("Play!");
 		playButton.setPreferredSize(new Dimension(170, 130));
 		playButton.setFont(new Font("Arial", Font.ITALIC, 45));
 		//playButton.setLayout(null);
@@ -79,7 +79,8 @@ public static void createButtons(JFrame mainwindow){
 		
 		playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null, "game on");
+				playButton.setVisible(false);
+				GameEngine gameEngine = new GameEngine();
 			}
 			
 		});

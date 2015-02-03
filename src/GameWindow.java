@@ -1,13 +1,20 @@
-import java.awt.event.KeyEvent;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 public class GameWindow {
 	
 	public static void main(String[] args){
 		JFrame mainwindow = createWindow();
 		createMenuBar(mainwindow);
+		
+		StartMenu.createButtons(mainwindow);
 	}
 	
 	public static JFrame createWindow(){
@@ -17,6 +24,7 @@ public class GameWindow {
 		mainwindow.setSize(1024, 768);
 		mainwindow.setResizable(true);
 		mainwindow.setVisible(true);
+		mainwindow.setLayout(new FlowLayout());
 		
 		return mainwindow;
 	}
@@ -51,5 +59,9 @@ public class GameWindow {
 		
 		//Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);
+	
 	}
+	
+	
+
 }

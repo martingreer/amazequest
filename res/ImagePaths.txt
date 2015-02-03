@@ -1,0 +1,2 @@
+grass:./res/grass.png
+wall:./res/wall.png

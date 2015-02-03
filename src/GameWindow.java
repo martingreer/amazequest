@@ -3,7 +3,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-public class StartMenu {
+public class GameWindow {
+	
 	public static void main(String[] args){
 		JFrame mainwindow = createWindow();
 		createMenuBar(mainwindow);

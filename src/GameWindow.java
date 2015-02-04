@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -23,12 +24,10 @@ public class GameWindow {
 	
 	public static JFrame createWindow(){
 		//Create window frame
-		JFrame mainwindow = new JFrame("A Maze Quest");
+		JFrame mainwindow = new MainFrame("A Maze Quest");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(1024, 768);
 		mainwindow.setResizable(true);
-		mainwindow.setLayout(new FlowLayout());
-		
 		return mainwindow;
 	}
 	
@@ -72,7 +71,7 @@ public static void createButtons(JFrame mainwindow){
 		playButton.setPreferredSize(new Dimension(170, 130));
 		playButton.setFont(new Font("Arial", Font.ITALIC, 45));
 		//playButton.setLayout(null);
-		mainwindow.add(playButton);
+		mainwindow.add(playButton,BorderLayout.SOUTH);
 		
 		playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){

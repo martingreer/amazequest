@@ -10,7 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class GameWindow {
@@ -18,8 +17,7 @@ public class GameWindow {
 	public static void main(String[] args){
 		JFrame mainwindow = createWindow();
 		createMenuBar(mainwindow);
-		
-	createButtons(mainwindow);
+		createButtons(mainwindow);
 		mainwindow.setVisible(true);
 	}
 	
@@ -29,7 +27,6 @@ public class GameWindow {
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(1024, 768);
 		mainwindow.setResizable(true);
-		
 		mainwindow.setLayout(new FlowLayout());
 		
 		return mainwindow;
@@ -81,6 +78,7 @@ public static void createButtons(JFrame mainwindow){
 			public void actionPerformed(ActionEvent e){
 				playButton.setVisible(false);
 				GameEngine gameEngine = new GameEngine();
+				gameEngine.run();
 			}
 			
 		});

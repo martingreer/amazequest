@@ -6,17 +6,21 @@ import javax.swing.ImageIcon;
 
 
 public class Map {
-	private static final int MAPSIZE = 14;
+	private static final int MAP_SIZE = 14;
 	
 	private Scanner m;
-	private String Map[] = new String[MAPSIZE];
+	private String Map[] = new String[MAP_SIZE];
 	
+	private ImageResources res;
 	private Image grass, wall;
 	
 	public Map(){
-		ImageIcon img = new ImageIcon("./res/grass.png");
+		
+		res = new ImageResources();
+		
+		ImageIcon img = new ImageIcon(res.getPath("grass"));
 		grass = img.getImage();
-		img =  new ImageIcon("./res/wall.png");
+		img =  new ImageIcon(res.getPath("wall"));
 		wall = img.getImage();
 		
 		openFile();
@@ -41,13 +45,13 @@ public class Map {
 		try{
 			m =  new Scanner(new File("./res/map_1.txt"));
 		}catch(Exception e){
-			System.out.println("error loading maperino");
+			System.out.println("Error: Map failed to load");
 		}
 	}
 	
 	public void readFile(){
 		while(m.hasNext()){
-			for(int i=0; i<MAPSIZE; i++){
+			for(int i=0; i<MAP_SIZE; i++){
 				Map[i] = m.next();
 			}
 			

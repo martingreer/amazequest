@@ -5,88 +5,49 @@ import java.awt.event.KeyEvent;
 @SuppressWarnings("unused")
 public class Player extends GameEngine{
 
-	public int HEALTH;
+	public int HP;
 	public int ATTACK;
 	public int xPos, yPos;
 	public static String name;
 	//image?
-
 	
 	public Player(int xPos, int yPos, int ATTACK, int HEALTH, ID id){
 		
-
-		
-		
-		
-		
 	}
 	
-	
-	
-	public int getHEALTH() {
-		return HEALTH;
+	public int getHP() {
+		return HP;
 	}
-
-
-
-
 
 	public void setHEALTH(int HEALTH) {
-		this.HEALTH = HEALTH;
+		this.HP = HP;
 	}
-
-
-
-
 
 	public int getATTACK() {
 		return ATTACK;
 	}
 
-
-
-
-
 	public void setATTACK(int ATTACK) {
 		this.ATTACK = ATTACK;
 	}
-
-
-
-
 
 	public int getxPos() {
 		return xPos;
 	}
 
-
-
-
-
 	public void setxPos(int xPos) {
 		this.xPos = xPos;
 	}
-
-
-
-
 
 	public int getyPos() {
 		return yPos;
 	}
 
-
-
-
-
 	public void setyPos(int yPos) {
 		this.yPos = yPos;
 	}
 
-
 	public void move(){
-		
-		
 		
 	}
 	
@@ -104,12 +65,6 @@ public class Player extends GameEngine{
 		if(e.getKeyCode() == KeyEvent.VK_A){
 			setyPos(xPos - 1);
 		}
-	
-		
 	}
-*/
-		
-	
-	
-	
+	 */
 }

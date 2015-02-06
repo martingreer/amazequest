@@ -1,2 +1,8 @@
 grass:./res/grass.png
 wall:./res/wall.png
+floor:./res/floor.png
+shield:./res/shield.png
+sword:./res/sword.pg
+playerf:./rest/playerfront.png
+playerw:./rest/playerwest.png
+playere:./rest/playereast.png

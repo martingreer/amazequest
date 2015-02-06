@@ -20,8 +20,7 @@ public class GameFrame extends JFrame {
 		//add swing components to content pane
 		Container c = getContentPane();
 		c.add(boardAreaPlaceholder, BorderLayout.CENTER);
-		c.add(inventoryPanel, BorderLayout.WEST);
-
+		c.add(inventoryPanel, BorderLayout.SOUTH);
 		// Add functionality
 		//...
 		

@@ -7,8 +7,8 @@ import javax.swing.Timer;
 public class Board extends JPanel {
 	
 	private static final boolean DEBUG = true;
-	private static final int MAPSIZE = 14;
-	private static final int TILESIZE = 32;
+	private static final int MAP_SIZE = 14;
+	private static final int TILE_SIZE = 32;
 	
 	private Timer timer;
 	private Map map;
@@ -21,13 +21,13 @@ public class Board extends JPanel {
 	public void paint(Graphics g){
 		if(DEBUG){System.out.println("DEBUG: Attempting to draw the board.");}
 		super.paint(g);
-		for(int y=0; y<MAPSIZE;y++){
-			for(int x=0; x<MAPSIZE; x++){
+		for(int y=0; y<MAP_SIZE;y++){
+			for(int x=0; x<MAP_SIZE; x++){
 				if(map.getMap(x, y).equals(".")){
-					g.drawImage(map.getGrass(), x*TILESIZE, y*TILESIZE, null);
+					g.drawImage(map.getGrass(), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 				if(map.getMap(x, y).equals("W")){
-					g.drawImage(map.getWall(), x*TILESIZE, y*TILESIZE, null);
+					g.drawImage(map.getWall(), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}

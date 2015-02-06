@@ -1,4 +1,5 @@
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 
 public class GameEngine implements Runnable {
@@ -8,25 +9,24 @@ public class GameEngine implements Runnable {
 	private Board board;
 	
 	public GameEngine(){
-		
+		// This constructor is here to prevent a super-constructor
 	}
 	
-	public GameEngine(Board readBoard){
+	public GameEngine(Board readBoard, JFrame gamewindow){
 		if(DEBUG){System.out.println("DEBUG: Game Engine constructor initiated.");}
 		board = readBoard;
-		JFrame mainframe = new MainFrame("A Maze Game");
-		mainframe.add(board);
-		mainframe.setVisible(true);
+		gamewindow.add(board);
 	}
 	
 	public void run(){
 		if(DEBUG){System.out.println("DEBUG: Game Engine thread started.");}
-		// TODO: Code for repainting board every ~25ms
-		for(int i = 0; i < 10; i++) {
+		
+		// Here we repaint the board every 1 second 
+		while(true){
 		    try {
 		    	board.repaint();
 		        Thread.sleep(1000);
-		        System.out.println("Thread has slept " + i + " times");
+		        System.out.println("Thread is sleeping for 1 second");
 		    } catch(InterruptedException ie) {}
 		}
 	}

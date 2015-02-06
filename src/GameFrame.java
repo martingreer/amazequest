@@ -23,7 +23,19 @@ public class GameFrame extends JFrame {
 		c.add(inventoryPanel, BorderLayout.SOUTH);
 		// Add functionality
 		//...
+		hideInventoryPanel();
+	}
+	
+	public void showInventoryPanel(){
+		inventoryPanel.setVisible(true);
+	
+	}
+	
+	public void hideInventoryPanel(){
+		inventoryPanel.setVisible(false);
 		
 	}
+
+
 
 }

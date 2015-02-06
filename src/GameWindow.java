@@ -16,16 +16,18 @@ public class GameWindow {
 	private static final int WINDOW_SIZE_X = 1024;
 	private static final int WINDOW_SIZE_Y = 768;
 	
+	private static GameFrame gameFrame;
+	
 	public static void main(String[] args){
-		JFrame mainwindow = createWindow();
-		createMenuBar(mainwindow);
-		createButtons(mainwindow);
-		mainwindow.setVisible(true);
+		gameFrame = createWindow();
+		createMenuBar(gameFrame);
+		createButtons(gameFrame);
+		gameFrame.setVisible(true);
 	}
 	
-	public static JFrame createWindow(){
+	public static GameFrame createWindow(){
 		//Create window frame
-		JFrame mainwindow = new JFrame("A Maze Quest");
+		GameFrame mainwindow = new GameFrame("A Maze Quest");
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 		mainwindow.setResizable(true);
@@ -77,15 +79,12 @@ public static void createButtons(JFrame mainwindow){
 		playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				playButton.setVisible(false);
-				mainwindow.setVisible(false);
-				JFrame gamewindow = new GameFrame("A Maze Quest");
-				gamewindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-				gamewindow.setResizable(true);
-				gamewindow.setVisible(true);
-				createMenuBar(gamewindow);
-				gamewindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
+				mainwindow.setResizable(true);
+				mainwindow.setVisible(true);
+				((GameFrame) mainwindow).showInventoryPanel();
 				Board board = new Board();
-				(new Thread(new GameEngine(board, gamewindow))).start();
+				(new Thread(new GameEngine(board, mainwindow))).start();
 			}
 			
 		});

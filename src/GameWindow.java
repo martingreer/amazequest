@@ -67,7 +67,7 @@ public class GameWindow {
 			
 		});
 		fileMenu.add(loadMenuItem);
-		
+	
 		//Options menu
 		
 				JMenu optionsMenu = new JMenu("Options");
@@ -80,8 +80,7 @@ public class GameWindow {
 				
 				optionsMenu.add(optionsMenuItem1);
 				
-				
-				//Finally add bar to top of frame
+		
 		
 		//Help menu
 		JMenu helpMenu = new JMenu("Help");
@@ -102,13 +101,14 @@ public class GameWindow {
 		
 		
 		
+		//Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);
 	
 	}
 	
 public static void createButtons(JFrame mainwindow){
 		
-		//PlayButton
+		//PlayButton ergergre
 		final JButton playButton = new JButton("Play!");
 		playButton.setSize(new Dimension(170, 130));
 		playButton.setFont(new Font("Arial", Font.ITALIC, 45));

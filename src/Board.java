@@ -6,7 +6,7 @@ import javax.swing.Timer;
 @SuppressWarnings("serial")
 public class Board extends JPanel {
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	private static final int MAP_SIZE = 14;
 	private static final int TILE_SIZE = 32;
 	

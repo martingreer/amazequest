@@ -4,7 +4,7 @@ import javax.swing.Timer;
 
 public class GameEngine implements Runnable {
 	
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	
 	private Board board;
 	
@@ -25,8 +25,8 @@ public class GameEngine implements Runnable {
 		while(true){
 		    try {
 		    	board.repaint();
-		        Thread.sleep(1000);
-		        System.out.println("Thread is sleeping for 1 second");
+		        Thread.sleep(100);
+		        if(DEBUG){System.out.println("Thread is sleeping for 1 second");}
 		    } catch(InterruptedException ie) {}
 		}
 	}

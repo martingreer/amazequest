@@ -16,7 +16,7 @@ public class Map {
 	
 	public Map(){
 		
-		
+		res = new ImageResources();
 		
 		ImageIcon img = new ImageIcon(res.getPath("grass"));
 		grass = img.getImage();

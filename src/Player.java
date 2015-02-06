@@ -5,7 +5,7 @@ import java.awt.event.KeyEvent;
 @SuppressWarnings("unused")
 public class Player extends GameEngine{
 
-	public int HEALTH;
+	public int HP;
 	public int ATTACK;
 	public int xPos, yPos;
 	public static String name;
@@ -15,12 +15,12 @@ public class Player extends GameEngine{
 		
 	}
 	
-	public int getHEALTH() {
-		return HEALTH;
+	public int getHP() {
+		return HP;
 	}
 
 	public void setHEALTH(int HEALTH) {
-		this.HEALTH = HEALTH;
+		this.HP = HP;
 	}
 
 	public int getATTACK() {

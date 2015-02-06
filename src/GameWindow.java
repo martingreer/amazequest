@@ -9,12 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class GameWindow {
 	
 	private static final int WINDOW_SIZE_X = 1024;
 	private static final int WINDOW_SIZE_Y = 768;
+	private static String VERSION = "Version:" + " Alpha 13.37";
 	
 	private static GameFrame gameFrame;
 	
@@ -38,29 +40,64 @@ public class GameWindow {
 		//Create menu bar
 		JMenuBar menuBar = new JMenuBar();
 		
-		//Game menu
-		JMenu gameMenu = new JMenu("Game");
-		gameMenu.setMnemonic(KeyEvent.VK_G);
-		gameMenu.getAccessibleContext().setAccessibleDescription("Description");
-		menuBar.add(gameMenu);
+		//File menu
+		JMenu fileMenu = new JMenu("File");
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		menuBar.add(fileMenu);
 		
-		//Sub-choice of Game menu
-		JMenuItem gameMenuItem1 = new JMenuItem("Blabla", KeyEvent.VK_B);
-		gameMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		gameMenuItem1.getAccessibleContext().setAccessibleDescription("Weee!");
-		gameMenu.add(gameMenuItem1);
+		//Sub-choice of File menu
+		JMenuItem saveMenuItem = new JMenuItem("Save", KeyEvent.VK_S);
+		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
+		saveMenuItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JOptionPane.showMessageDialog(null,"Game saved");
+			}
+			
+			
+		});
+		fileMenu.add(saveMenuItem);
+		
+		JMenuItem loadMenuItem = new JMenuItem("Load", KeyEvent.VK_L);
+		loadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.ALT_MASK));
+		loadMenuItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JOptionPane.showMessageDialog(null,"Game loaded");
+			}
+			
+			
+		});
+		fileMenu.add(loadMenuItem);
 		
 		//Help menu
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
-		helpMenu.getAccessibleContext().setAccessibleDescription("Description Help");
 		menuBar.add(helpMenu);
 		
 		//Sub-choice of Help menu
-		JMenuItem helpMenuItem1 = new JMenuItem("Blabla", KeyEvent.VK_B);
-		helpMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		helpMenuItem1.getAccessibleContext().setAccessibleDescription("Weee!");
-		helpMenu.add(helpMenuItem1);
+		JMenuItem versionMenuItem = new JMenuItem("Version", KeyEvent.VK_V);
+		versionMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));
+		versionMenuItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				JOptionPane.showMessageDialog(null,VERSION);
+			}
+			
+			
+		});
+		helpMenu.add(versionMenuItem);
+		
+		
+		//Options menu
+		
+		JMenu optionsMenu = new JMenu("Options");
+		optionsMenu.setMnemonic(KeyEvent.VK_O);
+		menuBar.add(optionsMenu);
+		
+		//Sub-choice of Options menu
+		JMenuItem optionsMenuItem1 = new JMenuItem("MMMBop", KeyEvent.VK_M);
+		optionsMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
+		
+		optionsMenu.add(optionsMenuItem1);
+		
 		
 		//Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);

@@ -76,8 +76,8 @@ public static void createButtons(JFrame mainwindow){
 		playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				playButton.setVisible(false);
-				GameEngine gameEngine = new GameEngine();
-				gameEngine.run();
+				Board board = new Board();
+				(new Thread(new GameEngine(board))).start();
 			}
 			
 		});

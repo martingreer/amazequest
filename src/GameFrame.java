@@ -21,7 +21,6 @@ public class GameFrame extends JFrame {
 		Container c = getContentPane();
 		c.add(boardAreaPlaceholder, BorderLayout.CENTER);
 		c.add(inventoryPanel, BorderLayout.SOUTH);
-		
 		// Add functionality
 		//...
 		

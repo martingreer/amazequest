@@ -1,2 +1,5 @@
 grass:./res/grass.png
 wall:./res/wall.png
+playerf:./rest/playerfront.png
+playerw:./rest/playerwest.png
+playere:./rest/playereast.png

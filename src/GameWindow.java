@@ -84,6 +84,7 @@ public static void createButtons(JFrame mainwindow){
 				gamewindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				gamewindow.setResizable(true);
 				gamewindow.setVisible(true);
+				createMenuBar(gamewindow);
 				gamewindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				Board board = new Board();
 				(new Thread(new GameEngine(board, gamewindow))).start();

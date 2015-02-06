@@ -68,6 +68,21 @@ public class GameWindow {
 		});
 		fileMenu.add(loadMenuItem);
 		
+		//Options menu
+		
+				JMenu optionsMenu = new JMenu("Options");
+				optionsMenu.setMnemonic(KeyEvent.VK_O);
+				menuBar.add(optionsMenu);
+				
+				//Sub-choice of Options menu
+				JMenuItem optionsMenuItem1 = new JMenuItem("MMMBop", KeyEvent.VK_M);
+				optionsMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
+				
+				optionsMenu.add(optionsMenuItem1);
+				
+				
+				//Finally add bar to top of frame
+		
 		//Help menu
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
@@ -86,20 +101,7 @@ public class GameWindow {
 		helpMenu.add(versionMenuItem);
 		
 		
-		//Options menu
 		
-		JMenu optionsMenu = new JMenu("Options");
-		optionsMenu.setMnemonic(KeyEvent.VK_O);
-		menuBar.add(optionsMenu);
-		
-		//Sub-choice of Options menu
-		JMenuItem optionsMenuItem1 = new JMenuItem("MMMBop", KeyEvent.VK_M);
-		optionsMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
-		
-		optionsMenu.add(optionsMenuItem1);
-		
-		
-		//Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);
 	
 	}

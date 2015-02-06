@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -33,6 +35,24 @@ public class InventoryPanel extends JPanel {
 	    JButton itemButton4 = new JButton("ib4");
 	    JButton itemButton5 = new JButton("ib5");
 	    JButton itemButton6 = new JButton("ib6");
+	    
+	    //for(int i=1; i<=6;   i++) {
+	    	
+	    	//JButton itemButton = new JButton("ib" + i);
+	    
+	    	//itemButton.addActionListener(new ActionListener() {
+			
+			//public void actionPerformed(ActionEvent e) {
+				
+			// do something .... 
+				
+				
+			//}
+				
+				//});
+	    	
+	    	
+	    	//}
 	    
 	    
 	    //add swing components to content pane

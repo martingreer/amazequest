@@ -11,12 +11,16 @@ public class Map {
 	private Scanner m;
 	private String Map[] = new String[MAP_SIZE];
 	
+	private ImageResources res;
 	private Image grass, wall;
 	
 	public Map(){
-		ImageIcon img = new ImageIcon("./res/grass.png");
+		
+		
+		
+		ImageIcon img = new ImageIcon(res.getPath("grass"));
 		grass = img.getImage();
-		img =  new ImageIcon("./res/wall.png");
+		img =  new ImageIcon(res.getPath("wall"));
 		wall = img.getImage();
 		
 		openFile();

@@ -1,5 +1,8 @@
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import javax.swing.ImageIcon;
 
 
 @SuppressWarnings("unused")
@@ -9,9 +12,18 @@ public class Player extends GameEngine{
 	public int ATTACK;
 	public int xPos, yPos;
 	public static String name;
-	//image?
+	private ImageResources res;
+	private Image playerf, playerw, playere;
+	
 	
 	public Player(int xPos, int yPos, int ATTACK, int HEALTH, ID id){
+		res = new ImageResources();
+		ImageIcon img = new ImageIcon(res.getPath("playerf"));
+		playerf = img.getImage();
+		img = new ImageIcon(res.getPath("playerw"));
+		playerw = img.getImage();
+		img = new ImageIcon(res.getPath("playere"));
+		playere = img.getImage();
 		
 	}
 	
@@ -19,7 +31,7 @@ public class Player extends GameEngine{
 		return HP;
 	}
 
-	public void setHEALTH(int HEALTH) {
+	public void setHEALTH(int HP) {
 		this.HP = HP;
 	}
 

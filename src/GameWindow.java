@@ -12,8 +12,8 @@ import javax.swing.*;
 
 public class GameWindow {
 
-	private static final int WINDOW_SIZE_X = 1024;
-	private static final int WINDOW_SIZE_Y = 768;
+	private static final int WINDOW_SIZE_X = 464;
+	private static final int WINDOW_SIZE_Y = 610;
 	private static String VERSION = "Version:" + " Alpha 13.37";
 	private static GameFrame gameFrame;
 
@@ -30,6 +30,7 @@ public class GameWindow {
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 		mainwindow.setResizable(true);
+		mainwindow.setLocationRelativeTo(null);
 		return mainwindow;
 	}
 

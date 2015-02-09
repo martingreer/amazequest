@@ -10,12 +10,14 @@ public class Board extends JPanel {
 	private static final int MAP_SIZE = 14;
 	private static final int TILE_SIZE = 32;
 	
-	private Timer timer;
 	private Map map;
+	private Player player;
 	
 	public Board(){
 		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
 		map = new Map();
+		player = new Player(1,1,1,10,null);
+		setFocusable(true);
 	}
 	
 	public void paint(Graphics g){
@@ -31,5 +33,8 @@ public class Board extends JPanel {
 				}
 			}
 		}
+		
+		g.drawImage(player.getPlayerImage(), player.getxPos()*TILE_SIZE, player.getyPos()*TILE_SIZE, null);
 	}
 }
+

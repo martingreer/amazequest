@@ -106,7 +106,7 @@ public class GameWindow {
 		});
 		helpMenu.add(versionMenuItem);
 
-		//Finally add bar to top of frame
+		// Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);
 
 	}

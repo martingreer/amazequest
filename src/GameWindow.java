@@ -14,7 +14,7 @@ public class GameWindow {
 
 	private static final int WINDOW_SIZE_X = 464;
 	private static final int WINDOW_SIZE_Y = 610;
-	private static String VERSION = "Version:" + " Alpha 13.37";
+	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37";
 	private static GameFrame gameFrame;
 
 	public static void main(String[] args){
@@ -38,17 +38,6 @@ public class GameWindow {
 		//Create menu bar
 		JMenuBar menuBar = new JMenuBar();
 
-		//Game menu
-		JMenu gameMenu = new JMenu("Game");
-		gameMenu.setMnemonic(KeyEvent.VK_G);
-		gameMenu.getAccessibleContext().setAccessibleDescription("Description");
-		menuBar.add(gameMenu);
-
-		//Sub-choice of Game menu
-		JMenuItem gameMenuItem1 = new JMenuItem("Blabla", KeyEvent.VK_B);
-		gameMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		gameMenuItem1.getAccessibleContext().setAccessibleDescription("Weee!");
-		gameMenu.add(gameMenuItem1);
 
 		//File menu
 		JMenu fileMenu = new JMenu("File");

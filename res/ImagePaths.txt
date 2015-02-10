@@ -6,3 +6,4 @@ sword:./res/sword.pg
 playerf:./res/playerfront.png
 playerw:./res/playerwest.png
 playere:./res/playereast.png
+playern:./res/playernorth.png

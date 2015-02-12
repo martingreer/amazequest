@@ -28,7 +28,7 @@ public class Map extends JPanel {
 		readFile();
 		closeFile();
 		
-		player = new Player(1,10,null);
+		player = new Player(1,1,5,"Bertil",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 	}
@@ -70,7 +70,7 @@ public class Map extends JPanel {
 			for(int x=0; x<MAP_SIZE; x++){
 				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
 				if(tiles[x][y].getPlayer() != null){
-					g.drawImage(res.getImg("playerf"), x*TILE_SIZE, y*TILE_SIZE, null);
+					g.drawImage(res.getImg("playerSouth"), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}

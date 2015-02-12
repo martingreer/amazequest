@@ -17,7 +17,7 @@ public class Player extends InteractiveObject {
 		
 		}
 	
-	public int returnExp() {
+	public int getExp() {
 		
 		return exp;
 		

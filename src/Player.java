@@ -8,37 +8,19 @@ public class Player {
 
 	public int HP;
 	public int ATTACK;
-	public int xPos, yPos;
 	public static String name;
-	private ImageResources res;
-	private Image playerf, playerw, playere;
 	
 	
-	public Player(int xStartPos, int yStartPos, int startATTACK, int startHP, ID id){
-		res = new ImageResources();
-		ImageIcon img = new ImageIcon(res.getPath("playerf"));
-		playerf = img.getImage();
-		img = new ImageIcon(res.getPath("playerw"));
-		playerw = img.getImage();
-		img = new ImageIcon(res.getPath("playere"));
-		playere = img.getImage();
-		
-		// Assign starting parameters for player
-		setxPos(xStartPos);
-		setyPos(yStartPos);
+	public Player(int startATTACK, int startHP, ID id){
+// Assign starting parameters for player
+
 		setHP(startHP);
 		setATTACK(startATTACK);
 	}
 	
-	public Image getPlayerImage() {
-		// TODO: Add cases for playerw playere
-		return playerf;
-	}
+
 	
-	public void setPlayerImage(Image image) {
-		
-	}
-	
+
 	public int getHP() {
 		return HP;
 	}
@@ -54,23 +36,7 @@ public class Player {
 	public void setATTACK(int ATTACK) {
 		this.ATTACK = ATTACK;
 	}
-
-	public int getxPos() {
-		return xPos;
-	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
-	}
-
-	public int getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
-	}
-
+/*
 	public void move(String direction){
 		switch (direction) {
 			case "NORTH": setyPos(yPos++);
@@ -79,7 +45,7 @@ public class Player {
 			case "EAST": setxPos(xPos++);
 		}
 	}
-	
+	*/
 	/*
 	if(keycode == KeyEvent.VK_UP){
 		if(!map.getMap(player.getxPos(),player.getyPos()-1).equals("W")){

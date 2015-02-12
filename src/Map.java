@@ -19,12 +19,16 @@ public class Map extends JPanel {
 
 	public Map(){
 		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
-		player = new Player(1,1,1,10,null);
+		
+		
 		setFocusable(true);
 		
 		openFile();
 		readFile();
 		closeFile();
+		
+		player = new Player(1,10,null);
+		tiles[1][1].setPlayer(player);
 	}
 
 	public void openFile(){
@@ -62,10 +66,12 @@ public class Map extends JPanel {
 		super.paint(g);
 		for(int y=0; y<MAP_SIZE;y++){
 			for(int x=0; x<MAP_SIZE; x++){
-				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);						
+				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
+				if(tiles[x][y].getPlayer() != null){
+					g.drawImage(res.getImg("playerf"), x*TILE_SIZE, y*TILE_SIZE, null);
+				}
 			}
 		}
 		
-		g.drawImage(player.getPlayerImage(), player.getxPos()*TILE_SIZE, player.getyPos()*TILE_SIZE, null);
 	}
 }

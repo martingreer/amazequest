@@ -6,41 +6,18 @@ import javax.swing.ImageIcon;
 
 
 public class Map {
+	
 	private static final int MAP_SIZE = 14;
-	
+
 	private Scanner m;
-	private String Map[] = new String[MAP_SIZE];
-	
-	private ImageResources res;
-	private Image grass, wall;
-	
+	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
+
 	public Map(){
-		
-		res = new ImageResources();
-		
-		ImageIcon img = new ImageIcon(res.getPath("grass"));
-		grass = img.getImage();
-		img =  new ImageIcon(res.getPath("wall"));
-		wall = img.getImage();
-		
 		openFile();
 		readFile();
 		closeFile();
 	}
-	
-	public Image getGrass(){
-		return grass;
-	}	
-	
-	public Image getWall(){
-		return wall;
-	}
-	
-	public String getMap(int x, int y){
-		String index = Map[y].substring(x, x+1);
-		return index;
-	}
-	
+
 	public void openFile(){
 		try{
 			m =  new Scanner(new File("./res/map_1.txt"));
@@ -48,16 +25,29 @@ public class Map {
 			System.out.println("Error: Map failed to load");
 		}
 	}
-	
+
 	public void readFile(){
+		char[] c;
 		while(m.hasNext()){
-			for(int i=0; i<MAP_SIZE; i++){
-				Map[i] = m.next();
+			for(int y=0; y<MAP_SIZE; y++){
+				c = m.next().toCharArray();
+				for(int x=0; x<MAP_SIZE; x++){
+					if(c[x] == 'W'){
+						tiles[x][y] = new Tile(x, y, "wall", true);
+					}
+					else if(c[x] == '.'){
+						tiles[x][y] = new Tile(x, y, "grass", false);
+					}
+				}
 			}
-			
+
 		}
 	}
-	
+
+	public Tile getTile(int x, int y){
+		return tiles[x][y];
+	}
+
 	public void closeFile(){
 		m.close();
 	}

@@ -1,5 +1,6 @@
 import java.awt.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -13,6 +14,9 @@ public class Board extends JPanel {
 	private Map map;
 	private Player player;
 	
+	private ImageResources res = new ImageResources();
+
+	
 	public Board(){
 		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
 		map = new Map();
@@ -25,12 +29,7 @@ public class Board extends JPanel {
 		super.paint(g);
 		for(int y=0; y<MAP_SIZE;y++){
 			for(int x=0; x<MAP_SIZE; x++){
-				if(map.getMap(x, y).equals(".")){
-					g.drawImage(map.getGrass(), x*TILE_SIZE, y*TILE_SIZE, null);
-				}
-				if(map.getMap(x, y).equals("W")){
-					g.drawImage(map.getWall(), x*TILE_SIZE, y*TILE_SIZE, null);
-				}
+				g.drawImage(res.getImg(map.getTile(x,y).getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);						
 			}
 		}
 		

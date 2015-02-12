@@ -1,40 +1,26 @@
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
-
-@SuppressWarnings("unused")
-public class Player {
-
-	public int HP;
-	public int ATTACK;
-	public static String name;
+public class Player extends InteractiveObject {
 	
+	private ArrayList<Item> items;     // items 
+	private int exp;                  // experience 
 	
-	public Player(int startATTACK, int startHP, ID id){
-// Assign starting parameters for player
-
-		setHP(startHP);
-		setATTACK(startATTACK);
-	}
+	public Player(int level, int attack, int hp, String name, int exp) {
+		
+		super(level, attack, hp, name);
+		
+		items = new ArrayList<Item>();
+		
+		this.exp = exp;
+		
+		}
 	
-
-	
-
-	public int getHP() {
-		return HP;
-	}
-
-	public void setHP(int HP) {
-		this.HP = HP;
-	}
-
-	public int getATTACK() {
-		return ATTACK;
-	}
-
-	public void setATTACK(int ATTACK) {
-		this.ATTACK = ATTACK;
+	public int returnExp() {
+		
+		return exp;
+		
 	}
 /*
 	public void move(String direction){

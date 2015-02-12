@@ -1,29 +1,13 @@
 
-public class Item {
+
+
+public class Item extends InteractiveObject{
 	
-	String itemName;
 	
-	public Item(String itemName) {
+	public Item(int level, int attack, int hp, String name) {
 		
+		super(level, attack, hp, name);
 		
-		this.itemName = itemName;
-		
-	}
-	public void hpIncrease() {
-		
-		/////////////////
-		
-	}
-	public void attackIncrease() {
-		
-		//////////////////
-		
-	}
-	public void getImage() {
-	
-		System.out.println("test for jonas");
-		////////////////////
-	
 	}
 
 }

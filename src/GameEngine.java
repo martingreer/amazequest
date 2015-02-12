@@ -6,18 +6,18 @@ public class GameEngine implements Runnable {
 	
 	private static final boolean DEBUG = false;
 	
-	private Board board;
+	private Map map;
 	
 	public GameEngine(){
 		// This constructor is here to prevent a super-constructor
 	}
 
-	public GameEngine(Board readBoard, JFrame gamewindow){
+	public GameEngine(Map readBoard, JFrame gamewindow){
 		if(DEBUG){System.out.println("DEBUG: Game Engine constructor initiated.");}
 		
 		//Draw board inside game window
-		board = readBoard;
-		gamewindow.add(board);
+		map = readBoard;
+		gamewindow.add(map);
 	}
 	
 	public void run(){
@@ -26,7 +26,7 @@ public class GameEngine implements Runnable {
 		// Here we repaint the board every 25ms (25 fps) 
 		while(true){
 		    try {
-		    	board.repaint();
+		    	map.repaint();
 		        Thread.sleep(25);
 		        if(DEBUG){System.out.println("Thread is sleeping for 1 second");}
 		    } catch(InterruptedException ie) {}

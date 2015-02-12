@@ -120,8 +120,8 @@ public class GameWindow {
 				mainwindow.setResizable(true);
 				mainwindow.setVisible(true);
 				((GameFrame) mainwindow).showInventoryPanel();
-				Board board = new Board();
-				(new Thread(new GameEngine(board, mainwindow))).start();
+				Map map = new Map();
+				(new Thread(new GameEngine(map, mainwindow))).start();
 
 			}
 		});

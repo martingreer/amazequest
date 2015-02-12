@@ -3,16 +3,25 @@ import java.io.File;
 import java.util.*;
 
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 
-public class Map {
+public class Map extends JPanel {
 	
+	private static final boolean DEBUG = false;
 	private static final int MAP_SIZE = 14;
+	private static final int TILE_SIZE = 32;
 
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
+	private Player player;
+	private ImageResources res = new ImageResources();
 
 	public Map(){
+		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
+		player = new Player(1,1,1,10,null);
+		setFocusable(true);
+		
 		openFile();
 		readFile();
 		closeFile();
@@ -44,11 +53,19 @@ public class Map {
 		}
 	}
 
-	public Tile getTile(int x, int y){
-		return tiles[x][y];
-	}
-
 	public void closeFile(){
 		m.close();
+	}
+	
+	public void paint(Graphics g){
+		if(DEBUG){System.out.println("DEBUG: Attempting to draw the board.");}
+		super.paint(g);
+		for(int y=0; y<MAP_SIZE;y++){
+			for(int x=0; x<MAP_SIZE; x++){
+				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);						
+			}
+		}
+		
+		g.drawImage(player.getPlayerImage(), player.getxPos()*TILE_SIZE, player.getyPos()*TILE_SIZE, null);
 	}
 }

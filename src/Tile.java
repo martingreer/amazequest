@@ -10,7 +10,6 @@ public class Tile {
 		this.yPos = yPos;
 		this.imgID = imgID;
 		this.collision = collision;
-		
 	}
 	
 	public String getImgID(){
@@ -25,4 +24,15 @@ public class Tile {
 		return player;
 	}
 	
+	public int getXPos(){
+		return xPos;
+	}
+	
+	public int getYPos(){
+		return yPos;
+	}
+	
+	public boolean getCollision(){
+		return collision;
+	}
 }

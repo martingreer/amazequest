@@ -15,6 +15,7 @@ public class Map extends JPanel {
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
+	private Tile playerTile;
 	private ImageResources res = new ImageResources();
 
 	public Map(){
@@ -29,6 +30,7 @@ public class Map extends JPanel {
 		
 		player = new Player(1,10,null);
 		tiles[1][1].setPlayer(player);
+		playerTile = tiles[1][1];
 	}
 
 	public void openFile(){

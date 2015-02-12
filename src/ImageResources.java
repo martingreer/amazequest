@@ -23,11 +23,13 @@ public class ImageResources {
 			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				String[] parts = line.split(":");
-				if(parts[0].equals(ID)) { 
+				if(parts[0].equals(ID)) {
+					scanner.close();
 					return parts[1];
 				}
-				scanner.close();
 			}
+			scanner.close();
+			
 		} catch(FileNotFoundException e) { 
 			JOptionPane.showMessageDialog(null, "File could not be found");
 		}

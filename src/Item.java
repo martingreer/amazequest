@@ -21,6 +21,7 @@ public class Item {
 	}
 	public void getImage() {
 	
+		System.out.println("test for jonas");
 		////////////////////
 	
 	}

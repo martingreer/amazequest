@@ -1,25 +1,31 @@
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 
 @SuppressWarnings("unused")
-public class Player extends GameEngine{
+public class Player {
 
 	public int HP;
 	public int ATTACK;
-	public int xPos, yPos;
 	public static String name;
-	//image?
 	
-	public Player(int xPos, int yPos, int ATTACK, int HEALTH, ID id){
-		
+	
+	public Player(int startATTACK, int startHP, ID id){
+// Assign starting parameters for player
+
+		setHP(startHP);
+		setATTACK(startATTACK);
 	}
 	
+
+	
+
 	public int getHP() {
 		return HP;
 	}
 
-	public void setHEALTH(int HEALTH) {
+	public void setHP(int HP) {
 		this.HP = HP;
 	}
 
@@ -30,41 +36,49 @@ public class Player extends GameEngine{
 	public void setATTACK(int ATTACK) {
 		this.ATTACK = ATTACK;
 	}
-
-	public int getxPos() {
-		return xPos;
+/*
+	public void move(String direction){
+		switch (direction) {
+			case "NORTH": setyPos(yPos++);
+			case "SOUTH": setyPos(yPos--);
+			case "WEST": setxPos(xPos--);
+			case "EAST": setxPos(xPos++);
+		}
 	}
-
-	public void setxPos(int xPos) {
-		this.xPos = xPos;
+	*/
+	/*
+	if(keycode == KeyEvent.VK_UP){
+		if(!map.getMap(player.getxPos(),player.getyPos()-1).equals("W")){
+			player.move("NORTH");
+		}   
 	}
-
-	public int getyPos() {
-		return yPos;
+	if(keycode == KeyEvent.VK_DOWN){
+		if(!map.getMap(player.getxPos(),player.getyPos()+1).equals("W")){
+			player.move("SOUTH");
+		}   
 	}
-
-	public void setyPos(int yPos) {
-		this.yPos = yPos;
+	if(keycode == KeyEvent.VK_LEFT){
+		if(!map.getMap(player.getxPos()-1,player.getyPos()).equals("W")){
+			player.move("WEST");
+		}   
 	}
-
-	public void move(){
-		
+	if(keycode == KeyEvent.VK_RIGHT){
+		if(!map.getMap(player.getxPos()+1,player.getyPos()).equals("W")){
+			player.move("EAST");
+		}   
 	}
+	*/
 	
 	/*
+	@Override
 	public void keyPressed(KeyEvent e){
-		if(e.getKeyCode() == KeyEvent.VK_W){
-			setyPos(yPos - 1);
-		}
-		if(e.getKeyCode() == KeyEvent.VK_S){
-			setyPos(yPos + 1);
-		}
-		if(e.getKeyCode() == KeyEvent.VK_D){
-			setyPos(xPos + 1);
-		}
-		if(e.getKeyCode() == KeyEvent.VK_A){
-			setyPos(xPos - 1);
+		System.out.println("Key pressed");
+		switch(e.getKeyCode()){
+			case KeyEvent.VK_UP: setyPos(yPos--);
+			case KeyEvent.VK_DOWN: setyPos(yPos++);
+			case KeyEvent.VK_LEFT: setyPos(xPos--);
+			case KeyEvent.VK_RIGHT: setyPos(xPos++);
 		}
 	}
-	 */
+	*/
 }

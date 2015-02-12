@@ -12,9 +12,9 @@ import javax.swing.*;
 
 public class GameWindow {
 
-	private static final int WINDOW_SIZE_X = 1024;
-	private static final int WINDOW_SIZE_Y = 768;
-	private static String VERSION = "Version:" + " Alpha 13.37";
+	private static final int WINDOW_SIZE_X = 464;
+	private static final int WINDOW_SIZE_Y = 610;
+	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private static GameFrame gameFrame;
 
 	public static void main(String[] args){
@@ -30,6 +30,7 @@ public class GameWindow {
 		mainwindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 		mainwindow.setResizable(true);
+		mainwindow.setLocationRelativeTo(null);
 		return mainwindow;
 	}
 
@@ -37,17 +38,6 @@ public class GameWindow {
 		//Create menu bar
 		JMenuBar menuBar = new JMenuBar();
 
-		//Game menu
-		JMenu gameMenu = new JMenu("Game");
-		gameMenu.setMnemonic(KeyEvent.VK_G);
-		gameMenu.getAccessibleContext().setAccessibleDescription("Description");
-		menuBar.add(gameMenu);
-
-		//Sub-choice of Game menu
-		JMenuItem gameMenuItem1 = new JMenuItem("Blabla", KeyEvent.VK_B);
-		gameMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		gameMenuItem1.getAccessibleContext().setAccessibleDescription("Weee!");
-		gameMenu.add(gameMenuItem1);
 
 		//File menu
 		JMenu fileMenu = new JMenu("File");
@@ -105,7 +95,7 @@ public class GameWindow {
 		});
 		helpMenu.add(versionMenuItem);
 
-		//Finally add bar to top of frame
+		// Finally add bar to top of frame
 		mainwindow.setJMenuBar(menuBar);
 
 	}
@@ -130,8 +120,8 @@ public class GameWindow {
 				mainwindow.setResizable(true);
 				mainwindow.setVisible(true);
 				((GameFrame) mainwindow).showInventoryPanel();
-				Board board = new Board();
-				(new Thread(new GameEngine(board, mainwindow))).start();
+				Map map = new Map();
+				(new Thread(new GameEngine(map, mainwindow))).start();
 
 			}
 		});

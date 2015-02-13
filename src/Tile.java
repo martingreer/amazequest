@@ -20,11 +20,16 @@ public class Tile {
 		this.interactiveObject = player;
 	}
 	
-	public InteractiveObject getPlayer(){
-		if(interactiveObject instanceof Player){
-			return interactiveObject;
-		}
-		return null;
+	public void setEnemy(Enemy enemy){
+		this.interactiveObject = enemy;
+	}
+	
+	public void setItem(Item item){
+		this.interactiveObject = item;
+	}
+	
+	public InteractiveObject getInterObj(){
+		return interactiveObject;
 	}
 	
 	public int getXPos(){

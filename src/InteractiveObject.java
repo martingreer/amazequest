@@ -19,21 +19,21 @@ public class InteractiveObject {
 	
 	// test methods // 
 	
-	public int returnHp() {
+	public int getHp() {
 		
 		return hp;
 	}
-	public int returnLevel() {
+	public int getLevel() {
 		
 		return level;
 		
 	}
-	public String returnName() {
+	public String getName() {
 		
 		return name;
 		
 	}
-	public int returnAttack(){
+	public int getAttack(){
 		
 		return attack;
 		

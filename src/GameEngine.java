@@ -26,9 +26,10 @@ public class GameEngine implements Runnable {
 		// Here we repaint the board every 25ms (25 fps) 
 		while(true){
 		    try {
+		    	map.requestFocus(); // Denna kommer sätta fokus tillbaka tillbaka mappen när man trycker i inventoryt. ingen superbra lösning
 		    	map.repaint();
 		        Thread.sleep(25);
-		        if(DEBUG){System.out.println("Thread is sleeping for 1 second");}
+		        if(DEBUG){System.out.println("Thread is sleeping for 1 second");} 
 		    } catch(InterruptedException ie) {}
 		}
 	}

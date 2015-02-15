@@ -1,8 +1,9 @@
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.*;
 
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 
@@ -11,7 +12,8 @@ public class Map extends JPanel {
 	private static final boolean DEBUG = false;
 	private static final int MAP_SIZE = 14;
 	private static final int TILE_SIZE = 32;
-
+	
+	
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
@@ -28,9 +30,11 @@ public class Map extends JPanel {
 		readFile();
 		closeFile();
 		
-		player = new Player(1,10,null);
+		player = new Player(1,1,5,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
+		
+		initKeyListener();
 	}
 
 	public void openFile(){
@@ -69,11 +73,58 @@ public class Map extends JPanel {
 		for(int y=0; y<MAP_SIZE;y++){
 			for(int x=0; x<MAP_SIZE; x++){
 				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
-				if(tiles[x][y].getPlayer() != null){
-					g.drawImage(res.getImg("playerf"), x*TILE_SIZE, y*TILE_SIZE, null);
+				if(tiles[x][y].getInterObj() != null){
+					g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}
-		
+	}
+	
+	private void initKeyListener(){
+	      addKeyListener(new KeyAdapter() {
+	    	  /*
+	          @Override
+	          public void keyTyped(KeyEvent e) {
+	             myKeyEvt(e, "keyTyped");
+	          }
+	          
+	          @Override
+	          public void keyReleased(KeyEvent e) {
+	             myKeyEvt(e, "keyReleased");
+	          }
+	          */
+	          @Override
+	          public void keyPressed(KeyEvent e) {
+	             myKeyEvt(e, "keyPressed");
+	          }
+
+	          private void myKeyEvt(KeyEvent e, String text) {
+	             int key = e.getKeyCode();
+	             Tile nextTile = null;
+	             if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT)
+	             {
+	            	 nextTile = tiles[playerTile.getXPos()-1][playerTile.getYPos()];
+	             }
+	             else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT)
+	             {
+	            	 nextTile = tiles[playerTile.getXPos()+1][playerTile.getYPos()];
+
+	             }
+	             else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP)
+	             {
+	            	 nextTile = tiles[playerTile.getXPos()][playerTile.getYPos()-1];
+	             }
+	             else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN)
+	             {
+	            	 nextTile = tiles[playerTile.getXPos()][playerTile.getYPos()+1];
+	             }
+	             
+            	 if(!nextTile.getCollision()){
+            		 nextTile.setPlayer(player);
+            		 playerTile.setPlayer(null);
+            		 playerTile = nextTile;
+            	 }
+	          }
+	      });
 	}
 }

@@ -3,7 +3,7 @@ public class Tile {
 	int xPos,yPos;
 	private String imgID;
 	private boolean collision;
-	private Player player;
+	private InteractiveObject interactiveObject;
 	
 	public Tile(int xPos, int yPos, String imgID, boolean collision){
 		this.xPos = xPos;
@@ -17,11 +17,19 @@ public class Tile {
 	}
 	
 	public void setPlayer(Player player){
-		this.player = player;
+		this.interactiveObject = player;
 	}
 	
-	public Player getPlayer(){
-		return player;
+	public void setEnemy(Enemy enemy){
+		this.interactiveObject = enemy;
+	}
+	
+	public void setItem(Item item){
+		this.interactiveObject = item;
+	}
+	
+	public InteractiveObject getInterObj(){
+		return interactiveObject;
 	}
 	
 	public int getXPos(){

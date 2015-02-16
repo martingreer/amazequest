@@ -18,8 +18,8 @@ public class Map extends JPanel {
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
 	private Tile playerTile;
-	private Item item;
-	private Tile itemTile;
+	private Tile swordTile;
+	private Tile shieldTile;
 	private ImageResources res = new ImageResources();
 
 	public Map(){
@@ -39,13 +39,14 @@ public class Map extends JPanel {
 		//spawn enemy
 		spawnEnemy(1, 4, 1);
 		spawnEnemy(11, 3, 2);
-		initKeyListener();
-	/*	
-		item = new Item(0,0,0,"item");
-		tiles[1][2].setItem(item);
-		itemTile = tiles[1][2];
-	*/
 		
+		
+		//spawn item
+		spawnItem(2,4, "sword");
+		spawnItem(9,8, "shield");
+		
+		initKeyListener();
+	
 		
 	}
 
@@ -136,6 +137,17 @@ public class Map extends JPanel {
             		 playerTile.setPlayer(null);
             		 playerTile = nextTile;
             	 }
+            	 if(nextTile == swordTile){
+            		 
+            		 System.out.println("Sword here");
+            //		 Inventory.addItem(sword);
+            		 
+            	 }
+            	 if(nextTile == shieldTile){
+            		 
+            		 System.out.println("Shield here");
+            	 }
+            
 	          }
 	      });
 	}
@@ -156,5 +168,27 @@ public class Map extends JPanel {
 		
 		//more enemy types here?
 	
+	}
+	
+	public void spawnItem(int xPos, int yPos, String itemType){
+		Item item = new Item(0,0,0, itemType);
+		tiles[xPos][yPos].setItem(item);
+		
+		if(itemType == "sword"){
+			swordTile = tiles[xPos][yPos];
+			
+		
+			
+			
+		}
+		if(itemType == "shield"){
+			shieldTile = tiles[xPos][yPos];
+			
+			
+			
+		}
+		
+		
+			
 	}
 }

@@ -18,6 +18,8 @@ public class Map extends JPanel {
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
 	private Tile playerTile;
+	private Item item;
+	private Tile itemTile;
 	private ImageResources res = new ImageResources();
 
 	public Map(){
@@ -30,11 +32,17 @@ public class Map extends JPanel {
 		readFile();
 		closeFile();
 		
-		player = new Player(1,1,5,"player",0);
-		tiles[1][1].setPlayer(player);
-		playerTile = tiles[1][1];
-		
+		player = new Player(1,1,5,"player",0); //Spawns the player
+		tiles[1][1].setPlayer(player);  //tiles[x][y] sets spawn location
+		playerTile = tiles[1][1];  //	Sets playerTile to the above tile assigned as spawn tile
 		initKeyListener();
+	/*	
+		item = new Item(0,0,0,"item");
+		tiles[1][2].setItem(item);
+		itemTile = tiles[1][2];
+	*/
+		
+		
 	}
 
 	public void openFile(){

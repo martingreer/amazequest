@@ -32,7 +32,6 @@ public class Map extends JPanel {
 		readFile();
 		closeFile();
 		
-<<<<<<< HEAD
 		player = new Player(1,1,5,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
@@ -40,11 +39,6 @@ public class Map extends JPanel {
 		//spawn enemy
 		spawnEnemy(1, 4, 1);
 		spawnEnemy(11, 3, 2);
-=======
-		player = new Player(1,1,5,"player",0); //Spawns the player
-		tiles[1][1].setPlayer(player);  //tiles[x][y] sets spawn location
-		playerTile = tiles[1][1];  //	Sets playerTile to the above tile assigned as spawn tile
->>>>>>> branch 'develop' of https://github.com/martingreer/amazequest.git
 		initKeyListener();
 	/*	
 		item = new Item(0,0,0,"item");
@@ -151,14 +145,16 @@ public class Map extends JPanel {
 		//(int level, int attack, int hp, String name)
 		
 		if(type == 1){
-			Enemy enemy = new Enemy(1,1,5,"shield");  //shield placeholder for "enemyLv1" image 
+			Enemy enemy = new Enemy(1,1,5,"enemyLv1");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		
-		if(type == 2){						//sword placeholder for "enemyLv2" image 
-			Enemy enemy = new Enemy(2,2,10,"sword");  
+		if(type == 2){ 
+			Enemy enemy = new Enemy(2,2,10,"enemyLv2");  
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		
+		//more enemy types here?
 	
 	}
 }

@@ -34,6 +34,9 @@ public class Map extends JPanel {
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		
+		//spawn enemy
+		spawnEnemy(1, 4, 1);
+		spawnEnemy(11, 3, 2);
 		initKeyListener();
 	}
 
@@ -119,12 +122,28 @@ public class Map extends JPanel {
 	            	 nextTile = tiles[playerTile.getXPos()][playerTile.getYPos()+1];
 	             }
 	             
-            	 if(!nextTile.getCollision()){
+            	 if(!nextTile.getCollision() && nextTile.isEmpty()){
             		 nextTile.setPlayer(player);
             		 playerTile.setPlayer(null);
             		 playerTile = nextTile;
             	 }
 	          }
 	      });
+	}
+	
+	public void spawnEnemy(int xPos, int yPos, int type){
+		
+		//(int level, int attack, int hp, String name)
+		
+		if(type == 1){
+			Enemy enemy = new Enemy(1,1,5,"shield");  //shield placeholder for "enemyLv1" image 
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
+		
+		if(type == 2){						//sword placeholder for "enemyLv2" image 
+			Enemy enemy = new Enemy(2,2,10,"sword");  
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
+	
 	}
 }

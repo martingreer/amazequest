@@ -2,7 +2,7 @@ grass:./res/grass.png
 wall:./res/wall.png
 floor:./res/floor.png
 shield:./res/shield.png
-sword:./res/sword.pg
+sword:./res/sword.png
 player:./res/playersouth.png
 playerWest:./res/playerwest.png
 playerEast:./res/playereast.png

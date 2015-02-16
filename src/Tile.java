@@ -3,7 +3,7 @@ public class Tile {
 	int xPos,yPos;
 	private String imgID;
 	private boolean collision;
-	private InteractiveObject interactiveObject;
+	private InteractiveObject interactiveObject = null;
 	
 	public Tile(int xPos, int yPos, String imgID, boolean collision){
 		this.xPos = xPos;
@@ -30,6 +30,13 @@ public class Tile {
 	
 	public InteractiveObject getInterObj(){
 		return interactiveObject;
+	}
+	
+	public boolean isEmpty(){
+		if( interactiveObject != null){
+			return false;
+		}
+		return true;
 	}
 	
 	public int getXPos(){

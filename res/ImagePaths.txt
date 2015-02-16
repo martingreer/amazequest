@@ -7,3 +7,5 @@ player:./res/playersouth.png
 playerWest:./res/playerwest.png
 playerEast:./res/playereast.png
 playerNorth:./res/playernorth.png
+playerSouth:./res/playersouth.png
+enemy1:./res/enemy1.png

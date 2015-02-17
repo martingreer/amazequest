@@ -3,13 +3,15 @@ public class Tile {
 	int xPos,yPos;
 	private String imgID;
 	private boolean collision;
+	private boolean darkness;
 	private InteractiveObject interactiveObject = null;
 	
-	public Tile(int xPos, int yPos, String imgID, boolean collision){
+	public Tile(int xPos, int yPos, String imgID, boolean collision,boolean darkness){
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.imgID = imgID;
 		this.collision = collision;
+		this.darkness = darkness;
 	}
 	
 	public String getImgID(){
@@ -28,6 +30,10 @@ public class Tile {
 		this.interactiveObject = item;
 	}
 	
+	public void setDarkness(boolean value ){
+		this.darkness = value;
+	}
+	
 	public InteractiveObject getInterObj(){
 		return interactiveObject;
 	}
@@ -37,6 +43,25 @@ public class Tile {
 			return false;
 		}
 		return true;
+	}
+	public boolean containsEnemy(){
+		if( interactiveObject instanceof Enemy){
+			return true;
+		}
+		return false;
+	}
+	public boolean containsItem(){
+		if( interactiveObject instanceof Item){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isDark(){
+		if(darkness){
+			return true;
+		}
+		return false;
 	}
 	
 	public int getXPos(){

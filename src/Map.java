@@ -7,6 +7,7 @@ import java.util.*;
 import javax.swing.JPanel;
 
 
+@SuppressWarnings("serial")
 public class Map extends JPanel {
 	
 	private static final boolean DEBUG = false;
@@ -18,8 +19,6 @@ public class Map extends JPanel {
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
 	private Tile playerTile;
-	private Item item;
-	private Tile itemTile;
 	private ImageResources res = new ImageResources();
 
 	public Map(){
@@ -32,21 +31,18 @@ public class Map extends JPanel {
 		readFile();
 		closeFile();
 		
-		player = new Player(1,1,5,"player",0);
+		player = new Player(1,5,10,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
+		discoverDarkness();
 		
-		//spawn enemy
 		spawnEnemy(1, 4, 1);
 		spawnEnemy(11, 3, 2);
+		spawnItem(2, 4, 1);
+		spawnItem(3, 3, 2);
+		
+		
 		initKeyListener();
-	/*	
-		item = new Item(0,0,0,"item");
-		tiles[1][2].setItem(item);
-		itemTile = tiles[1][2];
-	*/
-		
-		
 	}
 
 	public void openFile(){
@@ -64,10 +60,10 @@ public class Map extends JPanel {
 				c = m.next().toCharArray();
 				for(int x=0; x<MAP_SIZE; x++){
 					if(c[x] == 'W'){
-						tiles[x][y] = new Tile(x, y, "wall", true);
+						tiles[x][y] = new Tile(x, y, "wall", true,true);
 					}
 					else if(c[x] == '.'){
-						tiles[x][y] = new Tile(x, y, "grass", false);
+						tiles[x][y] = new Tile(x, y, "grass", false,true);
 					}
 				}
 			}
@@ -87,6 +83,9 @@ public class Map extends JPanel {
 				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
 				if(tiles[x][y].getInterObj() != null){
 					g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
+				}
+				if(tiles[x][y].isDark()){
+					g.drawImage(res.getImg("dark"), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}
@@ -111,50 +110,119 @@ public class Map extends JPanel {
 	          }
 
 	          private void myKeyEvt(KeyEvent e, String text) {
-	             int key = e.getKeyCode();
-	             Tile nextTile = null;
-	             if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT)
-	             {
-	            	 nextTile = tiles[playerTile.getXPos()-1][playerTile.getYPos()];
-	             }
-	             else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT)
-	             {
-	            	 nextTile = tiles[playerTile.getXPos()+1][playerTile.getYPos()];
+					
+					int key = e.getKeyCode();
+					
+					if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) {
+						decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
+						player.setName("playerWest");	//set image for each direction
 
-	             }
-	             else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP)
-	             {
-	            	 nextTile = tiles[playerTile.getXPos()][playerTile.getYPos()-1];
-	             }
-	             else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN)
-	             {
-	            	 nextTile = tiles[playerTile.getXPos()][playerTile.getYPos()+1];
-	             }
-	             
-            	 if(!nextTile.getCollision() && nextTile.isEmpty()){
-            		 nextTile.setPlayer(player);
-            		 playerTile.setPlayer(null);
-            		 playerTile = nextTile;
-            	 }
-	          }
-	      });
+					} else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT) {
+						decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
+						player.setName("playerEast");
+
+					} else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP) {
+						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
+						player.setName("playerNorth");
+
+					} else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN) {
+						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
+						player.setName("playerSouth");
+					}	
+				}
+			});
+		}
+	
+	public void discoverDarkness(){
+		int x = playerTile.getXPos();
+		int y = playerTile.getYPos();
+		
+		tiles[x-1][y+1].setDarkness(false);
+		tiles[x]  [y+1].setDarkness(false);
+		tiles[x+1][y+1].setDarkness(false);
+		
+		tiles[x-1][y].setDarkness(false);
+		tiles[x]  [y].setDarkness(false);
+		tiles[x+1][y].setDarkness(false);
+		
+		tiles[x-1][y-1].setDarkness(false);
+		tiles[x]  [y-1].setDarkness(false);
+		tiles[x+1][y-1].setDarkness(false);
 	}
 	
-	public void spawnEnemy(int xPos, int yPos, int type){
+	public void decideAction(Tile nextTile){
 		
-		//(int level, int attack, int hp, String name)
-		
-		if(type == 1){
-			Enemy enemy = new Enemy(1,1,5,"enemyLv1");
-			tiles[xPos][yPos].setEnemy(enemy);
+		if(nextTile.containsEnemy()){
+			fight(nextTile);
+			
+		}else if(nextTile.containsItem()){
+			pickUpItem();
+			
+		}else if(nextTile.isEmpty()){
+			movePlayerTo(nextTile);
+			discoverDarkness();
 		}
-		
-		if(type == 2){ 
-			Enemy enemy = new Enemy(2,2,10,"enemyLv2");  
-			tiles[xPos][yPos].setEnemy(enemy);
-		}
-		
-		//more enemy types here?
+	}
 	
+	public void fight(Tile nextTile){
+		System.out.println("fighting");
+		player.exchangeHitsWithEnemy(nextTile);
+		if((nextTile.getInterObj().getHp()) <= 0 ){		//check enemy Hp, remove if <= 0.
+			System.out.println("enemy is killed");
+			nextTile.setEnemy(null);
+		}
+	}
+	
+	public void pickUpItem(){
+		System.out.println("pickUpItem()");
+	}
+	
+	private void movePlayerTo(Tile nextTile) {
+		
+			if(nextTile.isEmpty() && !nextTile.getCollision()) {
+				nextTile.setPlayer(player);
+				playerTile.setPlayer(null);
+				playerTile = nextTile;
+			}else{
+				System.out.println("movePayerTo() failed");
+			}
+	}
+	
+	public void spawnEnemy(int xPos, int yPos, int enemyType){
+		
+		if(tiles[xPos][yPos].getCollision()){
+			System.out.println("Can not place Enemy on tile with collision");
+			return;
+		}
+		
+		if(enemyType == 1){
+			Enemy enemy = new Enemy(1,1,10,"enemyLv1");	//(level,attack,hp,name)
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
+		
+		if(enemyType == 2){ 
+			Enemy enemy = new Enemy(2,2,20,"enemyLv2");  
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
+		//more enemy types here? This should be in a config file imo.
+	}
+	
+	public void spawnItem(int xPos, int yPos, int itemType){
+			
+		if(tiles[xPos][yPos].getCollision()){
+			System.out.println("Can not place Item on tile with collision");
+			return;
+		}
+	
+		if(itemType == 1){
+			Item item = new Item(1,5,0,"sword");		//Item(level,attack,hp,name)
+			tiles[xPos][yPos].setItem(item);
+		}
+		
+		if(itemType == 2){ 
+			Item item = new Item(1,0,10,"shield");  
+			tiles[xPos][yPos].setItem(item);
+		}
+		//more item types here?  This should be in a config file imo.
 	}
 }

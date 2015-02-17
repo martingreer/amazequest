@@ -1,6 +1,7 @@
 grass:./res/grass.png
 wall:./res/wall.png
 floor:./res/floor.png
+dark:./res/dark.png
 shield:./res/shield.png
 sword:./res/sword.png
 player:./res/playersouth.png
@@ -10,4 +11,3 @@ playerNorth:./res/playernorth.png
 playerSouth:./res/playersouth.png
 enemyLv1:./res/enemyLv1.png
 enemyLv2:./res/enemyLv2.png
-

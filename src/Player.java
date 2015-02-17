@@ -22,6 +22,9 @@ public class Player extends InteractiveObject {
 		return exp;
 		
 	}
+	
+	
+	
 /*
 	public void move(String direction){
 		switch (direction) {

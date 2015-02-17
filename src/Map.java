@@ -41,8 +41,8 @@ public class Map extends JPanel {
 		spawnItem(2, 4, 1);
 		spawnItem(3, 3, 2);
 		
-		
 		initKeyListener();
+
 	}
 
 	public void openFile(){
@@ -134,6 +134,7 @@ public class Map extends JPanel {
 		}
 	
 	public void discoverDarkness(){
+		
 		int x = playerTile.getXPos();
 		int y = playerTile.getYPos();
 		
@@ -148,6 +149,7 @@ public class Map extends JPanel {
 		tiles[x-1][y-1].setDarkness(false);
 		tiles[x]  [y-1].setDarkness(false);
 		tiles[x+1][y-1].setDarkness(false);
+
 	}
 	
 	public void decideAction(Tile nextTile){

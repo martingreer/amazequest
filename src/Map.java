@@ -43,8 +43,8 @@ public class Map extends JPanel {
 
 		spawnObjectsRandomly("enemyLv1", 2);
 		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("itemSword", 2);
-		spawnObjectsRandomly("itemShield", 3);
+		spawnObjectsRandomly("itemSword", 1);
+		spawnObjectsRandomly("itemShield", 1);
 
 		initKeyListener();
 	}

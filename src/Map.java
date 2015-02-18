@@ -167,7 +167,7 @@ public class Map extends JPanel {
 			fight(nextTile);
 
 		}else if(nextTile.containsItem()){
-			pickUpItem(null);
+			pickUpItem((Item)nextTile.getInterObj());
 			removeItem(nextTile);
 
 		}else if(nextTile.isEmpty()){
@@ -188,6 +188,7 @@ public class Map extends JPanel {
 	public void pickUpItem(Item item){
 		System.out.println("pickUpItem()");
 		inventory.addItem(item);
+		player.updateStats(item);
 		System.out.println("InvenotrySize = " + inventory.showSize());
 	}
 

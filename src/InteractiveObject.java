@@ -48,16 +48,14 @@ public class InteractiveObject {
 		hp = hp + change;
 	}
 		
-	public void exchangeHitsWithEnemy(Tile nextTile){
+	public void setAttack(int change) {
 		
-		InteractiveObject enemy = nextTile.getInterObj();
+		attack = attack + change;
+	}
+	
+	public void setLevel(int change) {
 		
-		enemy.setHp(-getAttack());
-		if(enemy.getHp() > 0){
-			setHp(-enemy.getAttack());
-		}
-		System.out.println("player HP:" + getHp());
-		System.out.println("enemy HP:" + enemy.getHp());
+		level = level + change;
 	}
 	
 }

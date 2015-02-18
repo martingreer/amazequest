@@ -14,7 +14,7 @@ import javax.swing.JProgressBar;
 
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel {
-	private static final int INVPANELHEIGHT = 100;
+	private static final int INVPANELHEIGHT = 150;
 	private JProgressBar healthBar;
 	private JProgressBar experienceBar;
 	
@@ -36,23 +36,8 @@ public class StatusPanel extends JPanel {
 	    PLACEHOLDER.setLayout(new GridLayout(2,3));
 	    //empty
 	    
-	    //	invButtonContainer
-	    JPanel invButtonContainer = new JPanel();
-	    invButtonContainer.setLayout(new GridLayout(2,3));
-	    JButton itemButton1 = new JButton("ib1");
-	    JButton itemButton2 = new JButton("ib2");
-	    JButton itemButton3 = new JButton("ib3");
-	    JButton itemButton4 = new JButton("ib4");
-	    JButton itemButton5 = new JButton("ib5");
-	    JButton itemButton6 = new JButton("ib6");
 	    
-	    invButtonContainer.add(itemButton1);
-	    invButtonContainer.add(itemButton2);
-	    invButtonContainer.add(itemButton3);
-	    invButtonContainer.add(itemButton4);
-	    invButtonContainer.add(itemButton5);
-	    invButtonContainer.add(itemButton6);
-	    
+
 	    // playerStatusContainer // comment
 	    JPanel playerStatusContainer = new JPanel();
 	    playerStatusContainer.setLayout(new GridLayout(4,1));
@@ -100,7 +85,7 @@ public class StatusPanel extends JPanel {
        
         gc.gridx = 1;
         gc.gridy = 0;
-        add(invButtonContainer, gc);
+
         
         gc.gridx = 2;
         gc.gridy = 0; 

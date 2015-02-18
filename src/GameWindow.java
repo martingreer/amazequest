@@ -13,7 +13,7 @@ import javax.swing.*;
 public class GameWindow {
 
 	private static final int WINDOW_SIZE_X = 464;
-	private static final int WINDOW_SIZE_Y = 610;
+	private static final int WINDOW_SIZE_Y = 660;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private static GameFrame gameFrame;
 

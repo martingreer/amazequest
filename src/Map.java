@@ -30,7 +30,7 @@ public class Map extends JPanel {
 		openFile();
 		readFile();
 		closeFile();
-
+		
 		player = new Player(1,5,10,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
@@ -70,6 +70,10 @@ public class Map extends JPanel {
 					}
 					else if(c[x] == '.'){
 						tiles[x][y] = new Tile(x, y, "grass", false,true);
+					}
+					else if(c[x] == 'D'){
+						tiles[x][y] = new Tile(x, y, "doorClosed", true,true);
+						tiles[x][y].setDoor();
 					}
 				}
 			}

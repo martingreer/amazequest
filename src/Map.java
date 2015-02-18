@@ -41,10 +41,12 @@ public class Map extends JPanel {
 		//spawnItem(RandomObject(), RandomObject(), 1);
 		//spawnItem(RandomObject(), RandomObject(), 2);
 
-		spawnObjectsRandomly("enemyLv1", 2);
-		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("itemSword", 1);
-		spawnObjectsRandomly("itemShield", 1);
+
+		spawnObjectsRandomly("enemyLv1", 10);  // 10 enemies 
+		spawnObjectsRandomly("enemyLv2", 10);
+		spawnObjectsRandomly("itemSword", 2);
+		spawnObjectsRandomly("itemShield", 3);
+
 
 		initKeyListener();
 	}
@@ -250,7 +252,9 @@ public class Map extends JPanel {
 					xValue = rand.nextInt(13) +1;
 					yValue = rand.nextInt(13) +1;
 				}
+				if(!(tiles[xValue][yValue] == tiles[1][1])){
 				spawnEnemy(xValue, yValue, type);
+				}
 				xValue = rand.nextInt(13) +1;
 				yValue = rand.nextInt(13) +1;
 				//System.out.println(xValue);
@@ -263,9 +267,11 @@ public class Map extends JPanel {
 					xValue = rand.nextInt(13) +1;
 					yValue = rand.nextInt(13) +1;
 				}
-				spawnItem(xValue, yValue, type);
+				if(!(tiles[xValue][yValue] == tiles[1][1])){
+					spawnItem(xValue, yValue, type);
+					}
 				xValue = rand.nextInt(13) +1;
-				yValue = rand.nextInt(13) +1;
+				yValue = rand.nextInt(13) +1; // rand 
 			}
 		}
 	}

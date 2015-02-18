@@ -11,10 +11,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+
 @SuppressWarnings("serial")
 public class InventoryPanel extends JPanel {
 	private static final int INVPANELHEIGHT = 100;
-
+	private JProgressBar healthBar;
+	private JProgressBar experienceBar;
+	
 	public InventoryPanel(){
 		// set the size of the inventoryPanel
 		Dimension size = getPreferredSize();
@@ -55,10 +58,13 @@ public class InventoryPanel extends JPanel {
 	    playerStatusContainer.setLayout(new GridLayout(4,1));
 	    JLabel label1 = new JLabel("Experience");
 	    JLabel label2 = new JLabel("Health");
-	    JProgressBar experienceBar = new JProgressBar(0,100);
-	    experienceBar.setValue(0);
-	    JProgressBar healthBar = new JProgressBar(0,100);
-	    healthBar.setValue(100);
+
+	    experienceBar = new JProgressBar(0,100);
+	    experienceBar.setForeground(new Color(125, 0, 255));
+	    experienceBar.setValue(30);
+	    healthBar = new JProgressBar(0,100);
+	    healthBar.setForeground(Color.RED);
+	    healthBar.setValue(80);
 	    
 	    playerStatusContainer.add(label1);
 	    playerStatusContainer.add(experienceBar);

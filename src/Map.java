@@ -186,7 +186,7 @@ public class Map extends JPanel {
 	public void pickUpItem(Item item){
 		System.out.println("pickUpItem()");
 		inventory.addItem(item);
-		System.out.println(inventory.showSize());
+		System.out.println("InvenotrySize = " + inventory.showSize());
 	}
 	
 	public void removeItem(Tile nextTile){

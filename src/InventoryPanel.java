@@ -53,15 +53,15 @@ public class InventoryPanel extends JPanel {
 	    // playerStatusContainer
 	    JPanel playerStatusContainer = new JPanel();
 	    playerStatusContainer.setLayout(new GridLayout(4,1));
-	    JLabel label1 = new JLabel("Attack");
+	    JLabel label1 = new JLabel("Experience");
 	    JLabel label2 = new JLabel("Health");
-	    JProgressBar attackBar = new JProgressBar(0,100);
-	    attackBar.setValue(20);
+	    JProgressBar experienceBar = new JProgressBar(0,100);
+	    experienceBar.setValue(0);
 	    JProgressBar healthBar = new JProgressBar(0,100);
-	    healthBar.setValue(90);
+	    healthBar.setValue(100);
 	    
 	    playerStatusContainer.add(label1);
-	    playerStatusContainer.add(attackBar);
+	    playerStatusContainer.add(experienceBar);
 	    playerStatusContainer.add(label2);
 	    playerStatusContainer.add(healthBar);
 	    

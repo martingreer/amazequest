@@ -23,6 +23,32 @@ public class Player extends InteractiveObject {
 		
 	}
 	
+	public void setExp(int change){
+		
+		this.exp = exp + change;
+	}
+	
+	
+	public void updateStats(Item item){
+		
+		this.setHp(item.getHp());
+		this.setAttack(item.getAttack());
+	}
+	
+	public void exchangeHitsWithEnemy(Tile nextTile){
+		
+		InteractiveObject enemy = nextTile.getInterObj();
+		
+		enemy.setHp(-getAttack());
+		if(enemy.getHp() > 0){
+			setHp(-enemy.getAttack());
+		}
+		System.out.println("player HP:" + getHp());
+		System.out.println("enemy HP:" + enemy.getHp());
+	}
+	
+
+	
 	
 	
 /*

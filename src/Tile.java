@@ -5,6 +5,7 @@ public class Tile {
 	private boolean collision;
 	private boolean darkness;
 	private InteractiveObject interactiveObject = null;
+	private boolean door;
 	
 	public Tile(int xPos, int yPos, String imgID, boolean collision,boolean darkness){
 		this.xPos = xPos;
@@ -12,6 +13,7 @@ public class Tile {
 		this.imgID = imgID;
 		this.collision = collision;
 		this.darkness = darkness;
+		door = false;
 	}
 	
 	public String getImgID(){
@@ -74,5 +76,13 @@ public class Tile {
 	
 	public boolean getCollision(){
 		return collision;
+	}
+	
+	public void setDoor(){
+		door = true;
+	}
+	
+	public void setImgID(String imgID){
+		this.imgID = imgID;
 	}
 }

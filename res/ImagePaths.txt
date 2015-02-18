@@ -1,6 +1,8 @@
 grass:./res/grass.png
 wall:./res/wall.png
 floor:./res/floor.png
+doorOpened:./res/doorOpened.png
+doorClosed:./res/doorClosed.png
 dark:./res/dark.png
 shield:./res/shield.png
 sword:./res/sword.png

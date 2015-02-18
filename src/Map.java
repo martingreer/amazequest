@@ -273,7 +273,7 @@ public class Map extends JPanel {
 				
 			
 				}
-			 spawnItem(xValue, yValue, type);
+			 spawnItem(xValue, yValue, type); // spawn
 			 
 			}
 			

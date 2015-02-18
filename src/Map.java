@@ -126,10 +126,11 @@ public class Map extends JPanel {
 			private void myKeyEvt(KeyEvent e, String text) {
 
 				int key = e.getKeyCode();
-
+				System.out.println("Player atk = " +  player.getAttack()  +  " Player hp = " +  player.getHp());
 				if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) {
 					decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
 					player.setName("playerWest");	//set image for each direction
+					
 
 				} else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT) {
 					decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
@@ -194,7 +195,7 @@ public class Map extends JPanel {
 		System.out.println("pickUpItem()");
 		inventory.addItem(item);
 		player.updateStats(item);
-		System.out.println("InvenotrySize = " + inventory.showSize());
+		System.out.println("InventorySize = " + inventory.showSize());
 	}
 
 	public void removeItem(Tile nextTile){
@@ -229,7 +230,7 @@ public class Map extends JPanel {
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		if(enemyType == "enemyLv3"){
-			Enemy enemy = new Enemy(3,3,20,"enemyLv3");
+			Enemy enemy = new Enemy(3,3,30,"enemyLv3");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		//more enemy types here? This should be in a config file imo.

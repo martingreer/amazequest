@@ -269,7 +269,7 @@ public class Map extends JPanel {
 					spawnItem(xValue, yValue, type);
 					}
 				xValue = rand.nextInt(13) +1;
-				yValue = rand.nextInt(13) +1;
+				yValue = rand.nextInt(13) +1; // rand 
 			}
 		}
 	}

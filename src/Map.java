@@ -19,6 +19,7 @@ public class Map extends JPanel {
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
 	private Tile playerTile;
+	private Tile doorTile;
 	private ImageResources res = new ImageResources();
 	private Random rand = new Random();               // test random 
 
@@ -74,6 +75,7 @@ public class Map extends JPanel {
 					else if(c[x] == 'D'){
 						tiles[x][y] = new Tile(x, y, "doorClosed", true,true);
 						tiles[x][y].setDoor();
+						doorTile = tiles[x][y];
 					}
 				}
 			}

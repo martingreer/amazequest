@@ -166,6 +166,7 @@ public class Map extends JPanel {
 			
 		}else if(nextTile.containsItem()){
 			pickUpItem();
+			removeItem(nextTile);
 			
 		}else if(nextTile.isEmpty()){
 			movePlayerTo(nextTile);
@@ -184,6 +185,10 @@ public class Map extends JPanel {
 	
 	public void pickUpItem(){
 		System.out.println("pickUpItem()");
+	}
+	
+	public void removeItem(Tile nextTile){
+		nextTile.setItem(null);
 	}
 	
 	private void movePlayerTo(Tile nextTile) {

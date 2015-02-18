@@ -44,8 +44,8 @@ public class Map extends JPanel {
 
 		spawnObjectsRandomly("enemyLv1", 10);  // 10 enemies 
 		spawnObjectsRandomly("enemyLv2", 10);
-		spawnObjectsRandomly("itemSword", 2);
-		spawnObjectsRandomly("itemShield", 3);
+		spawnObjectsRandomly("itemSword", 1);
+		spawnObjectsRandomly("itemShield", 1);
 
 
 		initKeyListener();

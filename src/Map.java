@@ -21,6 +21,7 @@ public class Map extends JPanel {
 	private Tile playerTile;
 	private ImageResources res = new ImageResources();
 	private Random rand = new Random();               // test random 
+	
 
 	public Map(){
 		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
@@ -35,6 +36,7 @@ public class Map extends JPanel {
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
+	
 
 		//spawnEnemy(RandomObject(), RandomObject(), 1);
 		//spawnEnemy(RandomObject(),RandomObject(), 2);
@@ -42,8 +44,9 @@ public class Map extends JPanel {
 		//spawnItem(RandomObject(), RandomObject(), 2);
 
 
-		spawnObjectsRandomly("enemyLv1", 10);  // 10 enemies 
-		spawnObjectsRandomly("enemyLv2", 10);
+		spawnObjectsRandomly("enemyLv1", 4);  // 4 enemies 
+		spawnObjectsRandomly("enemyLv2", 3);
+		spawnObjectsRandomly("enemyLv3", 2);
 		spawnObjectsRandomly("itemSword", 1);
 		spawnObjectsRandomly("itemShield", 1);
 
@@ -218,6 +221,10 @@ public class Map extends JPanel {
 			Enemy enemy = new Enemy(2,2,20,"enemyLv2");  
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		if(enemyType == "enemyLv3"){
+			Enemy enemy = new Enemy(3,3,20,"enemyLv3");
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
 		//more enemy types here? This should be in a config file imo.
 	}
 
@@ -245,7 +252,7 @@ public class Map extends JPanel {
 		int xValue = rand.nextInt(13) + 1;
 		int yValue = rand.nextInt(13) + 1;
 
-		if( type == "enemyLv1" || type == "enemyLv2") {
+		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3") {
 			for(int i = 0;  i < amount; i++) {
 				
 				while(tiles[xValue][yValue].getCollision()) {
@@ -275,5 +282,7 @@ public class Map extends JPanel {
 			}
 		}
 	}
+	
+
 }
 

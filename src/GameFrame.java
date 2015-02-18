@@ -6,7 +6,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 	
-	private InventoryPanel inventoryPanel;
+	private StatusPanel statusPanel;
 	public GameFrame (String title){
 		super(title);
 		
@@ -15,24 +15,24 @@ public class GameFrame extends JFrame {
 		
 		//create swing component
 		JPanel boardAreaPlaceholder = new JPanel();
-		inventoryPanel = new InventoryPanel();
+		statusPanel = new StatusPanel();
 		
 		//add swing components to content pane
 		Container c = getContentPane();
 		c.add(boardAreaPlaceholder, BorderLayout.CENTER);
-		c.add(inventoryPanel, BorderLayout.SOUTH);
+		c.add(statusPanel, BorderLayout.SOUTH);
 		// Add functionality
 		//...
 		hideInventoryPanel();
 	}
 	
 	public void showInventoryPanel(){
-		inventoryPanel.setVisible(true);
+		statusPanel.setVisible(true);
 	
 	}
 	
 	public void hideInventoryPanel(){
-		inventoryPanel.setVisible(false);
+		statusPanel.setVisible(false);
 		
 	}
 

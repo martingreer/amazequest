@@ -20,6 +20,7 @@ public class Map extends JPanel {
 	private Player player;
 	private Tile playerTile;
 	private ImageResources res = new ImageResources();
+	private Random rand = new Random();               // test random 
 
 	public Map(){
 		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
@@ -36,10 +37,16 @@ public class Map extends JPanel {
 		playerTile = tiles[1][1];
 		discoverDarkness();
 		
-		spawnEnemy(1, 4, 1);
-		spawnEnemy(11, 3, 2);
-		spawnItem(2, 4, 1);
-		spawnItem(3, 3, 2);
+		//spawnEnemy(RandomObject(), RandomObject(), 1);
+		//spawnEnemy(RandomObject(),RandomObject(), 2);
+		//spawnItem(RandomObject(), RandomObject(), 1);
+		//spawnItem(RandomObject(), RandomObject(), 2);
+		
+		RandomObject(1, 2);
+		RandomObject(2, 3);
+		RandomObject(3, 1);
+		RandomObject(4, 3);
+		
 		
 		initKeyListener();
 
@@ -216,15 +223,60 @@ public class Map extends JPanel {
 			return;
 		}
 	
-		if(itemType == 1){
+		if(itemType == 3){
 			Item item = new Item(1,5,0,"sword");		//Item(level,attack,hp,name)
 			tiles[xPos][yPos].setItem(item);
 		}
 		
-		if(itemType == 2){ 
+		if(itemType == 4){ 
 			Item item = new Item(1,0,10,"shield");  
 			tiles[xPos][yPos].setItem(item);
 		}
 		//more item types here?  This should be in a config file imo.
 	}
+	public void RandomObject(int type, int amount) {
+		
+		int xValue = rand.nextInt(13) +1;
+		int yValue = rand.nextInt(13) +1;
+		
+		
+		
+		if( type == 1 || type == 2) {
+		for(int i = 0;  i<amount; i++) {
+		while(tiles[xValue][yValue].getCollision()) {
+		
+			xValue = rand.nextInt(13) +1;
+			yValue = rand.nextInt(13) +1;
+			
+		
+			}
+		 spawnEnemy(xValue, yValue, type);
+		 
+		}
+		
+		}
+	
+		
+		if(type == 3 || type == 4) {
+			
+			for(int i = 0;  i<amount; i++) {
+		
+			while(tiles[xValue][yValue].getCollision()) {
+				
+				xValue = rand.nextInt(13) +1;
+				yValue = rand.nextInt(13) +1;
+				
+			
+				}
+			 spawnItem(xValue, yValue, type);
+			 
+			}
+			
+			}
+		
+		
+		
+		}
+		
 }
+

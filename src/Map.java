@@ -158,7 +158,7 @@ public class Map extends JPanel {
 			fight(nextTile);
 			
 		}else if(nextTile.containsItem()){
-			pickUpItem();
+			pickUpItem(nextTile);
 			
 		}else if(nextTile.isEmpty()){
 			movePlayerTo(nextTile);
@@ -175,7 +175,8 @@ public class Map extends JPanel {
 		}
 	}
 	
-	public void pickUpItem(){
+	public void pickUpItem(Tile nextTile){
+		nextTile.setItem(null);
 		System.out.println("pickUpItem()");
 	}
 	

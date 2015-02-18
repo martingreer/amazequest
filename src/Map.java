@@ -14,7 +14,7 @@ public class Map extends JPanel {
 	private static final int MAP_SIZE = 14;
 	private static final int TILE_SIZE = 32;
 	
-	
+	private Inventory inventory = new Inventory();
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
@@ -165,7 +165,7 @@ public class Map extends JPanel {
 			fight(nextTile);
 			
 		}else if(nextTile.containsItem()){
-			pickUpItem();
+			pickUpItem(null);
 			removeItem(nextTile);
 			
 		}else if(nextTile.isEmpty()){
@@ -183,8 +183,10 @@ public class Map extends JPanel {
 		}
 	}
 	
-	public void pickUpItem(){
+	public void pickUpItem(Item item){
 		System.out.println("pickUpItem()");
+		inventory.addItem(item);
+		System.out.println(inventory.showSize());
 	}
 	
 	public void removeItem(Tile nextTile){

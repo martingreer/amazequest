@@ -13,7 +13,7 @@ import java.awt.event.*;
 public class Inventory extends JFrame {
 	
 	
-	  private ArrayList<String> itemStack;      // String ska vara " item " sen !!! bara för test
+	  private ArrayList<Item> itemStack;      // String ska vara " item " sen !!! bara för test
 
 	 
 
@@ -24,18 +24,18 @@ public class Inventory extends JFrame {
 	
  
 		
-		itemStack = new ArrayList<String>(); 
+		itemStack = new ArrayList<Item>(); 
 		//createInventory();
 		
 	}
-	public void addItem(String item) {            // change to Item item
+	public void addItem(Item item) {            // change to Item item
 		
 		
 		itemStack.add(item); 
 		
 	}
 	
-	public void removeItem(String item) {             // change to Item item
+	public void removeItem(Item item) {             // change to Item item
 		
 		
 		// iterator ??
@@ -44,6 +44,14 @@ public class Inventory extends JFrame {
 		
 		
 	}
+	
+	public int showSize(){
+		
+	return itemStack.size();
+	
+		
+	}
+
 	
 	
 }

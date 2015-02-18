@@ -50,7 +50,7 @@ public class InventoryPanel extends JPanel {
 	    invButtonContainer.add(itemButton5);
 	    invButtonContainer.add(itemButton6);
 	    
-	    // playerStatusContainer
+	    // playerStatusContainer // comment
 	    JPanel playerStatusContainer = new JPanel();
 	    playerStatusContainer.setLayout(new GridLayout(4,1));
 	    JLabel label1 = new JLabel("Experience");

@@ -13,12 +13,12 @@ import javax.swing.JProgressBar;
 
 
 @SuppressWarnings("serial")
-public class InventoryPanel extends JPanel {
+public class StatusPanel extends JPanel {
 	private static final int INVPANELHEIGHT = 100;
 	private JProgressBar healthBar;
 	private JProgressBar experienceBar;
 	
-	public InventoryPanel(){
+	public StatusPanel(){
 		// set the size of the inventoryPanel
 		Dimension size = getPreferredSize();
 	    size.height = INVPANELHEIGHT;

@@ -100,20 +100,20 @@ public class GameWindow {
 
 	}
 
-	public static void createButtons(JFrame mainwindow){
+	public static void createButtons(final JFrame mainwindow){   // final här ?? 
 
 		JButton playButton;
 		JButton settingsButton;
 		JButton helpButton;
 
-		JPanel startmenuPanel = new StartmenuPanel() ;
+		final JPanel startmenuPanel = new StartmenuPanel() ;     // final här ?? 12
 
 		mainwindow.add(startmenuPanel,BorderLayout.CENTER);
 		playButton = ((StartmenuPanel) startmenuPanel).getPlayButton();
-		settingsButton = ((StartmenuPanel) startmenuPanel).getSettingsButton();
+		settingsButton= ((StartmenuPanel) startmenuPanel).getSettingsButton();
 		helpButton = ((StartmenuPanel) startmenuPanel).getHelpButton();
 
-		playButton.addActionListener(new ActionListener(){
+		 playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				startmenuPanel.setVisible(false);
 				mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
@@ -124,7 +124,7 @@ public class GameWindow {
 				(new Thread(new GameEngine(map, mainwindow))).start();
 
 			}
-		});
+		}); 
 		//Other buttons
 
 	} 

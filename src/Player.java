@@ -41,7 +41,10 @@ public class Player extends InteractiveObject {
 		
 		enemy.setHp(-getAttack());
 		if(enemy.getHp() > 0){
+			
+			
 			setHp(-enemy.getAttack());
+			
 		}
 		System.out.println("player HP:" + getHp());
 		System.out.println("enemy HP:" + enemy.getHp());

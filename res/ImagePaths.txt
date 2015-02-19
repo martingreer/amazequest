@@ -3,7 +3,7 @@ wall:./res/wall.png
 floor:./res/floor.png
 doorOpened:./res/doorOpened.png
 doorClosed:./res/doorClosed.png
-dark:./res/dark.png
+dark1:./res/dark1.png
 shield:./res/shield.png
 sword:./res/sword.png
 player:./res/playersouth.png
@@ -15,3 +15,4 @@ playerPortrait:./res/playerPortrait2.png
 enemyLv1:./res/enemyLv1.png
 enemyLv2:./res/enemyLv2.png
 enemyLv3:./res/enemyLv3.png
+blood:./res/blood.png

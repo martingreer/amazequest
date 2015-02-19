@@ -1,10 +1,15 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.*;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
+import javax.swing.*;
 
 
 @SuppressWarnings("serial")
@@ -99,7 +104,7 @@ public class Map extends JPanel {
 					g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 				if(tiles[x][y].isDark()){
-					g.drawImage(res.getImg("dark"), x*TILE_SIZE, y*TILE_SIZE, null);
+					g.drawImage(res.getImg("dark1"), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}
@@ -124,6 +129,8 @@ public class Map extends JPanel {
 			}
 
 			private void myKeyEvt(KeyEvent e, String text) {
+				
+				if(!(player.getHp() <= 0)) {    // if the player dies... 
 
 				int key = e.getKeyCode();
 				System.out.println("Player atk = " +  player.getAttack()  +  " Player hp = " +  player.getHp());
@@ -144,8 +151,12 @@ public class Map extends JPanel {
 					decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
 					player.setName("playerSouth");
 				}	
+			
+				}
 			}
 		});
+		
+		
 	}
 
 	public void discoverDarkness(){
@@ -189,6 +200,30 @@ public class Map extends JPanel {
 			System.out.println("enemy is killed");
 			nextTile.setEnemy(null);
 		}
+		
+		if(player.getHp() <= 0) {
+			
+			System.out.println("Player is dead");
+			
+			//playerTile.setPlayer(null);
+			
+			tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
+					playerTile.getYPos(), "blood", false,false);
+			
+			   Object[] options = {"OK"};
+			    int clicked = JOptionPane.showOptionDialog(null,
+			                   "YOU ARE DEAD SUCKA ","GAME OVER",
+			                   JOptionPane.PLAIN_MESSAGE,
+			                   JOptionPane.INFORMATION_MESSAGE,
+			                   null,
+			                   options,
+			                   options[0]);
+			    
+			    if( clicked == JOptionPane.OK_OPTION) {
+			    	//GameWindow newGame = new GameWindow();
+			    	System.exit(0);   // Game exits .... how to restart ? 
+				 }
+			}
 	}
 
 	public void pickUpItem(Item item){

@@ -139,7 +139,7 @@ public class GameWindow {
 			mainwindow.setResizable(true);
 			mainwindow.setVisible(true);
 	
-			String helpInfo = "hej";
+			String helpInfo = "hej"; //help info string
 	
 		/*	JTextField helpText = new JTextField();
 			helpText.setEditable(false);

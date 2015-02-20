@@ -20,7 +20,7 @@ public class StartmenuPanel extends JPanel {
 		playButton = new JButton("Play");
 		settingsButton = new JButton("Settings");
 		helpButton = new JButton("Help");
-		backButton = new JButton("Back");
+		backButton = new JButton("Back"); //backbutton
 
 		GridBagConstraints g = new GridBagConstraints();
 

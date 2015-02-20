@@ -23,7 +23,9 @@ public class Map extends JPanel {
 	private Tile playerTile;
 	private Tile doorTile;
 	private ImageResources res = new ImageResources();
-	private Random rand = new Random();               // test random 
+	private Random rand = new Random();               // test random
+	private Boolean[][] enemyExists = new Boolean[MAP_SIZE][MAP_SIZE];
+	private boolean doorOpen = false;
 
 	public Map(){
 		openFile();
@@ -83,7 +85,7 @@ public class Map extends JPanel {
 					g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 				if(tiles[x][y].isDark()){
-					g.drawImage(res.getImg("dark1"), x*TILE_SIZE, y*TILE_SIZE, null);
+					g.drawImage(res.getImg("dark"), x*TILE_SIZE, y*TILE_SIZE, null);
 				}
 			}
 		}
@@ -174,6 +176,7 @@ public class Map extends JPanel {
 		if((nextTile.getInterObj().getHp()) <= 0 ){		//check enemy Hp, remove if <= 0.
 			System.out.println("enemy is killed");
 			nextTile.setEnemy(null);
+			doorOpen = checkIfAllEnemiesAreDead();		//set to true if all enemies are dead.
 		}
 
 		if(player.getHp() <= 0) {
@@ -226,7 +229,7 @@ public class Map extends JPanel {
 		// Spawn(type, amount)
 		spawnObjectsRandomly("enemyLv1", 4);
 		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("enemyLv3", 2);
+		spawnObjectsRandomly("enemyLv3", 3);
 		spawnObjectsRandomly("itemSword", 1);
 		spawnObjectsRandomly("itemShield", 1);
 		spawnObjectsRandomly("itemPotion", 4);
@@ -314,7 +317,36 @@ public class Map extends JPanel {
 			}
 		}
 	}
-
+	
+	/**
+	 * Checks if there are no enemies the map, if so,
+	 * opens the door. 
+	 * 
+	 * @return true if there is still an enemy on the map, otherwise false.
+	 */
+	public boolean checkIfAllEnemiesAreDead(){
+		for(int y=0; y<MAP_SIZE; y++){
+			for(int x=0; x<MAP_SIZE; x++){
+				if(tiles[x][y].containsEnemy()){
+					enemyExists[x][y] = true;
+				}else{
+					enemyExists[x][y] = false;
+				}
+			}
+		}
+		
+		for(int y=0; y<MAP_SIZE; y++){
+			for(int x=0; x<MAP_SIZE; x++){
+				if(enemyExists[x][y])
+					return false;
+			}
+		}
+		System.out.println("-----------------------------------");
+		System.out.println("All enemies are dead. Opening door.");
+		System.out.println("-----------------------------------");
+		doorTile.setImgID("doorOpened");
+		return true;
+	}
 
 }
 

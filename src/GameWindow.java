@@ -63,27 +63,12 @@ public class GameWindow {
 		});
 		fileMenu.add(loadMenuItem);
 
-		//Options menu
-		JMenu optionsMenu = new JMenu("Options");
-		optionsMenu.setMnemonic(KeyEvent.VK_O);
-		menuBar.add(optionsMenu);
-
-		//Sub-choice of Options menu
-		JMenuItem optionsMenuItem1 = new JMenuItem("MMMBop", KeyEvent.VK_M);
-		optionsMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, ActionEvent.ALT_MASK));
-
-		optionsMenu.add(optionsMenuItem1);
 
 		//Help menu
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		menuBar.add(helpMenu);
 
-		//Sub-choice of Help menu
-		JMenuItem helpMenuItem1 = new JMenuItem("Blabla", KeyEvent.VK_B);
-		helpMenuItem1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_1, ActionEvent.ALT_MASK));
-		helpMenuItem1.getAccessibleContext().setAccessibleDescription("Weee!");
-		helpMenu.add(helpMenuItem1);
 
 		JMenuItem versionMenuItem = new JMenuItem("Version", KeyEvent.VK_V);
 		versionMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));

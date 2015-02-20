@@ -6,9 +6,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.*;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JOptionPane;
 import javax.swing.*;
 
 
@@ -18,6 +15,7 @@ public class Map extends JPanel {
 	private static final boolean DEBUG = false;
 	private static final int MAP_SIZE = 14;
 	private static final int TILE_SIZE = 32;
+	private static final String[][] String = null;
 
 	private Inventory inventory = new Inventory();
 	private Scanner m;
@@ -202,15 +200,12 @@ public class Map extends JPanel {
 		}
 		
 		if(player.getHp() <= 0) {
-			
 			System.out.println("Player is dead");
-			
 			//playerTile.setPlayer(null);
-			
 			tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
 					playerTile.getYPos(), "blood", false,false);
 			
-			   Object[] options = {"OK"};
+			   Object[] options = {"PLAY AGAIN"};
 			    int clicked = JOptionPane.showOptionDialog(null,
 			                   "YOU ARE DEAD SUCKA ","GAME OVER",
 			                   JOptionPane.PLAIN_MESSAGE,
@@ -220,9 +215,11 @@ public class Map extends JPanel {
 			                   options[0]);
 			    
 			    if( clicked == JOptionPane.OK_OPTION) {
-			    	//GameWindow newGame = new GameWindow();
-			    	System.exit(0);   // Game exits .... how to restart ? 
-				 }
+			    	GameWindow.setGameFalse();      
+			    	String[] stuff = new String[] {""};
+			    	GameWindow.main(stuff);
+			        //System.exit(0);
+			    	}
 			}
 	}
 

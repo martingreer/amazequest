@@ -128,5 +128,12 @@ public class GameWindow {
 		//Other buttons
 
 	} 
+	public static void setGameFalse() {
+		
+		
+		gameFrame.setVisible(false);
+		
+		
+	}
 
 }

@@ -8,7 +8,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-
 @SuppressWarnings("serial")
 public class Map extends JPanel {
 
@@ -25,37 +24,19 @@ public class Map extends JPanel {
 	private Tile doorTile;
 	private ImageResources res = new ImageResources();
 	private Random rand = new Random();               // test random 
-	
 
 	public Map(){
-		if(DEBUG){System.out.println("DEBUG: Board constructor initiated.");}
-
-		setFocusable(true);
-
 		openFile();
 		readFile();
 		closeFile();
-		
+
 		player = new Player(1,5,10,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
-	
-
-		//spawnEnemy(RandomObject(), RandomObject(), 1);
-		//spawnEnemy(RandomObject(),RandomObject(), 2);
-		//spawnItem(RandomObject(), RandomObject(), 1);
-		//spawnItem(RandomObject(), RandomObject(), 2);
-
-
-		spawnObjectsRandomly("enemyLv1", 4);  // 4 enemies 
-		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("enemyLv3", 2); // 2 enemies
-		spawnObjectsRandomly("itemSword", 1);
-		spawnObjectsRandomly("itemShield", 1);
-
-
 		initKeyListener();
+		spawnObjectsInitiator();
+		setFocusable(true);
 	}
 
 	public void openFile(){
@@ -127,34 +108,30 @@ public class Map extends JPanel {
 			}
 
 			private void myKeyEvt(KeyEvent e, String text) {
-				
+
 				if(!(player.getHp() <= 0)) {    // if the player dies... 
+					int key = e.getKeyCode();
+					System.out.println("Player atk = " +  player.getAttack()  +  " Player hp = " +  player.getHp());
+					if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) {
+						decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
+						player.setName("playerWest");	//set image for each direction
 
-				int key = e.getKeyCode();
-				System.out.println("Player atk = " +  player.getAttack()  +  " Player hp = " +  player.getHp());
-				if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) {
-					decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
-					player.setName("playerWest");	//set image for each direction
-					
 
-				} else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT) {
-					decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
-					player.setName("playerEast");
+					} else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT) {
+						decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
+						player.setName("playerEast");
 
-				} else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP) {
-					decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
-					player.setName("playerNorth");
+					} else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP) {
+						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
+						player.setName("playerNorth");
 
-				} else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN) {
-					decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
-					player.setName("playerSouth");
-				}	
-			
+					} else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN) {
+						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
+						player.setName("playerSouth");
+					}	
 				}
 			}
 		});
-		
-		
 	}
 
 	public void discoverDarkness(){
@@ -198,29 +175,29 @@ public class Map extends JPanel {
 			System.out.println("enemy is killed");
 			nextTile.setEnemy(null);
 		}
-		
+
 		if(player.getHp() <= 0) {
 			System.out.println("Player is dead");
 			//playerTile.setPlayer(null);
 			tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
 					playerTile.getYPos(), "blood", false,false);
-			
-			   Object[] options = {"PLAY AGAIN"};
-			    int clicked = JOptionPane.showOptionDialog(null,
-			                   "YOU ARE DEAD SUCKA ","GAME OVER",
-			                   JOptionPane.PLAIN_MESSAGE,
-			                   JOptionPane.INFORMATION_MESSAGE,
-			                   null,
-			                   options,
-			                   options[0]);
-			    
-			    if( clicked == JOptionPane.OK_OPTION) {
-			    	GameWindow.setGameFalse();      
-			    	String[] stuff = new String[] {""};
-			    	GameWindow.main(stuff);
-			        //System.exit(0);
-			    	}
+
+			Object[] options = {"PLAY AGAIN"};
+			int clicked = JOptionPane.showOptionDialog(null,
+					"YOU ARE DEAD SUCKA ","GAME OVER",
+					JOptionPane.PLAIN_MESSAGE,
+					JOptionPane.INFORMATION_MESSAGE,
+					null,
+					options,
+					options[0]);
+
+			if( clicked == JOptionPane.OK_OPTION) {
+				GameWindow.setGameFalse();      
+				String[] stuff = new String[] {""};
+				GameWindow.main(stuff);
+				//System.exit(0);
 			}
+		}
 	}
 
 	public void pickUpItem(Item item){
@@ -243,6 +220,16 @@ public class Map extends JPanel {
 		}else{
 			System.out.println("movePayerTo() failed");
 		}
+	}
+
+	public void spawnObjectsInitiator(){
+		// Spawn(type, amount)
+		spawnObjectsRandomly("enemyLv1", 4);
+		spawnObjectsRandomly("enemyLv2", 3);
+		spawnObjectsRandomly("enemyLv3", 2);
+		spawnObjectsRandomly("itemSword", 1);
+		spawnObjectsRandomly("itemShield", 1);
+		spawnObjectsRandomly("itemPotion", 4);
 	}
 
 	public void spawnEnemy(int xPos, int yPos, String enemyType){
@@ -284,6 +271,11 @@ public class Map extends JPanel {
 			Item item = new Item(1,0,10,"shield");
 			tiles[xPos][yPos].setItem(item);
 		}
+
+		if(itemType == "itemPotion"){
+			Item item = new Item(0,0,7,"potion");
+			tiles[xPos][yPos].setItem(item);
+		}
 		//more item types here?  This should be in a config file imo.
 	}
 
@@ -294,13 +286,13 @@ public class Map extends JPanel {
 
 		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3") {
 			for(int i = 0;  i < amount; i++) {
-				
+
 				while(tiles[xValue][yValue].getCollision()) {
 					xValue = rand.nextInt(13) +1;
 					yValue = rand.nextInt(13) +1;
 				}
 				if(!(tiles[xValue][yValue] == tiles[1][1])){
-				spawnEnemy(xValue, yValue, type);
+					spawnEnemy(xValue, yValue, type);
 				}
 				xValue = rand.nextInt(13) +1;
 				yValue = rand.nextInt(13) +1;
@@ -308,7 +300,7 @@ public class Map extends JPanel {
 			}
 		}
 
-		if(type == "itemSword" || type == "itemShield") {
+		if(type == "itemSword" || type == "itemShield" || type == "itemPotion") {
 			for(int i = 0;  i < amount; i++) {
 				while(tiles[xValue][yValue].getCollision()) {
 					xValue = rand.nextInt(13) +1;
@@ -316,13 +308,13 @@ public class Map extends JPanel {
 				}
 				if(!(tiles[xValue][yValue] == tiles[1][1])){
 					spawnItem(xValue, yValue, type);
-					}
+				}
 				xValue = rand.nextInt(13) +1;
 				yValue = rand.nextInt(13) +1; // rand 
 			}
 		}
 	}
-	
+
 
 }
 

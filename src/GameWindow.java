@@ -63,12 +63,14 @@ public class GameWindow {
 		});
 		fileMenu.add(loadMenuItem);
 
+		
 
 		//Help menu
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		menuBar.add(helpMenu);
 
+		
 
 		JMenuItem versionMenuItem = new JMenuItem("Version", KeyEvent.VK_V);
 		versionMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.ALT_MASK));
@@ -90,6 +92,7 @@ public class GameWindow {
 		JButton playButton;
 		JButton settingsButton;
 		JButton helpButton;
+		JButton backButton;
 
 		final JPanel startmenuPanel = new StartmenuPanel() ;     // final här ?? 12
 
@@ -97,7 +100,10 @@ public class GameWindow {
 		playButton = ((StartmenuPanel) startmenuPanel).getPlayButton();
 		settingsButton= ((StartmenuPanel) startmenuPanel).getSettingsButton();
 		helpButton = ((StartmenuPanel) startmenuPanel).getHelpButton();
-
+		backButton = ((StartmenuPanel) startmenuPanel).getBackButton();
+		backButton.setVisible(false);
+	
+		
 		 playButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				startmenuPanel.setVisible(false);
@@ -110,15 +116,69 @@ public class GameWindow {
 
 			}
 		}); 
-		//Other buttons
-
+	
+		 
+		helpButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+			playButton.setVisible(false);
+			settingsButton.setVisible(false);
+			helpButton.setVisible(false);
+			
+			backButton.setVisible(true);
+			
+			backButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					playButton.setVisible(true);
+					settingsButton.setVisible(true);
+					helpButton.setVisible(true);
+					backButton.setVisible(false);
+				}
+			});
+	
+			mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
+			mainwindow.setResizable(true);
+			mainwindow.setVisible(true);
+	
+			String helpInfo = "hej";
+	
+		/*	JTextField helpText = new JTextField();
+			helpText.setEditable(false);
+			helpText.setText(helpInfo);
+			mainwindow.add(helpText);
+			 */
+		
+			
+		}
+	});
+		
+	settingsButton.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e){
+			playButton.setVisible(false);
+			settingsButton.setVisible(false);
+			helpButton.setVisible(false);
+			backButton.setVisible(true);
+			
+			backButton.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					playButton.setVisible(true);
+					settingsButton.setVisible(true);
+					helpButton.setVisible(true);
+					backButton.setVisible(false);
+				}
+			});
+			
+			mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
+			mainwindow.setResizable(true);
+			mainwindow.setVisible(true);
+		}
+	});
+			
 	} 
 	public static void setGameFalse() {
 		
 		
 		gameFrame.setVisible(false);
 		
-		
-	}
+		}
 
 }

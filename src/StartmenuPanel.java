@@ -10,15 +10,17 @@ public class StartmenuPanel extends JPanel {
 	JButton playButton;
 	JButton settingsButton;
 	JButton helpButton;
+	JButton backButton;
 
 	public StartmenuPanel(){
 
 		mainMenu= new JPanel();
 		mainMenu.setLayout(new GridBagLayout());
 
-		playButton = new JButton("play");
-		settingsButton = new JButton("settings");
-		helpButton = new JButton("help");
+		playButton = new JButton("Play");
+		settingsButton = new JButton("Settings");
+		helpButton = new JButton("Help");
+		backButton = new JButton("Back");
 
 		GridBagConstraints g = new GridBagConstraints();
 
@@ -36,6 +38,10 @@ public class StartmenuPanel extends JPanel {
 		g.gridx = 0;
 		g.gridy = 2;
 		add(helpButton, g);
+		
+		g.gridx = 0;
+		g.gridy = 3;
+		add(backButton,g);
 	}
 
 
@@ -49,6 +55,9 @@ public class StartmenuPanel extends JPanel {
 
 	public JButton getHelpButton(){
 		return helpButton;
+	}
+	public JButton getBackButton(){
+		return backButton;
 	}
 
 }

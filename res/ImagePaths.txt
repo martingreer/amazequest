@@ -6,6 +6,7 @@ doorClosed:./res/doorClosed.png
 dark1:./res/dark1.png
 shield:./res/shield.png
 sword:./res/sword.png
+potion:./res/potion.png
 player:./res/playersouth.png
 playerWest:./res/playerwest.png
 playerEast:./res/playereast.png

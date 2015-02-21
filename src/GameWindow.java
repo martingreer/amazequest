@@ -124,7 +124,15 @@ public class GameWindow {
 			settingsButton.setVisible(false);
 			helpButton.setVisible(false);
 			
+			
+			String helpInfo = "\t" + "                        " +"Welcome to A Maze Quest" + "\n" + "kill all enemies";
+			JTextArea helpText = new JTextArea();
+			helpText.setEditable(false);
+			helpText.setText(helpInfo);
+			mainwindow.add(helpText, BorderLayout.NORTH);
+			
 			backButton.setVisible(true);
+		
 			
 			backButton.addActionListener(new ActionListener(){
 				public void actionPerformed(ActionEvent e){
@@ -132,20 +140,12 @@ public class GameWindow {
 					settingsButton.setVisible(true);
 					helpButton.setVisible(true);
 					backButton.setVisible(false);
+					helpText.setVisible(false);
 				}
 			});
-	
-			mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-			mainwindow.setResizable(true);
-			mainwindow.setVisible(true);
-	
-			String helpInfo = "hej"; //help info string
-	
-		/*	JTextField helpText = new JTextField();
-			helpText.setEditable(false);
-			helpText.setText(helpInfo);
-			mainwindow.add(helpText);
-			 */
+			
+		
+			 
 		
 			
 		}
@@ -166,10 +166,11 @@ public class GameWindow {
 					backButton.setVisible(false);
 				}
 			});
+
 			
-			mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-			mainwindow.setResizable(true);
-			mainwindow.setVisible(true);
+			
+			
+			
 		}
 	});
 			

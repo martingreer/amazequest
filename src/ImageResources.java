@@ -42,4 +42,7 @@ public class ImageResources {
 		return img;
 	}
 
+	public ImageIcon getImgIcon(String s){
+		return new ImageIcon(getPath(s));
+	}
 }

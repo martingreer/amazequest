@@ -13,7 +13,8 @@ playerWest:./res/playerwest.png
 playerEast:./res/playereast.png
 playerNorth:./res/playernorth.png
 playerSouth:./res/playersouth.png
-playerPortrait:./res/playerPortrait2.png
+playerPortrait:./res/playerPortrait.png
+playerPortrait2:./res/playerPortrait2.png
 enemyLv1:./res/enemyLv1.png
 enemyLv2:./res/enemyLv2.png
 enemyLv3:./res/enemyLv3.png

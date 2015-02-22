@@ -328,25 +328,16 @@ public class Map extends JPanel {
 		for(int y=0; y<MAP_SIZE; y++){
 			for(int x=0; x<MAP_SIZE; x++){
 				if(tiles[x][y].containsEnemy()){
-					enemyExists[x][y] = true;
-				}else{
-					enemyExists[x][y] = false;
+					return false;
 				}
 			}
 		}
 		
-		for(int y=0; y<MAP_SIZE; y++){
-			for(int x=0; x<MAP_SIZE; x++){
-				if(enemyExists[x][y])
-					return false;
-			}
-		}
 		System.out.println("-----------------------------------");
 		System.out.println("All enemies are dead. Opening door.");
 		System.out.println("-----------------------------------");
 		doorTile.setImgID("doorOpened");
 		return true;
 	}
-
 }
 

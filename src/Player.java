@@ -32,6 +32,7 @@ public class Player extends InteractiveObject {
 	public void updateStats(Item item){
 		
 		this.setHp(item.getHp());
+		this.setMaxHp(item.getHp());
 		this.setAttack(item.getAttack());
 	}
 	

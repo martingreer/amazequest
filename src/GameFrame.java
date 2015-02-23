@@ -23,15 +23,14 @@ public class GameFrame extends JFrame {
 		c.add(statusPanel, BorderLayout.SOUTH);
 		// Add functionality
 		//...
-		hideInventoryPanel();
+		hideStatusPanel();
 	}
 	
-	public void showInventoryPanel(){
+	public void showStatusPanel(){
 		statusPanel.setVisible(true);
-	
 	}
 	
-	public void hideInventoryPanel(){
+	public void hideStatusPanel(){
 		statusPanel.setVisible(false);
 		
 	}

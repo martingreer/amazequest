@@ -110,7 +110,7 @@ public class GameWindow {
 				mainwindow.setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				mainwindow.setResizable(true);
 				mainwindow.setVisible(true);
-				((GameFrame) mainwindow).showInventoryPanel();
+				((GameFrame) mainwindow).showStatusPanel();
 				Map map = new Map();
 				(new Thread(new GameEngine(map, mainwindow))).start();
 

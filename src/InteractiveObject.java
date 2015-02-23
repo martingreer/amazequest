@@ -6,12 +6,13 @@ public class InteractiveObject {
 	private int attack;
 	private int hp;
 	private String name;
-	private InteractiveObject object; 
+	private int maxHp;
 	
 	public InteractiveObject(int level, int attack, int hp, String name) {
 		
 		this.level = level;
 		this.attack = attack;
+		this.maxHp = hp;
 		this.hp = hp;
 		this.name = name;
 		
@@ -22,6 +23,11 @@ public class InteractiveObject {
 	public int getHp() {
 		
 		return hp;
+	}
+	
+	public int getMaxHp() {
+		
+		return maxHp;
 	}
 	public int getLevel() {
 		
@@ -46,6 +52,11 @@ public class InteractiveObject {
 	public void setHp(int change) {
 		
 		hp = hp + change;
+	}
+	
+	public void setMaxHp(int change) {
+		
+		maxHp = maxHp + change;
 	}
 		
 	public void setAttack(int change) {

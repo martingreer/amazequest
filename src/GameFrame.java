@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 import javax.swing.*;
 
@@ -16,6 +18,9 @@ public class GameFrame extends JFrame {
 	private StatusPanel statusPanel;
 	private JPanel startmenuPanel;
 	private MapPanel mapPanel;
+	
+	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
+	private static Map mapRef = null;							// only here for load/save , remove if changed
 	
 	public GameFrame (String title){
 		super(title);	
@@ -54,7 +59,11 @@ public class GameFrame extends JFrame {
 		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		saveMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null,"Game saved");
+				if(loadedPlayer == null){
+					JOptionPane.showMessageDialog(null,"Can not save without starting a new game stoopid!");
+				}else{
+					mapRef.save("PlayerState.bin");
+				}
 			}
 		});
 		fileMenu.add(saveMenuItem);
@@ -63,7 +72,12 @@ public class GameFrame extends JFrame {
 		loadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.ALT_MASK));
 		loadMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null,"Game loaded");
+				//JOptionPane.showMessageDialog(null,"Game loaded");
+				if(mapRef == null){
+					load("PlayerState.bin");
+				}else{
+					mapRef.load("PlayerState.bin");
+				}
 			}
 		});
 		fileMenu.add(loadMenuItem);
@@ -107,9 +121,16 @@ public class GameFrame extends JFrame {
 				setResizable(true);
 				setVisible(true);
 				showStatusPanel();
-				mapPanel = new MapPanel();
+				if(loadedPlayer == null){
+					mapPanel = new MapPanel();	//starting a new game
+				}else{
+					mapPanel = new MapPanel(loadedPlayer);
+				}
 				add(mapPanel);
+				mapRef = mapPanel.getMap();
 				(new Thread(new GameThread(mapPanel, statusPanel))).start();
+			
+				
 
 			}
 		}); 
@@ -160,7 +181,21 @@ public class GameFrame extends JFrame {
 		}
 	});
 	}
-
+	
+	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+            loadedPlayer = (Player)in.readObject();
+            in.close();
+            System.out.println("Player loaded");
+        }
+        catch(Exception e) {
+        	System.out.println("LOAD FAILED \n");
+            e.printStackTrace();
+            System.exit(0);
+            
+        }
+    }
 
 
 }

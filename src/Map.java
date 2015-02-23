@@ -1,4 +1,8 @@
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.*;
 
 import javax.swing.*;
@@ -31,6 +35,45 @@ public class Map{
 		
 	}
 	
+	public Map(Player loadedPlayer){	//for starting a Map with a saved Player
+		openFile();
+		readFile();
+		closeFile();
+
+		this.player = loadedPlayer;
+		tiles[1][1].setPlayer(player);
+		playerTile = tiles[1][1];
+		discoverDarkness();
+		spawnObjectsInitiator();
+	}
+	
+	public void save(String fileName) {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+            out.writeObject(player);
+            out.close();
+            System.out.println("Player saved");
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+   
+    public void load(String fileName) {		// NOTE!! load-method in both GameFrame and Map
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+            player = (Player)in.readObject();
+            in.close();
+            System.out.println("Player loaded");
+        }
+        catch(Exception e) {
+        	System.out.println("LOAD FAILED \n");
+            e.printStackTrace();
+            System.exit(0);
+            
+        }
+    }
 	public void pressedKey(String key){
 		
 		if(key.equals("left")){

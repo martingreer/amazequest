@@ -1,9 +1,13 @@
 import java.awt.Image;
+import java.io.Serializable;
+
 import javax.swing.ImageIcon;
+
 import java.util.ArrayList;
 
-public class Player extends InteractiveObject {
+public class Player extends InteractiveObject implements Serializable {
 	
+	private static final long serialVersionUID = -6234382920123790369L;
 	private int exp;                  // experience 
 	
 	public Player(int level, int attack, int hp, String name, int exp) {

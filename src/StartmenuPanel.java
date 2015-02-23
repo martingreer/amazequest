@@ -5,17 +5,14 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class StartmenuPanel extends JPanel {
 
-	public JPanel mainMenu;
-
 	JButton playButton;
 	JButton settingsButton;
 	JButton helpButton;
 	JButton backButton;
 
 	public StartmenuPanel(){
-
-		mainMenu= new JPanel();
-		mainMenu.setLayout(new GridBagLayout());
+		
+		setLayout(new GridBagLayout());
 
 		playButton = new JButton("Play");
 		settingsButton = new JButton("Settings");

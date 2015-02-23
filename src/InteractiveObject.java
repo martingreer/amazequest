@@ -1,7 +1,10 @@
+import java.io.Serializable;
 
 
-public class InteractiveObject {
 
+public class InteractiveObject implements Serializable {
+
+	private static final long serialVersionUID = 7164610381028851449L;
 	private int level;
 	private int attack;
 	private int hp;

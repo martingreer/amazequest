@@ -17,6 +17,11 @@ public class MapPanel extends JPanel {
 			initKeyListener();
 			setFocusable(true);
 		}
+		public MapPanel(Player loadedPlayer){
+			map = new Map(loadedPlayer);
+			initKeyListener();
+			setFocusable(true);
+		}
 		
 		public Map getMap(){
 			return map;

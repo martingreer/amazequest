@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 public class Player extends InteractiveObject {
 	
-	private ArrayList<Item> items;     // items 
 	private int exp;                  // experience 
 	
 	public Player(int level, int attack, int hp, String name, int exp) {
 		
 		super(level, attack, hp, name);
-		
-		items = new ArrayList<Item>();
 		
 		this.exp = exp;
 		

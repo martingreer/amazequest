@@ -36,15 +36,15 @@ public class StatusPanel extends JPanel {
 	    setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 	    
 	    setLayout(new GridBagLayout());
-	  
+	    
+	    
 	    experienceBar = new JProgressBar(0,100);
 	    experienceBar.setForeground(new Color(125, 0, 255));
 	    experienceBar.setValue(30);
 	    healthBar = new JProgressBar();
 	    healthBar.setForeground(Color.RED);
-	    enemyHealthBar = new JProgressBar(0,100);
+	    enemyHealthBar = new JProgressBar();
 	    enemyHealthBar.setForeground(Color.RED);
-	    enemyHealthBar.setValue(20);
 	    
 	    JPanel playerBarContainer = new JPanel();
 	    playerBarContainer.setLayout(new GridLayout(3,1,0,2));
@@ -55,7 +55,7 @@ public class StatusPanel extends JPanel {
 
 	    JPanel enemyBarContainer = new JPanel();
 	    enemyBarContainer.setLayout(new GridLayout(3,1,0,2));    
-	    JLabel enemyLabel = new JLabel("Enemy");
+	    JLabel enemyLabel = new JLabel("Enemy\n");
 	    enemyBarContainer.add(enemyLabel);
 	    enemyBarContainer.add(enemyHealthBar);
 	    
@@ -72,15 +72,14 @@ public class StatusPanel extends JPanel {
 	    
 	    JPanel enemyStatusContainer = new JPanel();
 	    enemyStatusContainer.setLayout(new GridLayout(2,1));	    
-	    enemyAttackLabel = new JLabel("Attack: 8");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
+	    enemyAttackLabel = new JLabel("");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
 	    enemyStatusContainer.add(enemyAttackLabel);
-	    enemyLevelLabel = new JLabel("Level: 3");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
+	    enemyLevelLabel = new JLabel("");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
 	    enemyStatusContainer.add(enemyLevelLabel);
 	    
 	    JPanel enemyPortraitContainer = new JPanel();	    
-	    enemyPortrait = new JLabel(res.getImgIcon("enemyLv1"));//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
+	    enemyPortrait = new JLabel(res.getImgIcon(""));//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
 	    enemyPortraitContainer.add(enemyPortrait);
-	    
 	    
 	    GridBagConstraints gc = new GridBagConstraints();
 
@@ -118,13 +117,24 @@ public class StatusPanel extends JPanel {
         gc.gridx = 3;
         gc.gridy = 1; 
         add(enemyPortraitContainer, gc);
-        
-        
+
 	}
 	
 
 	public void updatePanel(Player player, Enemy enemy){
 		healthBar.setMaximum(player.getMaxHp());
 		healthBar.setValue(player.getHp());
+		playerAttackLabel.setText("Attack: "+player.getAttack());
+		playerLevelLabel.setText("Level: "+player.getLevel());
+		if(enemy != null){
+			enemyHealthBar.setMaximum(enemy.getMaxHp());
+			enemyHealthBar.setValue(enemy.getHp());
+			enemyAttackLabel.setText("Attack: "+enemy.getAttack());
+			enemyLevelLabel.setText("Level: "+enemy.getLevel());
+			enemyPortrait.setIcon(res.getImgIcon(enemy.getName()));
+		}
+		else{
+			enemyHealthBar.setValue(0);
+		}
 	}
 }

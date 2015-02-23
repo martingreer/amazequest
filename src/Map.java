@@ -1,28 +1,19 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.*;
 
 import javax.swing.*;
 
-@SuppressWarnings("serial")
-public class Map extends JPanel {
 
-	private static final boolean DEBUG = false;
+public class Map{
+	
 	private static final int MAP_SIZE = 14;
-	private static final int TILE_SIZE = 32;
-	private static final String[][] String = null;
 
-	private Inventory inventory = new Inventory();
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
+	private Enemy currentEnemy;
 	private Tile playerTile;
 	private Tile doorTile;
-	private ImageResources res = new ImageResources();
 	private Random rand = new Random();               // test random
 	private Boolean[][] enemyExists = new Boolean[MAP_SIZE][MAP_SIZE];
 	private boolean doorOpen = false;
@@ -36,11 +27,40 @@ public class Map extends JPanel {
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
-		initKeyListener();
 		spawnObjectsInitiator();
-		setFocusable(true);
+		
 	}
-
+	
+	public void pressedKey(String key){
+		
+		if(key.equals("left")){
+			decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
+			player.setName("playerWest");	//set image for each direction
+		}
+		else if(key.equals("right")){
+			decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
+			player.setName("playerEast");
+		}
+		else if(key.equals("up")){
+			decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
+			player.setName("playerNorth");
+		}
+		else if(key.equals("down")){
+			decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
+			player.setName("playerSouth");
+		}
+	}
+	public Enemy getCurrentEnemy(){
+		return currentEnemy;
+	}
+	public Tile[][] getTiles(){
+		return tiles;
+	}
+	
+	public Player getPlayer(){
+		return player;
+	}
+	
 	public void openFile(){
 		try{
 			m =  new Scanner(new File("./res/map_1.txt"));
@@ -75,67 +95,6 @@ public class Map extends JPanel {
 		m.close();
 	}
 
-	public void paint(Graphics g){
-		if(DEBUG){System.out.println("DEBUG: Attempting to draw the board.");}
-		super.paint(g);
-		for(int y=0; y<MAP_SIZE;y++){
-			for(int x=0; x<MAP_SIZE; x++){
-				g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
-				if(tiles[x][y].getInterObj() != null){
-					g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
-				}
-				if(tiles[x][y].isDark()){
-					g.drawImage(res.getImg("dark"), x*TILE_SIZE, y*TILE_SIZE, null);
-				}
-			}
-		}
-	}
-
-	private void initKeyListener(){
-		addKeyListener(new KeyAdapter() {
-			/*
-	          @Override
-	          public void keyTyped(KeyEvent e) {
-	             myKeyEvt(e, "keyTyped");
-	          }
-
-	          @Override
-	          public void keyReleased(KeyEvent e) {
-	             myKeyEvt(e, "keyReleased");
-	          }
-			 */
-			@Override
-			public void keyPressed(KeyEvent e) {
-				myKeyEvt(e, "keyPressed");
-			}
-
-			private void myKeyEvt(KeyEvent e, String text) {
-
-				if(!(player.getHp() <= 0)) {    // if the player dies... 
-					int key = e.getKeyCode();
-					System.out.println("Player atk = " +  player.getAttack()  +  " Player hp = " +  player.getHp());
-					if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) {
-						decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
-						player.setName("playerWest");	//set image for each direction
-
-
-					} else if (key == KeyEvent.VK_KP_RIGHT || key == KeyEvent.VK_RIGHT) {
-						decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
-						player.setName("playerEast");
-
-					} else if (key == KeyEvent.VK_KP_UP || key == KeyEvent.VK_UP) {
-						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
-						player.setName("playerNorth");
-
-					} else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN) {
-						decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
-						player.setName("playerSouth");
-					}	
-				}
-			}
-		});
-	}
-
 	public void discoverDarkness(){
 
 		int x = playerTile.getXPos();
@@ -159,6 +118,7 @@ public class Map extends JPanel {
 
 		if(nextTile.containsEnemy()){
 			fight(nextTile);
+			currentEnemy = (Enemy)nextTile.getInterObj();
 
 		}else if(nextTile.containsItem()){
 			pickUpItem((Item)nextTile.getInterObj());
@@ -174,11 +134,11 @@ public class Map extends JPanel {
 		System.out.println("fighting");
 		player.exchangeHitsWithEnemy(nextTile);
 		if((nextTile.getInterObj().getHp()) <= 0 ){		//check enemy Hp, remove if <= 0.
-			System.out.println("enemy is killed");
 			nextTile.setEnemy(null);
+			currentEnemy = null;
 			doorOpen = checkIfAllEnemiesAreDead();		//set to true if all enemies are dead.
 		}
-
+		
 		if(player.getHp() <= 0) {
 			System.out.println("Player is dead");
 			//playerTile.setPlayer(null);
@@ -195,19 +155,18 @@ public class Map extends JPanel {
 					options[0]);
 
 			if( clicked == JOptionPane.OK_OPTION) {
-				GameWindow.setGameFalse();      
+				Main.setGameFalse();      
 				String[] stuff = new String[] {""};
-				GameWindow.main(stuff);
+				Main.main(stuff);
 				//System.exit(0);
 			}
 		}
+		
 	}
 
 	public void pickUpItem(Item item){
 		System.out.println("pickUpItem()");
-		inventory.addItem(item);
 		player.updateStats(item);
-		System.out.println("InventorySize = " + inventory.showSize());
 	}
 
 	public void removeItem(Tile nextTile){

@@ -33,7 +33,10 @@ public class MapPanel extends JPanel {
 			Tile[][] tiles = map.getTiles();
 			for(int y=0; y<MAP_SIZE;y++){
 				for(int x=0; x<MAP_SIZE; x++){
-					g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);	
+					g.drawImage(res.getImg(tiles[x][y].getImgID()), x*TILE_SIZE, y*TILE_SIZE, null);
+					if(tiles[x][y].isBlood()){
+						g.drawImage(res.getImg("blood"), x*TILE_SIZE, y*TILE_SIZE, null);
+					}
 					if(tiles[x][y].getInterObj() != null){
 						g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
 					}

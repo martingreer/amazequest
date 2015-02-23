@@ -181,15 +181,17 @@ public class Map{
 		player.exchangeHitsWithEnemy(nextTile);
 		if((nextTile.getInterObj().getHp()) <= 0 ){		//check enemy Hp, remove if <= 0.
 			nextTile.setEnemy(null);
+			nextTile.setBlood(true);
 			currentEnemy = null;
 			doorOpen = checkIfAllEnemiesAreDead();		//set to true if all enemies are dead.
 		}
 		
 		if(player.getHp() <= 0) {
 			System.out.println("Player is dead");
-			//playerTile.setPlayer(null);
-			tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
-					playerTile.getYPos(), "blood", false,false);
+			playerTile.setBlood(true);
+			playerTile.setPlayer(null);
+			//tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
+				//	playerTile.getYPos(), "blood", false,false);
 
 			Object[] options = {"PLAY AGAIN"};
 			int clicked = JOptionPane.showOptionDialog(null,

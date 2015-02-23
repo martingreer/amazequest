@@ -4,6 +4,7 @@ public class Tile {
 	private String imgID;
 	private boolean collision;
 	private boolean darkness;
+	private boolean blood;
 	private InteractiveObject interactiveObject = null;
 	private boolean door;
 	
@@ -13,6 +14,7 @@ public class Tile {
 		this.imgID = imgID;
 		this.collision = collision;
 		this.darkness = darkness;
+		this.blood = false;
 		door = false;
 	}
 	
@@ -34,6 +36,9 @@ public class Tile {
 	
 	public void setDarkness(boolean value ){
 		this.darkness = value;
+	}
+	public void setBlood(boolean value ){
+		this.blood = value;
 	}
 	
 	public InteractiveObject getInterObj(){
@@ -61,6 +66,13 @@ public class Tile {
 	
 	public boolean isDark(){
 		if(darkness){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isBlood(){
+		if(blood){
 			return true;
 		}
 		return false;

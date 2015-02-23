@@ -1,5 +1,5 @@
 # Presenting the best game in the world: AMazeQuest!
 
-henrik was here :P
+fixed a save bug
 
-and here
+added save/load functions

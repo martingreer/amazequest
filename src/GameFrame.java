@@ -128,7 +128,9 @@ public class GameFrame extends JFrame {
 				}
 				add(mapPanel);
 				mapRef = mapPanel.getMap();
+				loadedPlayer = mapRef.getPlayer();
 				(new Thread(new GameThread(mapPanel, statusPanel))).start();
+				
 			
 				
 

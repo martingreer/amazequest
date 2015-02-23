@@ -124,6 +124,9 @@ public class Map{
 					else if(c[x] == '.'){
 						tiles[x][y] = new Tile(x, y, "grass", false,true);
 					}
+					else if(c[x] == '-'){
+						tiles[x][y] = new Tile(x, y, "floor", false,true);
+					}
 					else if(c[x] == 'D'){
 						tiles[x][y] = new Tile(x, y, "doorClosed", true,true);
 						tiles[x][y].setDoor();

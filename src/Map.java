@@ -17,7 +17,7 @@ import javax.swing.*;
 public class Map{
 	
 	private static final int MAP_SIZE = 14;
-
+	private int mapNr;
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
 	private Player player;
@@ -28,11 +28,11 @@ public class Map{
 	private Boolean[][] enemyExists = new Boolean[MAP_SIZE][MAP_SIZE];
 	private boolean doorOpen = false;
 
-	public Map(){
+	public Map(int mapNr){
+		this.mapNr = mapNr;
 		openFile();
 		readFile();
 		closeFile();
-
 		player = new Player(1,5,10,10,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
@@ -113,7 +113,7 @@ public class Map{
 	
 	public void openFile(){
 		try{
-			m =  new Scanner(new File("./res/map_1.txt"));
+			m =  new Scanner(new File("./res/map_"+mapNr+".txt"));
 		}catch(Exception e){
 			System.out.println("Error: Map failed to load");
 		}

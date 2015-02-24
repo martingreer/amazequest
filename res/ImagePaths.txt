@@ -20,7 +20,11 @@ girlWest:./res/Player/girlwest.png
 girlEast:./res/Player/girleast.png
 girlNorth:./res/Player/girlnorth.png
 girlSouth:./res/Player/girlsouth.png
+girlPortrait:./res/Player/girlPortrait.png
 enemyLv1:./res/Enemies/enemyLv1.png
 enemyLv2:./res/Enemies/enemyLv2.png
 enemyLv3:./res/Enemies/enemyLv3.png
+enemyLv1Portrait:./res/Enemies/enemyLv1Portrait.png
+enemyLv2Portrait:./res/Enemies/enemyLv2Portrait.png
+enemyLv3Portrait:./res/Enemies/enemyLv3Portrait.png
 blood:./res/Misc/blood.png

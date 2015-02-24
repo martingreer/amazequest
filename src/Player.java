@@ -30,7 +30,7 @@ public class Player extends InteractiveObject implements Serializable {
 			exp = exp - 100;
 			this.setAttack(2);
 			this.setMaxHp(2);
-			this.setHp(5); //level up bonus hp
+			this.setHp(3); //level up bonus hp
 		}
 	}
 	

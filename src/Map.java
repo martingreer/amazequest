@@ -39,6 +39,7 @@ public class Map{
 		discoverDarkness();
 		spawnObjectsInitiator();
 		
+		
 	}
 	
 	public Map(Player loadedPlayer){	//for starting a Map with a saved Player
@@ -208,9 +209,17 @@ public class Map{
 					options[0]);
 
 			if( clicked == JOptionPane.OK_OPTION) {
-				Main.setGameFalse();      
+				int hp = player.getMaxHp() - player.getHp() ;
+				System.out.println(hp);
+				player.setHp(hp);
+				
+				//player.setHp(player.getMaxHp());
+				Main.setGameFalse();   
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
+				
+				
+				
 				
 				//System.exit(0);
 			}

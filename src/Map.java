@@ -25,7 +25,6 @@ public class Map{
 	private Tile playerTile;
 	private Tile doorTile;
 	private Random rand = new Random();               // test random
-	private Boolean[][] enemyExists = new Boolean[MAP_SIZE][MAP_SIZE];
 	private Boolean doorOpen = false;
 
 	public Map(int mapNr){
@@ -177,10 +176,8 @@ public class Map{
 			pickUpItem((Item)nextTile.getInterObj());
 			removeItem(nextTile);
 		}
-		else if(nextTile.containsDoor()){
-			if(doorTile.getImgID() == "doorOpened"){
-				finishGame();
-			}
+		else if(nextTile.containsDoor() && doorOpen){
+			finishGame();
 		}
 		else if(nextTile.isEmpty()){
 			movePlayerTo(nextTile);

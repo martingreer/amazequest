@@ -26,7 +26,7 @@ public class Map{
 	private Tile doorTile;
 	private Random rand = new Random();               // test random
 	private Boolean[][] enemyExists = new Boolean[MAP_SIZE][MAP_SIZE];
-	private boolean doorOpen = false;
+	private Boolean doorOpen = false;
 
 	public Map(int mapNr){
 		this.mapNr = mapNr;
@@ -37,7 +37,9 @@ public class Map{
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
-		spawnObjectsInitiator();	
+		spawnObjectsInitiator();
+		
+		
 	}
 	
 	public Map(Player loadedPlayer){	//for starting a Map with a saved Player
@@ -212,10 +214,10 @@ public class Map{
 					options[0]);
 
 			if( clicked == JOptionPane.OK_OPTION) {
-				int hp = player.getMaxHp() - player.getHp();
+				int hp = player.getMaxHp() - player.getHp() ;
 				System.out.println(hp);
 				player.setHp(hp);
-				Main.setGameFalse();
+				Main.setGameFalse();   
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
 				//System.exit(0);

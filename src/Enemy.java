@@ -3,9 +3,9 @@
 public class Enemy extends InteractiveObject {
 
 	
-	public Enemy(int level, int attack, int hp, String name) {
+	public Enemy(int level, int attack, int maxHp, int hp, String name) {
 		
-		super(level, attack, hp, name);
+		super(level, attack, maxHp, hp, name);
 		
 	}
 	

@@ -8,7 +8,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * @author Namn
+ * @author namn
  *
  * Description of class here.
  *
@@ -37,9 +37,7 @@ public class Map{
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
-		spawnObjectsInitiator();
-		
-		
+		spawnObjectsInitiator();	
 	}
 	
 	public Map(Player loadedPlayer){	//for starting a Map with a saved Player
@@ -117,8 +115,7 @@ public class Map{
 
 			//m =  new Scanner(new File("./res/map_2.txt"));
 
-			m =  new Scanner(new File("./res/map_"+mapNr+".txt"));
-
+         m =  new Scanner(new File("./res/map_"+mapNr+".txt"));
 		}catch(Exception e){
 			System.out.println("Error: Map failed to load");
 		}
@@ -218,10 +215,10 @@ public class Map{
 					options[0]);
 
 			if( clicked == JOptionPane.OK_OPTION) {
-				int hp = player.getMaxHp() - player.getHp() ;
+				int hp = player.getMaxHp() - player.getHp();
 				System.out.println(hp);
 				player.setHp(hp);
-				Main.setGameFalse();   
+				Main.setGameFalse();
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
 				//System.exit(0);

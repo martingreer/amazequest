@@ -1,4 +1,5 @@
 WWWWWWWWWWWWWW
+<<<<<<< HEAD
 W-----W--W---W
 W------------W
 WW--WWWWWW--WW
@@ -11,4 +12,18 @@ WW--W----WW-WW
 WW--WWWW----WW
 W---WWWWWW---W
 W------------W
+=======
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+W............W
+>>>>>>> refs/remotes/origin/refactored
 WWWWWWWWWWWWWW

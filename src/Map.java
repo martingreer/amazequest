@@ -212,15 +212,9 @@ public class Map{
 				int hp = player.getMaxHp() - player.getHp() ;
 				System.out.println(hp);
 				player.setHp(hp);
-				
-				//player.setHp(player.getMaxHp());
 				Main.setGameFalse();   
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
-				
-				
-				
-				
 				//System.exit(0);
 			}
 		}

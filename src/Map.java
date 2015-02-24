@@ -179,19 +179,18 @@ public class Map{
 	public void fight(Tile nextTile){
 		System.out.println("fighting");
 		player.exchangeHitsWithEnemy(nextTile);
-		if((nextTile.getInterObj().getHp()) <= 0 ){		//check enemy Hp, remove if <= 0.
+		if((nextTile.getInterObj().getHp()) <= 0 ){					//check enemy Hp, remove if <= 0.
+			player.setExp(nextTile.getInterObj().getLevel()*20); 	//player get experience,  enemylevel * 20
 			nextTile.setEnemy(null);
 			nextTile.setBlood(true);
 			currentEnemy = null;
-			doorOpen = checkIfAllEnemiesAreDead();		//set to true if all enemies are dead.
+			doorOpen = checkIfAllEnemiesAreDead();					//set to true if all enemies are dead.
 		}
 		
 		if(player.getHp() <= 0) {
 			System.out.println("Player is dead");
 			playerTile.setBlood(true);
 			playerTile.setPlayer(null);
-			//tiles[playerTile.getXPos()][playerTile.getYPos()] = new Tile(playerTile.getXPos(), 
-				//	playerTile.getYPos(), "blood", false,false);
 
 			Object[] options = {"PLAY AGAIN"};
 			int clicked = JOptionPane.showOptionDialog(null,

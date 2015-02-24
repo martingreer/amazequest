@@ -124,6 +124,7 @@ public class StatusPanel extends JPanel {
 	public void updatePanel(Player player, Enemy enemy){
 		healthBar.setMaximum(player.getMaxHp());
 		healthBar.setValue(player.getHp());
+		experienceBar.setValue(player.getExp());
 		playerAttackLabel.setText("Attack: "+player.getAttack());
 		playerLevelLabel.setText("Level: "+player.getLevel());
 		if(enemy != null){

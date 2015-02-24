@@ -7,6 +7,12 @@ import java.util.*;
 
 import javax.swing.*;
 
+/**
+ * @author 
+ *
+ * Description of class here.
+ *
+ */
 
 public class Map{
 	

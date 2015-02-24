@@ -11,13 +11,14 @@ public class InteractiveObject implements Serializable {
 	private String name;
 	private int maxHp;
 	
-	public InteractiveObject(int level, int attack, int hp, String name) {
+	public InteractiveObject(int level, int attack, int maxHp, int hp, String name) {
 		
 		this.level = level;
 		this.attack = attack;
 		this.maxHp = hp;
 		this.hp = hp;
 		this.name = name;
+		this.maxHp = maxHp;
 		
 		}
 	

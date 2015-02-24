@@ -10,9 +10,9 @@ public class Player extends InteractiveObject implements Serializable {
 	private static final long serialVersionUID = -6234382920123790369L;
 	private int exp;                  // experience 
 	
-	public Player(int level, int attack, int hp, String name, int exp) {
+	public Player(int level, int attack, int maxHp, int hp, String name, int exp) {
 		
-		super(level, attack, hp, name);
+		super(level, attack, maxHp, hp, name);
 		this.exp = exp;
 		}
 	
@@ -35,8 +35,11 @@ public class Player extends InteractiveObject implements Serializable {
 	public void updateStats(Item item){
 		
 		this.setHp(item.getHp());
-		this.setMaxHp(item.getHp());
+		this.setMaxHp(item.getMaxHp());
 		this.setAttack(item.getAttack());
+		if(getHp()>getMaxHp()){
+			setHp(getMaxHp()-getHp());
+		}
 	}
 	
 	public void exchangeHitsWithEnemy(Tile nextTile){

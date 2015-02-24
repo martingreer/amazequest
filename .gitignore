@@ -10,23 +10,31 @@ target/
 *.war
 *.ear
 *.db
+
 ######################
 # Windows
 ######################
+
 # Windows image file caches
 Thumbs.db
+
 # Folder config file
 Desktop.ini
+
 ######################
 # OSX
 ######################
+
 .DS_Store
 .svn
+
 # Thumbnails
 ._*
+
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+
 ######################
 # Eclipse
 ######################
@@ -45,11 +53,22 @@ local.properties
 .settings/
 .loadpath
 /src/main/resources/rebel.xml
+
 # External tool builders
 .externalToolBuilders/
+
 # Locally stored "Eclipse launch configurations"
 *.launch
+
 # CDT-specific
 .cproject
+
 # PDT-specific
 .buildpath 
+
+######################
+# Project
+######################
+
+# Player save file
+PlayerState.bin

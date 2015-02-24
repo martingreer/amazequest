@@ -62,7 +62,7 @@ public class StatusPanel extends JPanel {
 	    enemyBarContainer.add(enemyHealthBar);
 	    
 	    JPanel playerPortraitContainer = new JPanel();	    
-	    portraitLabel = new JLabel(res.getImgIcon("playerPortrait"));
+	    portraitLabel = new JLabel(res.getImgIcon("playerPortrait2"));
 	    playerPortraitContainer.add(portraitLabel);
 	    
 	    JPanel playerStatusContainer = new JPanel();

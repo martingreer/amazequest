@@ -112,11 +112,7 @@ public class Map{
 	
 	public void openFile(){
 		try{
-
-			m =  new Scanner(new File("./res/map_2.txt"));
-
 			m =  new Scanner(new File("./res/map_"+mapNr+".txt"));
-
 		}catch(Exception e){
 			System.out.println("Error: Map failed to load");
 		}

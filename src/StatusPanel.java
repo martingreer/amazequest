@@ -21,10 +21,12 @@ public class StatusPanel extends JPanel {
 	private JProgressBar experienceBar;
 	private JProgressBar enemyHealthBar;
 	private JLabel portraitLabel;
-	private JLabel playerAttackLabel;
 	private JLabel playerLevelLabel;
-	private JLabel enemyAttackLabel;
+	private JLabel playerAttackLabel;
+	private JLabel playerHealthLabel;
 	private JLabel enemyLevelLabel;
+	private JLabel enemyAttackLabel;
+	private JLabel enemyHealthLabel;
 	private JLabel enemyPortrait;
 	
 	private ImageResources res = new ImageResources();
@@ -64,18 +66,22 @@ public class StatusPanel extends JPanel {
 	    playerPortraitContainer.add(portraitLabel);
 	    
 	    JPanel playerStatusContainer = new JPanel();
-	    playerStatusContainer.setLayout(new GridLayout(2,1));	    
-	    playerAttackLabel = new JLabel("Attack: 10");
-	    playerStatusContainer.add(playerAttackLabel);
-	    playerLevelLabel = new JLabel("Level: 2");
+	    playerStatusContainer.setLayout(new GridLayout(3,1));	    
+	    playerLevelLabel = new JLabel("");
 	    playerStatusContainer.add(playerLevelLabel);
+	    playerAttackLabel = new JLabel("");
+	    playerStatusContainer.add(playerAttackLabel);
+	    playerHealthLabel = new JLabel("");
+	    playerStatusContainer.add(playerHealthLabel);
 	    
 	    JPanel enemyStatusContainer = new JPanel();
-	    enemyStatusContainer.setLayout(new GridLayout(2,1));	    
-	    enemyAttackLabel = new JLabel("");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
-	    enemyStatusContainer.add(enemyAttackLabel);
-	    enemyLevelLabel = new JLabel("");//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
+	    enemyStatusContainer.setLayout(new GridLayout(3,1));	  
+	    enemyLevelLabel = new JLabel("");
 	    enemyStatusContainer.add(enemyLevelLabel);
+	    enemyAttackLabel = new JLabel("");
+	    enemyStatusContainer.add(enemyAttackLabel);
+	    enemyHealthLabel = new JLabel("");
+	    enemyStatusContainer.add(enemyHealthLabel);
 	    
 	    JPanel enemyPortraitContainer = new JPanel();	    
 	    enemyPortrait = new JLabel(res.getImgIcon(""));//Den här ska tas bort när vi kan kolla vilken fiende vi slåss mot
@@ -127,15 +133,18 @@ public class StatusPanel extends JPanel {
 		experienceBar.setValue(player.getExp());
 		playerAttackLabel.setText("Attack: "+player.getAttack());
 		playerLevelLabel.setText("Level: "+player.getLevel());
+		playerHealthLabel.setText("Health: "+player.getHp()+"/"+player.getMaxHp());
 		if(enemy != null){
 			enemyHealthBar.setMaximum(enemy.getMaxHp());
 			enemyHealthBar.setValue(enemy.getHp());
 			enemyAttackLabel.setText("Attack: "+enemy.getAttack());
 			enemyLevelLabel.setText("Level: "+enemy.getLevel());
 			enemyPortrait.setIcon(res.getImgIcon(enemy.getName()));
+			enemyHealthLabel.setText("Health: "+enemy.getHp()+"/"+enemy.getMaxHp());
 		}
 		else{
 			enemyHealthBar.setValue(0);
+			enemyHealthLabel.setText("Health: 0/0");
 		}
 	}
 }

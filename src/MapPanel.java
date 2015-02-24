@@ -13,14 +13,17 @@ public class MapPanel extends JPanel {
 		private ImageResources res = new ImageResources();
 		
 		public MapPanel(){
-			map = new Map(1);
+			
 			initKeyListener();
-			setFocusable(true);
+			
 		}
 		public MapPanel(Player loadedPlayer){
 			map = new Map(loadedPlayer);
 			initKeyListener();
-			setFocusable(true);
+			
+		}
+		public void createMap(int mapNr){
+			map = new Map(mapNr);
 		}
 		
 		public Map getMap(){

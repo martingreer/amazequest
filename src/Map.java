@@ -205,6 +205,7 @@ public class Map{
 				Main.setGameFalse();      
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
+				
 				//System.exit(0);
 			}
 		}

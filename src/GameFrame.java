@@ -27,7 +27,7 @@ public class GameFrame extends JFrame {
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-		setResizable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		
 		statusPanel = new StatusPanel();
@@ -36,6 +36,7 @@ public class GameFrame extends JFrame {
 		hideStatusPanel();
 		addMenu();
 		createButtons();
+		
 	}
 	
 	public void showStatusPanel(){
@@ -55,32 +56,15 @@ public class GameFrame extends JFrame {
 		menuBar.add(fileMenu);
 
 		//Sub-choice of File menu
-		JMenuItem saveMenuItem = new JMenuItem("Save", KeyEvent.VK_S);
-		saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.ALT_MASK));
-		saveMenuItem.addActionListener(new ActionListener(){
+		JMenuItem backMenuItem = new JMenuItem("Back", KeyEvent.VK_B);
+		backMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
+		backMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(loadedPlayer == null){
-					JOptionPane.showMessageDialog(null,"Can not save without starting a new game stoopid!");
-				}else{
-					mapRef.save("PlayerState.bin");
-				}
 			}
 		});
-		fileMenu.add(saveMenuItem);
+		fileMenu.add(backMenuItem);
 
-		JMenuItem loadMenuItem = new JMenuItem("Load", KeyEvent.VK_L);
-		loadMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_L, ActionEvent.ALT_MASK));
-		loadMenuItem.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//JOptionPane.showMessageDialog(null,"Game loaded");
-				if(mapRef == null){
-					load("PlayerState.bin");
-				}else{
-					mapRef.load("PlayerState.bin");
-				}
-			}
-		});
-		fileMenu.add(loadMenuItem);
+		
 
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);

@@ -27,7 +27,7 @@ public class Map{
 		readFile();
 		closeFile();
 
-		player = new Player(1,5,10,"player",0);
+		player = new Player(1,5,10,10,"player",0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
@@ -249,16 +249,16 @@ public class Map{
 		}
 
 		if(enemyType == "enemyLv1"){
-			Enemy enemy = new Enemy(1,1,10,"enemyLv1");	//(level,attack,hp,name)
+			Enemy enemy = new Enemy(1,1,10,10,"enemyLv1");	//(level,attack,hp,name)
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 
 		if(enemyType == "enemyLv2"){ 
-			Enemy enemy = new Enemy(2,2,20,"enemyLv2");  
+			Enemy enemy = new Enemy(2,2,20,20,"enemyLv2");  
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		if(enemyType == "enemyLv3"){
-			Enemy enemy = new Enemy(3,3,30,"enemyLv3");
+			Enemy enemy = new Enemy(3,3,30,30,"enemyLv3");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		//more enemy types here? This should be in a config file imo.
@@ -272,17 +272,17 @@ public class Map{
 		}
 
 		if(itemType == "itemSword"){
-			Item item = new Item(1,5,0,"sword");		//Item(level,attack,hp,name)
+			Item item = new Item(1,5,0,0,"sword");		//Item(level,attack,hp,name)
 			tiles[xPos][yPos].setItem(item);
 		}
 
 		if(itemType == "itemShield"){ 
-			Item item = new Item(1,0,10,"shield");
+			Item item = new Item(1,0,10,0,"shield");
 			tiles[xPos][yPos].setItem(item);
 		}
 
 		if(itemType == "itemPotion"){
-			Item item = new Item(0,0,7,"potion");
+			Item item = new Item(0,0,0,7,"potion");
 			tiles[xPos][yPos].setItem(item);
 		}
 		//more item types here?  This should be in a config file imo.

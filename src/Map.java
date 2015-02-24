@@ -8,7 +8,7 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- * @author 
+ * @author Namn
  *
  * Description of class here.
  *
@@ -81,6 +81,7 @@ public class Map{
             
         }
     }
+    
 	public void pressedKey(String key){
 		
 		if(key.equals("left")){
@@ -126,16 +127,16 @@ public class Map{
 				c = m.next().toCharArray();
 				for(int x=0; x<MAP_SIZE; x++){
 					if(c[x] == 'W'){
-						tiles[x][y] = new Tile(x, y, "wall", true,true);
+						tiles[x][y] = new Tile(x, y, "wall", true, true);
 					}
 					else if(c[x] == '.'){
-						tiles[x][y] = new Tile(x, y, "grass", false,true);
+						tiles[x][y] = new Tile(x, y, "grass", false, true);
 					}
 					else if(c[x] == '-'){
-						tiles[x][y] = new Tile(x, y, "floor", false,true);
+						tiles[x][y] = new Tile(x, y, "floor", false, true);
 					}
 					else if(c[x] == 'D'){
-						tiles[x][y] = new Tile(x, y, "doorClosed", true,true);
+						tiles[x][y] = new Tile(x, y, "doorClosed", true, true);
 						tiles[x][y].setDoor();
 						doorTile = tiles[x][y];
 					}
@@ -168,16 +169,20 @@ public class Map{
 	}
 
 	public void decideAction(Tile nextTile){
-
 		if(nextTile.containsEnemy()){
 			fight(nextTile);
 			currentEnemy = (Enemy)nextTile.getInterObj();
-
-		}else if(nextTile.containsItem()){
+		}
+		else if(nextTile.containsItem()){
 			pickUpItem((Item)nextTile.getInterObj());
 			removeItem(nextTile);
-
-		}else if(nextTile.isEmpty()){
+		}
+		else if(nextTile.containsDoor()){
+			if(doorTile.getImgID() == "doorOpened"){
+				finishGame();
+			}
+		}
+		else if(nextTile.isEmpty()){
 			movePlayerTo(nextTile);
 			discoverDarkness();
 		}
@@ -201,7 +206,7 @@ public class Map{
 
 			Object[] options = {"PLAY AGAIN"};
 			int clicked = JOptionPane.showOptionDialog(null,
-					"YOU ARE DEAD SUCKA ","GAME OVER",
+					"You have died ","GAME OVER",
 					JOptionPane.PLAIN_MESSAGE,
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
@@ -218,7 +223,10 @@ public class Map{
 				//System.exit(0);
 			}
 		}
-		
+	}
+	
+	private void finishGame(){
+		System.out.println("Game finished! Back to choose map menu.");
 	}
 
 	public void pickUpItem(Item item){
@@ -240,7 +248,7 @@ public class Map{
 			System.out.println("movePayerTo() failed");
 		}
 	}
-
+	
 	public void spawnObjectsInitiator(){
 		// Spawn(type, amount)
 		spawnObjectsRandomly("enemyLv1", 4);

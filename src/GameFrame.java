@@ -27,7 +27,7 @@ public class GameFrame extends JFrame {
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-		setResizable(true);
+		setResizable(false);
 		setLocationRelativeTo(null);
 		
 		statusPanel = new StatusPanel();
@@ -36,6 +36,7 @@ public class GameFrame extends JFrame {
 		hideStatusPanel();
 		addMenu();
 		createButtons();
+		
 	}
 	
 	public void showStatusPanel(){

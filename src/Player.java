@@ -28,6 +28,9 @@ public class Player extends InteractiveObject implements Serializable {
 		if(exp >= 100){			//how much exp is needed to level up
 			this.setLevel(1);
 			exp = exp - 100;
+			this.setAttack(2);
+			this.setMaxHp(2);
+			this.setHp(5); //level up bonus hp
 		}
 	}
 	

@@ -3,8 +3,8 @@ wall:./res/tiles/wall.png
 floor:./res/tiles/floor.png
 doorOpened:./res/tiles/doorOpened.png
 doorClosed:./res/tiles/doorClosed.png
+debugDark:./res/tiles/debugDark.png
 dark:./res/tiles/dark.png
-dark1:./res/tiles/dark1.png
 shield:./res/items/shield.png
 sword:./res/items/sword.png
 potion:./res/items/potion.png

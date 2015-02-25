@@ -44,7 +44,7 @@ public class MapPanel extends JPanel {
 						g.drawImage(res.getImg(tiles[x][y].getInterObj().getName()), x*TILE_SIZE, y*TILE_SIZE, null);
 					}
 					if(tiles[x][y].isDark()){
-						g.drawImage(res.getImg("dark1"), x*TILE_SIZE, y*TILE_SIZE, null);
+						g.drawImage(res.getImg("debugDark"), x*TILE_SIZE, y*TILE_SIZE, null);
 					}
 				}
 			}

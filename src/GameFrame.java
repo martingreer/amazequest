@@ -15,9 +15,9 @@ public class GameFrame extends JFrame {
 	private static final int WINDOW_SIZE_Y = 651;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private JMenuBar menuBar;
-	private StatusPanel statusPanel;
-	private JPanel startMenuPanel;
-	private MapPanel mapPanel;
+	private static StatusPanel statusPanel;
+	private static JPanel startMenuPanel;
+	private static MapPanel mapPanel;
 	private JButton button1;
 	private JButton button2;
 	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
@@ -47,13 +47,20 @@ public class GameFrame extends JFrame {
 		statusPanel.setVisible(true);
 	}
 
-	public void hideStatusPanel(){
+	public static void hideStatusPanel(){
 		statusPanel.setVisible(false);
+	}
+	
+	public static void hideMapPanel(){
+		mapPanel.setVisible(false);
+	}
+	
+	public static void showStartMenuPanel(){
+		startMenuPanel.setVisible(true);
 	}
 
 	private void addMenu(){
 		menuBar = new JMenuBar();
-
 
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
@@ -68,8 +75,6 @@ public class GameFrame extends JFrame {
 		});
 		fileMenu.add(backMenuItem);
 
-		
-
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		menuBar.add(helpMenu);
@@ -80,7 +85,6 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				JOptionPane.showMessageDialog(null,VERSION);
 			}
-
 		});
 		helpMenu.add(versionMenuItem);
 
@@ -139,8 +143,7 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-		startMenuPanel.add(button2);	
-
+		startMenuPanel.add(button2);
 	}
 
 	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
@@ -157,6 +160,4 @@ public class GameFrame extends JFrame {
 
 		}
 	}
-
-
 }

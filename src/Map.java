@@ -201,29 +201,44 @@ public class Map{
 			playerTile.setBlood(true);
 			playerTile.setPlayer(null);
 
-			Object[] options = {"PLAY AGAIN"};
+			Object[] options = {"Choose New Map"};
 			int clicked = JOptionPane.showOptionDialog(null,
-					"You have died ","GAME OVER",
+					"Oh dear, you have died! ","Game Over",
 					JOptionPane.PLAIN_MESSAGE,
 					JOptionPane.INFORMATION_MESSAGE,
 					null,
 					options,
 					options[0]);
 
-			if( clicked == JOptionPane.OK_OPTION) {
+			if(clicked == JOptionPane.OK_OPTION) {
 				int hp = player.getMaxHp() - player.getHp() ;
-				System.out.println(hp);
 				player.setHp(hp);
-				Main.setGameFalse();   
-				String[] stuff = new String[] {""};
-				Main.main(stuff);
-				//System.exit(0);
+				GameFrame.hideMapPanel(); 
+				GameFrame.hideStatusPanel();
+				GameFrame.showStartMenuPanel();
 			}
 		}
 	}
 	
 	private void finishGame(){
 		System.out.println("Game finished! Back to choose map menu.");
+		Object[] options = {"Choose New Map"};
+		
+		int clicked = JOptionPane.showOptionDialog(null,
+				"You have completed the level! ","Level Complete",
+				JOptionPane.PLAIN_MESSAGE,
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				options,
+				options[0]);
+		
+		if(clicked == JOptionPane.OK_OPTION) {
+			int hp = player.getMaxHp() - player.getHp() ;
+			player.setHp(hp);
+			GameFrame.hideMapPanel();   
+			GameFrame.hideStatusPanel();
+			GameFrame.showStartMenuPanel();
+		}
 	}
 
 	public void pickUpItem(Item item){

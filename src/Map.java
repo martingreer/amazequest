@@ -53,9 +53,9 @@ public class Map{
 		spawnObjectsInitiator();
 	}
 	
-	public void save(String fileName) {
+	public void save(int playerId) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./bin/SavedPlayer" + playerId));
             out.writeObject(player);
             out.close();
             System.out.println("Player saved");
@@ -66,9 +66,9 @@ public class Map{
         }
     }
    
-    public void load(String fileName) {		// NOTE!! load-method in both GameFrame and Map
+    public void load(int playerId) {		// NOTE!! load-method in both GameFrame and Map
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("./bin/SavedPlayer" + playerId));
             player = (Player)in.readObject();
             in.close();
             System.out.println("Player loaded");
@@ -223,6 +223,8 @@ public class Map{
 	private void finishGame(){
 		System.out.println("Game finished! Back to choose map menu.");
 		Object[] options = {"Choose New Map"};
+		
+		save(1);
 		
 		int clicked = JOptionPane.showOptionDialog(null,
 				"You have completed the level! ","Level Complete",

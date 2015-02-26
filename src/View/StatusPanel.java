@@ -1,3 +1,4 @@
+package View;
 
 
 import java.awt.Color;
@@ -12,6 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
+
+import Model.Enemy;
+import Model.ImageResources;
+import Model.Player;
 
 
 @SuppressWarnings("serial")

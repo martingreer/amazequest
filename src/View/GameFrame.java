@@ -1,3 +1,4 @@
+package View;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,10 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
 import javax.swing.*;
+
+import Model.GameThread;
+import Model.Map;
+import Model.Player;
 
 
 @SuppressWarnings("serial")

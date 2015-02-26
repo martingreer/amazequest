@@ -1,3 +1,4 @@
+package Model;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.util.*;
 
 import javax.swing.*;
+
+import View.GameFrame;
 
 /**
  * @author Namn

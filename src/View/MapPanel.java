@@ -1,8 +1,14 @@
+package View;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
+
+import Model.ImageResources;
+import Model.Map;
+import Model.Player;
+import Model.Tile;
 
 public class MapPanel extends JPanel {
 

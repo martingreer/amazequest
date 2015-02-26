@@ -28,8 +28,8 @@ public class MapPanel extends JPanel {
 			initKeyListener();
 			
 		}
-		public void createMap(int mapNr){
-			map = new Map(mapNr);
+		public void createMap(int mapNr, int playerNr){
+			map = new Map(mapNr,playerNr);
 		}
 		
 		public Map getMap(){

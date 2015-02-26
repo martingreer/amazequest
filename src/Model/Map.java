@@ -29,13 +29,14 @@ public class Map{
 	private Tile doorTile;
 	private Random rand = new Random();               // test random
 	private Boolean doorOpen = false;
-
-	public Map(int mapNr){
+	private int playerNr;
+	public Map(int mapNr, int playerNr){
 		this.mapNr = mapNr;
+		this.playerNr = playerNr;
 		openFile();
 		readFile();
 		closeFile();
-		player = new Player(1,5,10,10,"player",0);
+		player = new Player(1,5,10,10,"player"+playerNr,0);
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
@@ -88,19 +89,19 @@ public class Map{
 		
 		if(key.equals("left")){
 			decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
-			player.setName("playerWest");	//set image for each direction
+			player.setName("player"+playerNr+"West");	//set image for each direction
 		}
 		else if(key.equals("right")){
 			decideAction(tiles[playerTile.getXPos() + 1][playerTile.getYPos()]);
-			player.setName("playerEast");
+			player.setName("player"+playerNr+"East");
 		}
 		else if(key.equals("up")){
 			decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() - 1]);
-			player.setName("playerNorth");
+			player.setName("player"+playerNr+"North");
 		}
 		else if(key.equals("down")){
 			decideAction(tiles[playerTile.getXPos()][playerTile.getYPos() + 1]);
-			player.setName("playerSouth");
+			player.setName("player"+playerNr+"South");
 		}
 	}
 	public Enemy getCurrentEnemy(){

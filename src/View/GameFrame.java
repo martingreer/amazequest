@@ -27,7 +27,8 @@ public class GameFrame extends JFrame {
 	private JButton button2;
 	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
 	private static Map mapRef = null;							// only here for load/save , remove if changed
-
+	private int playerChoice;
+	
 	public GameFrame (String title){
 		super(title);	
 		setLayout(new BorderLayout());
@@ -106,14 +107,14 @@ public class GameFrame extends JFrame {
 				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				setResizable(true);
 				setVisible(true);
-
 				if(button1.getText().equals("Player 1")){
 					button1.setText("Map 1");
 					button2.setText("Map 2");
+					playerChoice = 1;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(1);
+					mapPanel.createMap(1,playerChoice);
 					mapPanel.setVisible(true);
 					mapPanel.setFocusable(true);
 					startMenuPanel.setVisible(false);
@@ -130,14 +131,14 @@ public class GameFrame extends JFrame {
 				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				setResizable(true);
 				setVisible(true);
-
 				if(button2.getText().equals("Player 2")){
 					button1.setText("Map 1");
 					button2.setText("Map 2");
+					playerChoice = 2;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(2);
+					mapPanel.createMap(2,playerChoice);
 					mapPanel.setVisible(true);
 					mapPanel.setFocusable(true);
 					startMenuPanel.setVisible(false);

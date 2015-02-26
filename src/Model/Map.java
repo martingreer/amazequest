@@ -275,11 +275,7 @@ public class Map{
 	
 	public void spawnObjectsInitiator(int difficulty){
 		// Spawn(type, amount)
-
-	
-
-		
-		switch(difficulty){
+			switch(difficulty){
 			case 1: spawnObjectsRandomly("enemyLv1", 4);
 					spawnObjectsRandomly("enemyLv2", 3);
 					spawnObjectsRandomly("enemyLv3", 3);

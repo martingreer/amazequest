@@ -19,15 +19,9 @@ public class MapPanel extends JPanel {
 		private ImageResources res = new ImageResources();
 		
 		public MapPanel(){
-			
 			initKeyListener();
-			
 		}
-		public MapPanel(Player loadedPlayer){
-			map = new Map(loadedPlayer);
-			initKeyListener();
-			
-		}
+
 		public void createMap(int mapNr, int playerNr){
 			map = new Map(mapNr,playerNr);
 		}

@@ -162,19 +162,4 @@ public class GameFrame extends JFrame {
 		});
 		startMenuPanel.add(button2);
 	}
-
-	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-			loadedPlayer = (Player)in.readObject();
-			in.close();
-			System.out.println("Player loaded");
-		}
-		catch(Exception e) {
-			System.out.println("LOAD FAILED \n");
-			e.printStackTrace();
-			System.exit(0);
-
-		}
-	}
 }

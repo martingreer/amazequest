@@ -14,20 +14,14 @@ public class MapPanel extends JPanel {
 
 		private Map map;
 		private static final boolean DEBUG = false;
-		private static final int MAP_SIZE = 14;
+		private static final int MAP_SIZE = 25;
 		private static final int TILE_SIZE = 32;
 		private ImageResources res = new ImageResources();
 		
 		public MapPanel(){
-			
 			initKeyListener();
-			
 		}
-		public MapPanel(Player loadedPlayer){
-			map = new Map(loadedPlayer);
-			initKeyListener();
-			
-		}
+
 		public void createMap(int mapNr, int playerNr){
 			map = new Map(mapNr,playerNr);
 		}

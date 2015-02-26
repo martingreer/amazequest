@@ -17,8 +17,8 @@ import Model.Player;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
-	private static final int WINDOW_SIZE_X = 456;
-	private static final int WINDOW_SIZE_Y = 651;
+	private static final int WINDOW_SIZE_X = 25*32+16;
+	private static final int WINDOW_SIZE_Y = 25*32+208;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private ImageResources res = new ImageResources();
 	private JMenuBar menuBar;
@@ -116,16 +116,16 @@ public class GameFrame extends JFrame {
 		backMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(mapPanel.isShowing() == true){
-					button1.setText("Player 1");
-					button2.setText("Player 2");
+					button1.setText("Map 1");
+					button2.setText("Map 2");
 					hideMapPanel();
 					hideStatusPanel();
 					showStartMenuPanel();
 					}
-				else if( mapPanel.isShowing() == false) {
+				else if(button1.getText().equals("Map 1")) {
 					button1.setText("Player 1");
 					button2.setText("Player 2");
-					}
+				}
 			}
 		});
 		fileMenu.add(backMenuItem);
@@ -203,6 +203,7 @@ public class GameFrame extends JFrame {
 
 			}
 		});
+
 		gc.weightx = 1;
 		gc.weighty = 1;
 		gc.gridheight = 1;
@@ -238,5 +239,6 @@ public class GameFrame extends JFrame {
 			System.exit(0);
 
 		}
+
 	}
 }

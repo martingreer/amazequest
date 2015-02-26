@@ -21,7 +21,7 @@ import View.GameFrame;
 
 public class Map{
 	
-	private static final int MAP_SIZE = 14;
+	private static final int MAP_SIZE = 25;
 	private int mapNr;
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
@@ -29,7 +29,7 @@ public class Map{
 	private Enemy currentEnemy;
 	private Tile playerTile;
 	private Tile doorTile;
-	private Random rand = new Random();               // test random
+	private Random rand = new Random();
 	private Boolean doorOpen = false;
 	private int playerNr;
 	
@@ -46,21 +46,7 @@ public class Map{
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
-		spawnObjectsInitiator();
-		
-		
-	}
-	
-	public Map(Player loadedPlayer){	//for starting a Map with a saved Player
-		openFile();
-		readFile();
-		closeFile();
-
-		this.player = loadedPlayer;
-		tiles[1][1].setPlayer(player);
-		playerTile = tiles[1][1];
-		discoverDarkness();
-		spawnObjectsInitiator();
+		spawnObjectsInitiator(mapNr);
 	}
 	
 	public void save(int playerId) {
@@ -70,13 +56,12 @@ public class Map{
             out.close();
             System.out.println("Player saved");
         }
-        catch(Exception e) {
+        catch(IOException e) {
             e.printStackTrace();
-            System.exit(0);
         }
     }
    
-    public void load(int playerId) {		// NOTE!! load-method in both GameFrame and Map
+    public void load(int playerId) {
         try {
         	player = null;
         	File file = new File("./bin/SavedPlayer" + playerId);
@@ -94,7 +79,6 @@ public class Map{
     }
     
 	public void pressedKey(String key){
-		
 		if(key.equals("left")){
 			decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
 			player.setName("player"+playerNr+"West");	//set image for each direction
@@ -112,9 +96,11 @@ public class Map{
 			player.setName("player"+playerNr+"South");
 		}
 	}
+	
 	public Enemy getCurrentEnemy(){
 		return currentEnemy;
 	}
+	
 	public Tile[][] getTiles(){
 		return tiles;
 	}
@@ -277,7 +263,7 @@ public class Map{
 	}
 
 	private void movePlayerTo(Tile nextTile) {
-
+		
 		if(nextTile.isEmpty() && !nextTile.getCollision()) {
 			nextTile.setPlayer(player);
 			playerTile.setPlayer(null);
@@ -287,14 +273,41 @@ public class Map{
 		}
 	}
 	
-	public void spawnObjectsInitiator(){
+	public void spawnObjectsInitiator(int difficulty){
 		// Spawn(type, amount)
-		spawnObjectsRandomly("enemyLv1", 4);
-		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("enemyLv3", 3);
-		spawnObjectsRandomly("itemSword", 1);
-		spawnObjectsRandomly("itemShield", 1);
-		spawnObjectsRandomly("itemPotion", 4);
+		
+		switch(difficulty){
+			case 1: spawnObjectsRandomly("enemyLv1", 4);
+					spawnObjectsRandomly("enemyLv2", 3);
+					spawnObjectsRandomly("enemyLv3", 3);
+					spawnObjectsRandomly("itemSword", 1);
+					spawnObjectsRandomly("itemShield", 1);
+					spawnObjectsRandomly("itemPotion", 4);
+					break;
+			case 2: spawnObjectsRandomly("enemyLv1", 2);
+					spawnObjectsRandomly("enemyLv2", 5);
+					spawnObjectsRandomly("enemyLv3", 6);
+					spawnObjectsRandomly("itemSword", 1);
+					spawnObjectsRandomly("itemShield", 1);
+					spawnObjectsRandomly("itemPotion", 4);
+					break;
+			case 3: spawnObjectsRandomly("enemyLv1", 1);
+					spawnObjectsRandomly("enemyLv2", 1);
+					spawnObjectsRandomly("enemyLv3", 5);
+					//spawnObjectsRandomly("enemyLv4", 7);
+					//spawnObjectsRandomly("enemyLv5", 4);
+					spawnObjectsRandomly("itemSword", 1);
+					spawnObjectsRandomly("itemShield", 1);
+					spawnObjectsRandomly("itemPotion", 6);
+					break;
+			default: spawnObjectsRandomly("enemyLv1", 4);
+					 spawnObjectsRandomly("enemyLv2", 3);
+					 spawnObjectsRandomly("enemyLv3", 3);
+					 spawnObjectsRandomly("itemSword", 1);
+					 spawnObjectsRandomly("itemShield", 1);
+				  	 spawnObjectsRandomly("itemPotion", 4);
+				  	 break;
+		}
 	}
 
 	public void spawnEnemy(int xPos, int yPos, String enemyType){

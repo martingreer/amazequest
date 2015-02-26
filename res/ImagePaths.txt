@@ -20,6 +20,8 @@ player2East:./res/Player/girleast.png
 player2North:./res/Player/girlnorth.png
 player2South:./res/Player/girlsouth.png
 player2Portrait:./res/Player/girlPortrait.png
+playerBig:./res/Player/playerBig.png
+player2Big:./res/Player/girlBig.png
 enemyLv1:./res/Enemies/enemyLv1.png
 enemyLv2:./res/Enemies/enemyLv2.png
 enemyLv3:./res/Enemies/enemyLv3.png

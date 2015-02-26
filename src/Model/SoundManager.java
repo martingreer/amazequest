@@ -1,29 +1,32 @@
 package Model;
 
-import javax.sound.sampled.AudioInputStream;
+import java.io.File;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-
-import sun.applet.Main;
+import javax.sound.sampled.FloatControl;
 
 public class SoundManager {
 	
-	public synchronized void playSound(final String url) {
-		  new Thread(new Runnable() {
-		  // The wrapper thread is unnecessary, unless it blocks on the
-		  // Clip finishing; see comments.
-		    public void run() {
-		      try {
-		        Clip clip = AudioSystem.getClip();
-		        AudioInputStream inputStream = AudioSystem.getAudioInputStream(
-		          Main.class.getResourceAsStream("./res/Sounds/" + url));
-		        clip.open(inputStream);
-		        clip.start();
-		      } catch (Exception e) {
-		        System.err.println(e.getMessage());
-		      }
-		    }
-		  }).start();
-		}
+	static File AudioFile;
 	
+	public static synchronized void playSound(String file) {
+		
+		AudioFile = new File("./res/Sounds/" + file);
+		
+		new Thread(new Runnable() {
+			public void run(){
+				try{
+					Clip clip = AudioSystem.getClip();
+					clip.open(AudioSystem.getAudioInputStream(AudioFile));
+					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+					gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
+					clip.start();
+					Thread.sleep(clip.getMicrosecondLength()/1000);
+				}catch(Exception e){
+					e.printStackTrace();
+				}
+			}
+		}).start();
+	}
 }

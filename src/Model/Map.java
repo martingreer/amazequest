@@ -195,11 +195,19 @@ public class Map{
 		System.out.println("fighting");
 		player.exchangeHitsWithEnemy(nextTile);
 		if((nextTile.getInterObj().getHp()) <= 0 ){					//check enemy Hp, remove if <= 0.
-			player.setExp(nextTile.getInterObj().getLevel()*20); 	//player get experience,  enemylevel * 20
+			player.setExp(nextTile.getInterObj().getLevel()*10); 	//player get experience,  enemylevel * 10
 			nextTile.setEnemy(null);
 			nextTile.setBlood(true);
 			currentEnemy = null;
 			doorOpen = checkIfAllEnemiesAreDead();					//set to true if all enemies are dead.
+			if(doorOpen){
+				SoundManager.playSound("dooropen.wav");
+			}else{
+				SoundManager.playSound("enemydeath.wav");	
+			}
+		}else{
+			int randomNum = rand.nextInt((5-1) + 1) + 1;
+			SoundManager.playSound("fight_" + randomNum + ".wav");
 		}
 
 		if(player.getHp() <= 0) {
@@ -208,6 +216,7 @@ public class Map{
 	}
 
 	private void playerDeath(){
+		SoundManager.playSound("boo.wav");
 		System.out.println("Player is dead");
 		playerTile.setBlood(true);
 		playerTile.setPlayer(null);
@@ -231,6 +240,7 @@ public class Map{
 	}
 	
 	private void finishGame(){
+		SoundManager.playSound("applause.wav");
 		System.out.println("Game finished! Back to choose map menu.");
 		Object[] options = {"Choose New Map"};
 		
@@ -286,19 +296,18 @@ public class Map{
 			case 2: spawnObjectsRandomly("enemyLv1", 2);
 					spawnObjectsRandomly("enemyLv2", 3);
 					spawnObjectsRandomly("enemyLv3", 5);
-					//spawnObjectsRandomly("enemyLv4", 4);
+					spawnObjectsRandomly("enemyLv4", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
 					spawnObjectsRandomly("itemPotion", 4);
 					break;
-			case 3: spawnObjectsRandomly("enemyLv1", 1);
-					spawnObjectsRandomly("enemyLv2", 1);
+			case 3: spawnObjectsRandomly("enemyLv2", 2);
 					spawnObjectsRandomly("enemyLv3", 5);
-					//spawnObjectsRandomly("enemyLv4", 4);
-					//spawnObjectsRandomly("enemyLv5", 4);
+					spawnObjectsRandomly("enemyLv4", 4);
+					spawnObjectsRandomly("enemyLv5", 5);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
-					spawnObjectsRandomly("itemPotion", 6);
+					spawnObjectsRandomly("itemPotion", 7);
 					break;
 			default: spawnObjectsRandomly("enemyLv1", 4);
 					 spawnObjectsRandomly("enemyLv2", 3);

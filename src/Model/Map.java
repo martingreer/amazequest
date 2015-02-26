@@ -153,10 +153,20 @@ public class Map{
 	}
 
 	public void discoverDarkness(){
-
+		
 		int x = playerTile.getXPos();
 		int y = playerTile.getYPos();
-
+		int one = x+2;
+		int two = y+2;
+		int three = x-2;
+		int four = y-2;
+		
+		System.out.println("Map size = " + MAP_SIZE);
+		System.out.println("x+2 = " + one);
+		System.out.println("y+2 = " + two);
+		System.out.println("x-2 = " + three);
+		System.out.println("y-2 = " + four);
+		
 		tiles[x-1][y+1].setDarkness(false);
 		tiles[x]  [y+1].setDarkness(false);
 		tiles[x+1][y+1].setDarkness(false);
@@ -169,15 +179,15 @@ public class Map{
 		tiles[x]  [y-1].setDarkness(false);
 		tiles[x+1][y-1].setDarkness(false);
 
-
-		tiles[x+2][y].setDarkness(false);
-		tiles[x][y+2].setDarkness(false);
-		
-	/*
-		tiles[x-2][y].setDarkness(false);          Detta funkar ej
-		tiles[x][y-2].setDarkness(false);
-	*/	
-
+		try{
+			tiles[x+2][y].setDarkness(false);
+			tiles[x][y+2].setDarkness(false);
+			tiles[x-2][y].setDarkness(false);
+			tiles[x][y-2].setDarkness(false);
+		}
+		catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("NOT discovering extra tiles");
+		}
 	}
 
 	public void decideAction(Tile nextTile){

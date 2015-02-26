@@ -78,16 +78,16 @@ public class GameFrame extends JFrame {
 		backMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(mapPanel.isShowing() == true){
-					button1.setText("Player 1");
-					button2.setText("Player 2");
+					button1.setText("Map 1");
+					button2.setText("Map 2");
 					hideMapPanel();
 					hideStatusPanel();
 					showStartMenuPanel();
 					}
-				else if( mapPanel.isShowing() == false) {
+				else if(button1.getText().equals("Map 1")) {
 					button1.setText("Player 1");
 					button2.setText("Player 2");
-					}
+				}
 			}
 		});
 		fileMenu.add(backMenuItem);

@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import javax.swing.*;
 
 import Model.GameThread;
+import Model.ImageResources;
 import Model.Map;
 import Model.Player;
 
@@ -19,15 +20,24 @@ public class GameFrame extends JFrame {
 	private static final int WINDOW_SIZE_X = 456;
 	private static final int WINDOW_SIZE_Y = 651;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
+	private ImageResources res = new ImageResources();
 	private JMenuBar menuBar;
 	private static StatusPanel statusPanel;
 	private static JPanel startMenuPanel;
 	private static MapPanel mapPanel;
+	private JLabel labelIcon1;
+	private JLabel labelIcon2;
+	private JLabel labelIcon3;
+	private JLabel choiceLabel;
 	private JButton button1;
 	private JButton button2;
+	private JButton button3;
+	private JButton resetButton1;
+	private JButton resetButton2;
 	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
 	private static Map mapRef = null;							// only here for load/save , remove if changed
 	private int playerChoice;
+	private GridBagConstraints gc;
 	
 	public GameFrame (String title){
 		super(title);	
@@ -40,11 +50,14 @@ public class GameFrame extends JFrame {
 		add(mapPanel);
 		mapPanel.setVisible(false);
 		startMenuPanel = new JPanel(new GridBagLayout());
+		gc = new GridBagConstraints();
+		GridBagConstraints gc = new GridBagConstraints();
 		add(startMenuPanel,BorderLayout.CENTER);
 		statusPanel = new StatusPanel();
 		add(statusPanel, BorderLayout.SOUTH);
 		hideStatusPanel();
 		addMenu();
+		createLabels();
 		createButtons();
 		
 	}
@@ -64,7 +77,32 @@ public class GameFrame extends JFrame {
 	public static void showStartMenuPanel(){
 		startMenuPanel.setVisible(true);
 	}
-
+	private void createLabels(){
+		labelIcon1 = new JLabel(res.getImgIcon("test"));
+		labelIcon2 = new JLabel(res.getImgIcon("test"));
+		labelIcon3 = new JLabel(res.getImgIcon("test"));
+		choiceLabel = new JLabel("Choose player");
+		choiceLabel.setFont(choiceLabel.getFont().deriveFont(40f));
+		gc.insets = new Insets(2,2,2,2);
+		gc.anchor = GridBagConstraints.CENTER;
+	    gc.gridwidth = 2;
+	    gc.gridheight = 2;
+        gc.gridx = 0;
+        gc.gridy = 0;
+        startMenuPanel.add(choiceLabel, gc);
+        gc.anchor = GridBagConstraints.WEST;
+        gc.gridheight = 2;
+	    gc.gridwidth = 1;
+        gc.gridx = 0;
+        gc.gridy = 2;
+        startMenuPanel.add(labelIcon1, gc);
+        gc.gridx = 0;
+        gc.gridy = 4;
+        startMenuPanel.add(labelIcon2, gc);
+        gc.gridx = 0;
+        gc.gridy = 6;
+        startMenuPanel.add(labelIcon3, gc);
+	}
 	private void addMenu(){
 		menuBar = new JMenuBar();
 
@@ -112,7 +150,12 @@ public class GameFrame extends JFrame {
 	private void createButtons(){
 		button1 = new JButton("Player 1");
 		button2 = new JButton("Player 2");
-
+		button3 = new JButton("Map 3");
+		resetButton1 = new JButton("Reset player");
+		resetButton2 = new JButton("Reset player");
+		button1.setPreferredSize(new Dimension(150, 40));
+		button2.setPreferredSize(new Dimension(150, 40));
+		
 		button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
@@ -135,7 +178,7 @@ public class GameFrame extends JFrame {
 				}
 			}
 		}); 
-		startMenuPanel.add(button1);
+		
 
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -160,7 +203,26 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-		startMenuPanel.add(button2);
+		gc.weightx = 1;
+		gc.weighty = 1;
+		gc.gridheight = 1;
+        gc.gridx = 1;
+        gc.gridy = 2;
+        gc.anchor = GridBagConstraints.SOUTH;
+		startMenuPanel.add(button1, gc);
+        gc.gridx = 1;
+        gc.gridy = 3;
+        gc.anchor = GridBagConstraints.NORTH;
+        startMenuPanel.add(resetButton1, gc);
+        gc.gridx = 1;
+        gc.gridy = 4;
+        gc.anchor = GridBagConstraints.SOUTH;
+        startMenuPanel.add(button2, gc);
+        gc.gridx = 1;
+        gc.gridy = 5;
+        gc.anchor = GridBagConstraints.NORTH;
+		startMenuPanel.add(resetButton2, gc);
+		
 	}
 
 	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map

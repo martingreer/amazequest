@@ -27,3 +27,4 @@ enemyLv1Portrait:./res/Enemies/enemyLv1Portrait.png
 enemyLv2Portrait:./res/Enemies/enemyLv2Portrait.png
 enemyLv3Portrait:./res/Enemies/enemyLv3Portrait.png
 blood:./res/Misc/blood.png
+test:./res/Misc/test.png

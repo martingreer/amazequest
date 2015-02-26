@@ -29,8 +29,7 @@ enemyLv1Portrait:./res/Enemies/enemyLv1Portrait.png
 enemyLv2Portrait:./res/Enemies/enemyLv2Portrait.png
 enemyLv3Portrait:./res/Enemies/enemyLv3Portrait.png
 blood:./res/Misc/blood.png
-<<<<<<< HEAD
 enemyLv4:./res/Enemies/enemyLv4.png
-=======
-test:./res/Misc/test.png
->>>>>>> refs/remotes/origin/refactored
+enemyLv5:./res/Enemies/enemyLv4.png
+enemyLv4Portrait:./res/Enemies/enemyLv4Portrait.png
+enemyLv5Portrait:./res/Enemies/enemyLv5Portrait.png

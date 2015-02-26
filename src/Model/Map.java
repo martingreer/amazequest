@@ -21,7 +21,7 @@ import View.GameFrame;
 
 public class Map{
 	
-	private static final int MAP_SIZE = 25;
+	private static final int MAP_SIZE = 20;
 	private int mapNr;
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
@@ -286,7 +286,7 @@ public class Map{
 			case 2: spawnObjectsRandomly("enemyLv1", 2);
 					spawnObjectsRandomly("enemyLv2", 3);
 					spawnObjectsRandomly("enemyLv3", 5);
-					
+					//spawnObjectsRandomly("enemyLv4", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
 					spawnObjectsRandomly("itemPotion", 4);
@@ -294,7 +294,7 @@ public class Map{
 			case 3: spawnObjectsRandomly("enemyLv1", 1);
 					spawnObjectsRandomly("enemyLv2", 1);
 					spawnObjectsRandomly("enemyLv3", 5);
-					
+					//spawnObjectsRandomly("enemyLv4", 4);
 					//spawnObjectsRandomly("enemyLv5", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
@@ -332,6 +332,7 @@ public class Map{
 			Enemy enemy = new Enemy(3,3,30,30,"enemyLv3");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		
 		if(enemyType == "enemyLv4"){
 			Enemy enemy = new Enemy(4,4,40,40,"enemyLv4");
 			tiles[xPos][yPos].setEnemy(enemy);
@@ -339,14 +340,15 @@ public class Map{
 	}
 
 	public void spawnItem(int xPos, int yPos, String itemType){
-
+		//Item(level,attack,hp,name)
+		
 		if(tiles[xPos][yPos].getCollision()){
 			System.out.println("Can not place Item on tile with collision");
 			return;
 		}
 
 		if(itemType == "itemSword"){
-			Item item = new Item(1,5,0,0,"sword");		//Item(level,attack,hp,name)
+			Item item = new Item(1,5,0,0,"sword");
 			tiles[xPos][yPos].setItem(item);
 		}
 
@@ -359,26 +361,25 @@ public class Map{
 			Item item = new Item(0,0,0,7,"potion");
 			tiles[xPos][yPos].setItem(item);
 		}
-		//more item types here?  This should be in a config file imo.
 	}
 
 	public void spawnObjectsRandomly(String type, int amount) {
 
-		int xValue = rand.nextInt(13) + 1;
-		int yValue = rand.nextInt(13) + 1;
+		int xValue = rand.nextInt(MAP_SIZE-1) + 1;
+		int yValue = rand.nextInt(MAP_SIZE-1) + 1;
 
-		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3" || type == "enemyLv4") {
+		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3") {
 			for(int i = 0;  i < amount; i++) {
 
 				while(tiles[xValue][yValue].getCollision()) {
-					xValue = rand.nextInt(13) +1;
-					yValue = rand.nextInt(13) +1;
+					xValue = rand.nextInt(MAP_SIZE-1) +1;
+					yValue = rand.nextInt(MAP_SIZE-1) +1;
 				}
 				if(!(tiles[xValue][yValue] == tiles[1][1])){
 					spawnEnemy(xValue, yValue, type);
 				}
-				xValue = rand.nextInt(13) +1;
-				yValue = rand.nextInt(13) +1;
+				xValue = rand.nextInt(MAP_SIZE-1) +1;
+				yValue = rand.nextInt(MAP_SIZE-1) +1;
 				//System.out.println(xValue);
 			}
 		}
@@ -386,14 +387,14 @@ public class Map{
 		if(type == "itemSword" || type == "itemShield" || type == "itemPotion") {
 			for(int i = 0;  i < amount; i++) {
 				while(tiles[xValue][yValue].getCollision()) {
-					xValue = rand.nextInt(13) +1;
-					yValue = rand.nextInt(13) +1;
+					xValue = rand.nextInt(MAP_SIZE-1) +1;
+					yValue = rand.nextInt(MAP_SIZE-1) +1;
 				}
 				if(!(tiles[xValue][yValue] == tiles[1][1])){
 					spawnItem(xValue, yValue, type);
 				}
-				xValue = rand.nextInt(13) +1;
-				yValue = rand.nextInt(13) +1; // rand 
+				xValue = rand.nextInt(MAP_SIZE-1) +1;
+				yValue = rand.nextInt(MAP_SIZE-1) +1; // rand 
 			}
 		}
 	}

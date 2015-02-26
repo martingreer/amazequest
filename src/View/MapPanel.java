@@ -14,7 +14,7 @@ public class MapPanel extends JPanel {
 
 		private Map map;
 		private static final boolean DEBUG = false;
-		private static final int MAP_SIZE = 25;
+		private static final int MAP_SIZE = 20;
 		private static final int TILE_SIZE = 32;
 		private ImageResources res = new ImageResources();
 		

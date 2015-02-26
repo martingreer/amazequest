@@ -292,6 +292,7 @@ public class Map{
 		spawnObjectsRandomly("enemyLv1", 4);
 		spawnObjectsRandomly("enemyLv2", 3);
 		spawnObjectsRandomly("enemyLv3", 3);
+		spawnObjectsRandomly("enemyLv4", 3);
 		spawnObjectsRandomly("itemSword", 1);
 		spawnObjectsRandomly("itemShield", 1);
 		spawnObjectsRandomly("itemPotion", 4);
@@ -315,6 +316,10 @@ public class Map{
 		}
 		if(enemyType == "enemyLv3"){
 			Enemy enemy = new Enemy(3,3,30,30,"enemyLv3");
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
+		if(enemyType == "enemyLv4"){
+			Enemy enemy = new Enemy(4,4,40,40,"enemyLv4");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 		//more enemy types here? This should be in a config file imo.
@@ -349,7 +354,7 @@ public class Map{
 		int xValue = rand.nextInt(13) + 1;
 		int yValue = rand.nextInt(13) + 1;
 
-		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3") {
+		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3" || type == "enemyLv4") {
 			for(int i = 0;  i < amount; i++) {
 
 				while(tiles[xValue][yValue].getCollision()) {

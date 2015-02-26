@@ -77,6 +77,17 @@ public class GameFrame extends JFrame {
 		backMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
 		backMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(mapPanel.isShowing() == true){
+					button1.setText("Player 1");
+					button2.setText("Player 2");
+					hideMapPanel();
+					hideStatusPanel();
+					showStartMenuPanel();
+					}
+				else if( mapPanel.isShowing() == false) {
+					button1.setText("Player 1");
+					button2.setText("Player 2");
+					}
 			}
 		});
 		fileMenu.add(backMenuItem);

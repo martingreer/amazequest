@@ -7,6 +7,12 @@ import java.util.*;
 
 import javax.swing.*;
 
+import sun.applet.Main;
+import Model.Enemy;
+import Model.Item;
+import Model.Player;
+import Model.Tile;
+
 /**
  * @author namn
  *
@@ -224,7 +230,7 @@ public class Map{
 				int hp = player.getMaxHp() - player.getHp() ;
 				System.out.println(hp);
 				player.setHp(hp);
-				Main.setGameFalse();   
+				//Main.setGameFalse();   
 				String[] stuff = new String[] {""};
 				Main.main(stuff);
 				//System.exit(0);

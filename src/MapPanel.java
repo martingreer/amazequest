@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
+import Model.ImageResources;
+import Model.Player;
+import Model.Tile;
+
 public class MapPanel extends JPanel {
 
 		private Map map;

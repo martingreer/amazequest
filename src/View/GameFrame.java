@@ -65,7 +65,58 @@ public class GameFrame extends JFrame {
 	}
 	
 	public void playerChoiceDisplay(){
+		button1.setText("Player 1");
+		button2.setText("Player 2");
+		gc.weightx = 1;
+		gc.weighty = 1;
+		gc.gridheight = 1;
+        gc.gridx = 1;
+        gc.gridy = 1;
+        gc.anchor = GridBagConstraints.SOUTH;
+		startMenuPanel.add(button1, gc);
+        gc.gridx = 1;
+        gc.gridy = 2;
+        gc.anchor = GridBagConstraints.NORTH;
+        startMenuPanel.add(resetButton1, gc);
+        resetButton1.setVisible(true);
+        gc.gridx = 1;
+        gc.gridy = 3;
+        gc.anchor = GridBagConstraints.SOUTH;
+        startMenuPanel.add(button2, gc);
+        gc.gridx = 1;
+        gc.gridy = 4;
+        gc.anchor = GridBagConstraints.NORTH;
+		startMenuPanel.add(resetButton2, gc);
+		resetButton2.setVisible(true);
+        gc.gridx = 1;
+        gc.gridy = 5;
+        gc.anchor = GridBagConstraints.NORTH;
+		startMenuPanel.add(button3, gc);
+		button3.setVisible(false);
 		
+		labelIcon1.setIcon(res.getImgIcon("playerBig"));
+		labelIcon2.setIcon(res.getImgIcon("player2Big"));
+		labelIcon3.setIcon(null);
+		choiceLabel.setText("Choose player");
+		
+		gc.anchor = GridBagConstraints.CENTER;
+	    gc.gridwidth = 2;
+	    gc.gridheight = 1;
+        gc.gridx = 0;
+        gc.gridy = 0;
+        startMenuPanel.add(choiceLabel, gc);
+        gc.anchor = GridBagConstraints.WEST;
+        gc.gridheight = 2;
+	    gc.gridwidth = 1;
+        gc.gridx = 0;
+        gc.gridy = 1;
+        startMenuPanel.add(labelIcon1, gc);
+        gc.gridx = 0;
+        gc.gridy = 3;
+        startMenuPanel.add(labelIcon2, gc);
+        gc.gridx = 0;
+        gc.gridy = 5;
+        startMenuPanel.add(labelIcon3, gc);
 	}
 	
 	public void mapChoiceDisplay(){
@@ -157,15 +208,13 @@ public class GameFrame extends JFrame {
 		backMenuItem.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(mapPanel.isShowing() == true){
-					button1.setText("Map 1");
-					button2.setText("Map 2");
+					mapChoiceDisplay();
 					hideMapPanel();
 					hideStatusPanel();
 					showStartMenuPanel();
 					}
 				else if(button1.getText().equals("Map 1")) {
-					button1.setText("Player 1");
-					button2.setText("Player 2");
+					playerChoiceDisplay();
 				}
 			}
 		});

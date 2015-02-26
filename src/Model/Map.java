@@ -1,7 +1,9 @@
 package Model;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
@@ -30,13 +32,17 @@ public class Map{
 	private Random rand = new Random();               // test random
 	private Boolean doorOpen = false;
 	private int playerNr;
+	
 	public Map(int mapNr, int playerNr){
 		this.mapNr = mapNr;
 		this.playerNr = playerNr;
 		openFile();
 		readFile();
 		closeFile();
-		player = new Player(1,5,10,10,"player"+playerNr,0);
+		load(playerNr);
+		if(player == null){
+			player = new Player(1,5,10,10,"player"+playerNr,0);
+		}
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
@@ -72,17 +78,19 @@ public class Map{
    
     public void load(int playerId) {		// NOTE!! load-method in both GameFrame and Map
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("./bin/SavedPlayer" + playerId));
-            player = (Player)in.readObject();
-            in.close();
-            System.out.println("Player loaded");
-        }
-        catch(Exception e) {
+        	player = null;
+        	File file = new File("./bin/SavedPlayer" + playerId);
+        	if (file.exists()) {
+            	ObjectInputStream in = new ObjectInputStream(new FileInputStream("./bin/SavedPlayer" + playerId));
+                player = (Player)in.readObject();
+                in.close();
+                System.out.println("Player loaded");     
+        	}
+
+        } catch (Exception e) {
         	System.out.println("LOAD FAILED \n");
             e.printStackTrace();
-            System.exit(0);
-            
-        }
+		}
     }
     
 	public void pressedKey(String key){
@@ -232,7 +240,7 @@ public class Map{
 		System.out.println("Game finished! Back to choose map menu.");
 		Object[] options = {"Choose New Map"};
 		
-		save(1);
+		save(playerNr);
 		
 		int clicked = JOptionPane.showOptionDialog(null,
 				"You have completed the level! ","Level Complete",

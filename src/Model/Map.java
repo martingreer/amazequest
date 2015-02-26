@@ -169,6 +169,15 @@ public class Map{
 		tiles[x]  [y-1].setDarkness(false);
 		tiles[x+1][y-1].setDarkness(false);
 
+
+		tiles[x+2][y].setDarkness(false);
+		tiles[x][y+2].setDarkness(false);
+		
+	/*
+		tiles[x-2][y].setDarkness(false);          Detta funkar ej
+		tiles[x][y-2].setDarkness(false);
+	*/	
+
 	}
 
 	public void decideAction(Tile nextTile){

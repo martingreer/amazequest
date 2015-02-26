@@ -33,3 +33,4 @@ enemyLv4:./res/Enemies/enemyLv4.png
 enemyLv5:./res/Enemies/enemyLv4.png
 enemyLv4Portrait:./res/Enemies/enemyLv4Portrait.png
 enemyLv5Portrait:./res/Enemies/enemyLv5Portrait.png
+test:./res/Misc/test.png

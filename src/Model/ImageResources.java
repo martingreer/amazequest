@@ -1,3 +1,4 @@
+package Model;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -1,3 +1,4 @@
+package View;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,10 @@ import java.io.ObjectInputStream;
 
 import javax.swing.*;
 
+import Model.GameThread;
+import Model.Map;
+import Model.Player;
+
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
@@ -15,14 +20,15 @@ public class GameFrame extends JFrame {
 	private static final int WINDOW_SIZE_Y = 651;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private JMenuBar menuBar;
-	private StatusPanel statusPanel;
-	private JPanel startMenuPanel;
-	private MapPanel mapPanel;
+	private static StatusPanel statusPanel;
+	private static JPanel startMenuPanel;
+	private static MapPanel mapPanel;
 	private JButton button1;
 	private JButton button2;
 	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
 	private static Map mapRef = null;							// only here for load/save , remove if changed
-
+	private int playerChoice;
+	
 	public GameFrame (String title){
 		super(title);	
 		setLayout(new BorderLayout());
@@ -47,13 +53,20 @@ public class GameFrame extends JFrame {
 		statusPanel.setVisible(true);
 	}
 
-	public void hideStatusPanel(){
+	public static void hideStatusPanel(){
 		statusPanel.setVisible(false);
+	}
+	
+	public static void hideMapPanel(){
+		mapPanel.setVisible(false);
+	}
+	
+	public static void showStartMenuPanel(){
+		startMenuPanel.setVisible(true);
 	}
 
 	private void addMenu(){
 		menuBar = new JMenuBar();
-
 
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
@@ -68,8 +81,6 @@ public class GameFrame extends JFrame {
 		});
 		fileMenu.add(backMenuItem);
 
-		
-
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
 		menuBar.add(helpMenu);
@@ -80,7 +91,6 @@ public class GameFrame extends JFrame {
 			public void actionPerformed(ActionEvent e){
 				JOptionPane.showMessageDialog(null,VERSION);
 			}
-
 		});
 		helpMenu.add(versionMenuItem);
 
@@ -97,14 +107,14 @@ public class GameFrame extends JFrame {
 				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				setResizable(true);
 				setVisible(true);
-
 				if(button1.getText().equals("Player 1")){
 					button1.setText("Map 1");
 					button2.setText("Map 2");
+					playerChoice = 1;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(1);
+					mapPanel.createMap(1,playerChoice);
 					mapPanel.setVisible(true);
 					mapPanel.setFocusable(true);
 					startMenuPanel.setVisible(false);
@@ -121,14 +131,14 @@ public class GameFrame extends JFrame {
 				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 				setResizable(true);
 				setVisible(true);
-
 				if(button2.getText().equals("Player 2")){
 					button1.setText("Map 1");
 					button2.setText("Map 2");
+					playerChoice = 2;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(2);
+					mapPanel.createMap(2,playerChoice);
 					mapPanel.setVisible(true);
 					mapPanel.setFocusable(true);
 					startMenuPanel.setVisible(false);
@@ -139,8 +149,7 @@ public class GameFrame extends JFrame {
 
 			}
 		});
-		startMenuPanel.add(button2);	
-
+		startMenuPanel.add(button2);
 	}
 
 	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
@@ -157,6 +166,4 @@ public class GameFrame extends JFrame {
 
 		}
 	}
-
-
 }

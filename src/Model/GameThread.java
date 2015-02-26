@@ -1,3 +1,7 @@
+package Model;
+import View.MapPanel;
+import View.StatusPanel;
+
 
 public class GameThread implements Runnable {
 	

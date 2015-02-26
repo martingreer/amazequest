@@ -1,3 +1,4 @@
+package View;
 
 
 public class Main{
@@ -7,9 +8,4 @@ public class Main{
 		gameFrame = new GameFrame("A Maze Quest");
 		gameFrame.setVisible(true);
 	}
-
-	public static void setGameFalse() {
-		gameFrame.setVisible(false);
-	}
-
 }

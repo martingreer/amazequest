@@ -214,7 +214,7 @@ public class Map{
 
 		Object[] options = {"Choose New Map"};
 		int clicked = JOptionPane.showOptionDialog(null,
-				"Oh dear, you have died! ","Game Over",
+				"Oh dear, you have died!","Game Over",
 				JOptionPane.PLAIN_MESSAGE,
 				JOptionPane.INFORMATION_MESSAGE,
 				null,
@@ -237,7 +237,7 @@ public class Map{
 		save(playerNr);
 		
 		int clicked = JOptionPane.showOptionDialog(null,
-				"You have completed the level! ","Level Complete",
+				"You have completed the level!\nPlayer is saved.\n","Level Complete",
 				JOptionPane.PLAIN_MESSAGE,
 				JOptionPane.INFORMATION_MESSAGE,
 				null,
@@ -285,8 +285,9 @@ public class Map{
 					spawnObjectsRandomly("itemPotion", 4);
 					break;
 			case 2: spawnObjectsRandomly("enemyLv1", 2);
-					spawnObjectsRandomly("enemyLv2", 5);
-					spawnObjectsRandomly("enemyLv3", 6);
+					spawnObjectsRandomly("enemyLv2", 3);
+					spawnObjectsRandomly("enemyLv3", 5);
+					//spawnObjectsRandomly("enemyLv4", 3);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
 					spawnObjectsRandomly("itemPotion", 4);
@@ -326,11 +327,11 @@ public class Map{
 			Enemy enemy = new Enemy(2,2,20,20,"enemyLv2");  
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		
 		if(enemyType == "enemyLv3"){
 			Enemy enemy = new Enemy(3,3,30,30,"enemyLv3");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
-		//more enemy types here? This should be in a config file imo.
 	}
 
 	public void spawnItem(int xPos, int yPos, String itemType){

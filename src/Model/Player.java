@@ -35,7 +35,13 @@ public class Player extends InteractiveObject implements Serializable {
 		}
 	}
 	
-	
+	public int getPlayerNr(){
+		if(getName().contains("2")){
+			return 2;
+		}
+		else
+			return 1;
+	}
 	public void updateStats(Item item){
 		
 		this.setHp(item.getHp());

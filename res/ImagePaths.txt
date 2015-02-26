@@ -13,8 +13,7 @@ player1West:./res/Player/playerwest.png
 player1East:./res/Player/playereast.png
 player1North:./res/Player/playernorth.png
 player1South:./res/Player/playersouth.png
-player1Portrait:./res/Player/playerPortrait.png
-player1Portrait2:./res/Player/playerPortrait2.png
+player1Portrait:./res/Player/playerPortrait2.png
 player2:./res/Player/girlsouth.png
 player2West:./res/Player/girlwest.png
 player2East:./res/Player/girleast.png

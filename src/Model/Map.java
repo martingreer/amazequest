@@ -21,7 +21,7 @@ import View.GameFrame;
 
 public class Map{
 	
-	private static final int MAP_SIZE = 14;
+	private static final int MAP_SIZE = 25;
 	private int mapNr;
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];

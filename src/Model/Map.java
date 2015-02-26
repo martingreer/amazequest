@@ -178,8 +178,8 @@ public class Map{
 		tiles[x+1][y-1].setDarkness(false);
 
 
-		tiles[x+2][y].setDarkness(false);
-		tiles[x][y+2].setDarkness(false);
+		//tiles[x+2][y].setDarkness(false);
+		//tiles[x][y+2].setDarkness(false);
 		
 	/*
 		tiles[x-2][y].setDarkness(false);          Detta funkar ej

@@ -138,6 +138,7 @@ public class StatusPanel extends JPanel {
 		playerAttackLabel.setText("Attack: "+player.getAttack());
 		playerLevelLabel.setText("Level: "+player.getLevel());
 		playerHealthLabel.setText("Health: "+player.getHp()+"/"+player.getMaxHp());
+		portraitLabel.setIcon(res.getImgIcon("player"+player.getPlayerNr()+"Portrait"));
 		if(enemy != null){
 			enemyHealthBar.setMaximum(enemy.getMaxHp());
 			enemyHealthBar.setValue(enemy.getHp());

@@ -275,15 +275,9 @@ public class Map{
 	
 	public void spawnObjectsInitiator(int difficulty){
 		// Spawn(type, amount)
-<<<<<<< HEAD
-		spawnObjectsRandomly("enemyLv1", 4);
-		spawnObjectsRandomly("enemyLv2", 3);
-		spawnObjectsRandomly("enemyLv3", 3);
-		spawnObjectsRandomly("enemyLv4", 3);
-		spawnObjectsRandomly("itemSword", 1);
-		spawnObjectsRandomly("itemShield", 1);
-		spawnObjectsRandomly("itemPotion", 4);
-=======
+
+	
+
 		
 		switch(difficulty){
 			case 1: spawnObjectsRandomly("enemyLv1", 4);
@@ -296,7 +290,7 @@ public class Map{
 			case 2: spawnObjectsRandomly("enemyLv1", 2);
 					spawnObjectsRandomly("enemyLv2", 3);
 					spawnObjectsRandomly("enemyLv3", 5);
-					//spawnObjectsRandomly("enemyLv4", 3);
+					
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
 					spawnObjectsRandomly("itemPotion", 4);
@@ -304,7 +298,7 @@ public class Map{
 			case 3: spawnObjectsRandomly("enemyLv1", 1);
 					spawnObjectsRandomly("enemyLv2", 1);
 					spawnObjectsRandomly("enemyLv3", 5);
-					//spawnObjectsRandomly("enemyLv4", 7);
+					
 					//spawnObjectsRandomly("enemyLv5", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
@@ -318,7 +312,7 @@ public class Map{
 				  	 spawnObjectsRandomly("itemPotion", 4);
 				  	 break;
 		}
->>>>>>> refs/remotes/origin/refactored
+
 	}
 
 	public void spawnEnemy(int xPos, int yPos, String enemyType){

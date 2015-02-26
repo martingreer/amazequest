@@ -199,28 +199,32 @@ public class Map{
 			currentEnemy = null;
 			doorOpen = checkIfAllEnemiesAreDead();					//set to true if all enemies are dead.
 		}
-		
+
 		if(player.getHp() <= 0) {
-			System.out.println("Player is dead");
-			playerTile.setBlood(true);
-			playerTile.setPlayer(null);
+			playerDeath();
+		}
+	}
 
-			Object[] options = {"Choose New Map"};
-			int clicked = JOptionPane.showOptionDialog(null,
-					"Oh dear, you have died! ","Game Over",
-					JOptionPane.PLAIN_MESSAGE,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					options,
-					options[0]);
+	private void playerDeath(){
+		System.out.println("Player is dead");
+		playerTile.setBlood(true);
+		playerTile.setPlayer(null);
 
-			if(clicked == JOptionPane.OK_OPTION) {
-				int hp = player.getMaxHp() - player.getHp() ;
-				player.setHp(hp);
-				GameFrame.hideMapPanel(); 
-				GameFrame.hideStatusPanel();
-				GameFrame.showStartMenuPanel();
-			}
+		Object[] options = {"Choose New Map"};
+		int clicked = JOptionPane.showOptionDialog(null,
+				"Oh dear, you have died! ","Game Over",
+				JOptionPane.PLAIN_MESSAGE,
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				options,
+				options[0]);
+
+		if(clicked == JOptionPane.OK_OPTION) {
+			int hp = player.getMaxHp() - player.getHp() ;
+			player.setHp(hp);
+			GameFrame.hideMapPanel(); 
+			GameFrame.hideStatusPanel();
+			GameFrame.showStartMenuPanel();
 		}
 	}
 	

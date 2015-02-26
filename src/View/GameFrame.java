@@ -17,8 +17,8 @@ import Model.Player;
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
-	private static final int WINDOW_SIZE_X = 25*32+16;
-	private static final int WINDOW_SIZE_Y = 25*32+208;
+	private static final int WINDOW_SIZE_X = 20*32+16;
+	private static final int WINDOW_SIZE_Y = 20*32+208;
 	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " Alpha 13.37" + "\n" + "© Jonas Brothers";
 	private ImageResources res = new ImageResources();
 	private JMenuBar menuBar;

@@ -4,8 +4,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.nio.file.Files;
 
 import javax.swing.*;
 
@@ -44,7 +46,7 @@ public class GameFrame extends JFrame {
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-		setResizable(false);
+		setResizable(true);
 		setLocationRelativeTo(null);
 		mapPanel = new MapPanel();
 		add(mapPanel);
@@ -61,7 +63,46 @@ public class GameFrame extends JFrame {
 		createButtons();
 		
 	}
-
+	
+	public void playerChoiceDisplay(){
+		
+	}
+	
+	public void mapChoiceDisplay(){
+		button1.setText("Map 1");
+		button2.setText("Map 2");
+		button3.setText("Map 3");
+		button3.setVisible(true);
+		resetButton1.setVisible(false);
+		resetButton2.setVisible(false);
+		choiceLabel.setText("Choose map");
+		gc.gridheight = 1;
+        gc.gridx = 1;
+        gc.gridy = 1;
+        gc.anchor = GridBagConstraints.CENTER;
+		startMenuPanel.add(button1, gc);
+        gc.gridx = 1;
+        gc.gridy = 2;
+        startMenuPanel.add(button2, gc);
+        gc.gridx = 1;
+        gc.gridy = 3;
+		startMenuPanel.add(button3, gc);
+		
+		labelIcon1.setIcon(res.getImgIcon("test"));
+		labelIcon2.setIcon(res.getImgIcon("test"));
+		labelIcon3.setIcon(res.getImgIcon("test"));
+		
+        gc.gridx = 0;
+        gc.gridy = 1;
+        startMenuPanel.add(labelIcon1, gc);
+        gc.gridx = 0;
+        gc.gridy = 2;
+        startMenuPanel.add(labelIcon2, gc);
+        gc.gridx = 0;
+        gc.gridy = 3;
+        startMenuPanel.add(labelIcon3, gc);
+	}
+	
 	public void showStatusPanel(){
 		statusPanel.setVisible(true);
 	}
@@ -78,15 +119,15 @@ public class GameFrame extends JFrame {
 		startMenuPanel.setVisible(true);
 	}
 	private void createLabels(){
-		labelIcon1 = new JLabel(res.getImgIcon("test"));
-		labelIcon2 = new JLabel(res.getImgIcon("test"));
-		labelIcon3 = new JLabel(res.getImgIcon("test"));
+		labelIcon1 = new JLabel(res.getImgIcon("playerBig"));
+		labelIcon2 = new JLabel(res.getImgIcon("player2Big"));
+		labelIcon3 = new JLabel(""); //res.getImgIcon("test")
 		choiceLabel = new JLabel("Choose player");
 		choiceLabel.setFont(choiceLabel.getFont().deriveFont(40f));
 		gc.insets = new Insets(2,2,2,2);
 		gc.anchor = GridBagConstraints.CENTER;
 	    gc.gridwidth = 2;
-	    gc.gridheight = 2;
+	    gc.gridheight = 1;
         gc.gridx = 0;
         gc.gridy = 0;
         startMenuPanel.add(choiceLabel, gc);
@@ -94,13 +135,13 @@ public class GameFrame extends JFrame {
         gc.gridheight = 2;
 	    gc.gridwidth = 1;
         gc.gridx = 0;
-        gc.gridy = 2;
+        gc.gridy = 1;
         startMenuPanel.add(labelIcon1, gc);
         gc.gridx = 0;
-        gc.gridy = 4;
+        gc.gridy = 3;
         startMenuPanel.add(labelIcon2, gc);
         gc.gridx = 0;
-        gc.gridy = 6;
+        gc.gridy = 5;
         startMenuPanel.add(labelIcon3, gc);
 	}
 	private void addMenu(){
@@ -155,15 +196,13 @@ public class GameFrame extends JFrame {
 		resetButton2 = new JButton("Reset player");
 		button1.setPreferredSize(new Dimension(150, 40));
 		button2.setPreferredSize(new Dimension(150, 40));
+		button3.setPreferredSize(new Dimension(150, 40));
 		
 		button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-				setResizable(true);
-				setVisible(true);
+
 				if(button1.getText().equals("Player 1")){
-					button1.setText("Map 1");
-					button2.setText("Map 2");
+					mapChoiceDisplay();
 					playerChoice = 1;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
@@ -182,12 +221,8 @@ public class GameFrame extends JFrame {
 
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
-				setResizable(true);
-				setVisible(true);
 				if(button2.getText().equals("Player 2")){
-					button1.setText("Map 1");
-					button2.setText("Map 2");
+					mapChoiceDisplay();
 					playerChoice = 2;
 					// gör allt som ska göras när man trycker på player 1
 				}else{
@@ -203,29 +238,77 @@ public class GameFrame extends JFrame {
 
 			}
 		});
+		
+		button3.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+
+
+
+			}
+		});
+		
+		resetButton1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				 try{
+			         // create new file
+			         File file = new File("./bin/SavedPlayer1");
+			         file.delete();
+			         JOptionPane.showMessageDialog(startMenuPanel,
+			        		    "Player 1 has been reset",
+			        		    "Player 1 reset",
+			        		    JOptionPane.INFORMATION_MESSAGE);
+			      }catch(Exception f){
+			         // if any error occurs
+			         f.printStackTrace();
+			      }
+			}
+		});
+		
+		resetButton2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				 try{
+			         // create new file
+			         File file = new File("./bin/SavedPlayer2");
+			         file.delete();
+			         JOptionPane.showMessageDialog(startMenuPanel,
+			        		    "Player 2 has been reset",
+			        		    "Player 2 reset",
+			        		    JOptionPane.INFORMATION_MESSAGE);
+			      }catch(Exception f){
+			         // if any error occurs
+			         f.printStackTrace();
+			      }
+			}
+		});
 
 		gc.weightx = 1;
 		gc.weighty = 1;
 		gc.gridheight = 1;
         gc.gridx = 1;
-        gc.gridy = 2;
+        gc.gridy = 1;
         gc.anchor = GridBagConstraints.SOUTH;
 		startMenuPanel.add(button1, gc);
         gc.gridx = 1;
-        gc.gridy = 3;
+        gc.gridy = 2;
         gc.anchor = GridBagConstraints.NORTH;
         startMenuPanel.add(resetButton1, gc);
         gc.gridx = 1;
-        gc.gridy = 4;
+        gc.gridy = 3;
         gc.anchor = GridBagConstraints.SOUTH;
         startMenuPanel.add(button2, gc);
         gc.gridx = 1;
-        gc.gridy = 5;
+        gc.gridy = 4;
         gc.anchor = GridBagConstraints.NORTH;
 		startMenuPanel.add(resetButton2, gc);
+        gc.gridx = 1;
+        gc.gridy = 5;
+        gc.anchor = GridBagConstraints.NORTH;
+		startMenuPanel.add(button3, gc);
+		button3.setVisible(false);
 		
 	}
 
+	
 	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));

@@ -1,7 +1,9 @@
 package Model;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
@@ -30,13 +32,17 @@ public class Map{
 	private Random rand = new Random();               // test random
 	private Boolean doorOpen = false;
 	private int playerNr;
+	
 	public Map(int mapNr, int playerNr){
 		this.mapNr = mapNr;
 		this.playerNr = playerNr;
 		openFile();
 		readFile();
 		closeFile();
-		player = new Player(1,5,10,10,"player"+playerNr,0);
+		load(playerNr);
+		if(player == null){
+			player = new Player(1,5,10,10,"player"+playerNr,0);
+		}
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
 		discoverDarkness();
@@ -72,17 +78,19 @@ public class Map{
    
     public void load(int playerId) {		// NOTE!! load-method in both GameFrame and Map
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream("./bin/SavedPlayer" + playerId));
-            player = (Player)in.readObject();
-            in.close();
-            System.out.println("Player loaded");
-        }
-        catch(Exception e) {
+        	player = null;
+        	File file = new File("./bin/SavedPlayer" + playerId);
+        	if (file.exists()) {
+            	ObjectInputStream in = new ObjectInputStream(new FileInputStream("./bin/SavedPlayer" + playerId));
+                player = (Player)in.readObject();
+                in.close();
+                System.out.println("Player loaded");     
+        	}
+
+        } catch (Exception e) {
         	System.out.println("LOAD FAILED \n");
             e.printStackTrace();
-            System.exit(0);
-            
-        }
+		}
     }
     
 	public void pressedKey(String key){
@@ -169,6 +177,15 @@ public class Map{
 		tiles[x]  [y-1].setDarkness(false);
 		tiles[x+1][y-1].setDarkness(false);
 
+
+		tiles[x+2][y].setDarkness(false);
+		tiles[x][y+2].setDarkness(false);
+		
+	/*
+		tiles[x-2][y].setDarkness(false);          Detta funkar ej
+		tiles[x][y-2].setDarkness(false);
+	*/	
+
 	}
 
 	public void decideAction(Tile nextTile){
@@ -199,28 +216,32 @@ public class Map{
 			currentEnemy = null;
 			doorOpen = checkIfAllEnemiesAreDead();					//set to true if all enemies are dead.
 		}
-		
+
 		if(player.getHp() <= 0) {
-			System.out.println("Player is dead");
-			playerTile.setBlood(true);
-			playerTile.setPlayer(null);
+			playerDeath();
+		}
+	}
 
-			Object[] options = {"Choose New Map"};
-			int clicked = JOptionPane.showOptionDialog(null,
-					"Oh dear, you have died! ","Game Over",
-					JOptionPane.PLAIN_MESSAGE,
-					JOptionPane.INFORMATION_MESSAGE,
-					null,
-					options,
-					options[0]);
+	private void playerDeath(){
+		System.out.println("Player is dead");
+		playerTile.setBlood(true);
+		playerTile.setPlayer(null);
 
-			if(clicked == JOptionPane.OK_OPTION) {
-				int hp = player.getMaxHp() - player.getHp() ;
-				player.setHp(hp);
-				GameFrame.hideMapPanel(); 
-				GameFrame.hideStatusPanel();
-				GameFrame.showStartMenuPanel();
-			}
+		Object[] options = {"Choose New Map"};
+		int clicked = JOptionPane.showOptionDialog(null,
+				"Oh dear, you have died! ","Game Over",
+				JOptionPane.PLAIN_MESSAGE,
+				JOptionPane.INFORMATION_MESSAGE,
+				null,
+				options,
+				options[0]);
+
+		if(clicked == JOptionPane.OK_OPTION) {
+			int hp = player.getMaxHp() - player.getHp() ;
+			player.setHp(hp);
+			GameFrame.hideMapPanel(); 
+			GameFrame.hideStatusPanel();
+			GameFrame.showStartMenuPanel();
 		}
 	}
 	
@@ -228,7 +249,7 @@ public class Map{
 		System.out.println("Game finished! Back to choose map menu.");
 		Object[] options = {"Choose New Map"};
 		
-		save(1);
+		save(playerNr);
 		
 		int clicked = JOptionPane.showOptionDialog(null,
 				"You have completed the level! ","Level Complete",

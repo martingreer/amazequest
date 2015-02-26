@@ -33,7 +33,6 @@ public class StatusPanel extends JPanel {
 	private JLabel enemyAttackLabel;
 	private JLabel enemyHealthLabel;
 	private JLabel enemyPortrait;
-	
 	private ImageResources res = new ImageResources();
 	
 	public StatusPanel(){

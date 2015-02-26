@@ -286,7 +286,7 @@ public class Map{
 			case 2: spawnObjectsRandomly("enemyLv1", 2);
 					spawnObjectsRandomly("enemyLv2", 3);
 					spawnObjectsRandomly("enemyLv3", 5);
-					
+					//spawnObjectsRandomly("enemyLv4", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
 					spawnObjectsRandomly("itemPotion", 4);
@@ -294,7 +294,7 @@ public class Map{
 			case 3: spawnObjectsRandomly("enemyLv1", 1);
 					spawnObjectsRandomly("enemyLv2", 1);
 					spawnObjectsRandomly("enemyLv3", 5);
-					
+					//spawnObjectsRandomly("enemyLv4", 4);
 					//spawnObjectsRandomly("enemyLv5", 4);
 					spawnObjectsRandomly("itemSword", 1);
 					spawnObjectsRandomly("itemShield", 1);
@@ -332,6 +332,7 @@ public class Map{
 			Enemy enemy = new Enemy(3,3,30,30,"enemyLv3");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		
 		if(enemyType == "enemyLv4"){
 			Enemy enemy = new Enemy(4,4,40,40,"enemyLv4");
 			tiles[xPos][yPos].setEnemy(enemy);
@@ -339,14 +340,15 @@ public class Map{
 	}
 
 	public void spawnItem(int xPos, int yPos, String itemType){
-
+		//Item(level,attack,hp,name)
+		
 		if(tiles[xPos][yPos].getCollision()){
 			System.out.println("Can not place Item on tile with collision");
 			return;
 		}
 
 		if(itemType == "itemSword"){
-			Item item = new Item(1,5,0,0,"sword");		//Item(level,attack,hp,name)
+			Item item = new Item(1,5,0,0,"sword");
 			tiles[xPos][yPos].setItem(item);
 		}
 
@@ -359,7 +361,6 @@ public class Map{
 			Item item = new Item(0,0,0,7,"potion");
 			tiles[xPos][yPos].setItem(item);
 		}
-		//more item types here?  This should be in a config file imo.
 	}
 
 	public void spawnObjectsRandomly(String type, int amount) {

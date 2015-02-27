@@ -20,7 +20,7 @@ public class SoundManager {
 					Clip clip = AudioSystem.getClip();
 					clip.open(AudioSystem.getAudioInputStream(AudioFile));
 					FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-					gainControl.setValue(-10.0f); // Reduce volume by 10 decibels.
+					gainControl.setValue(-20.0f); // Reduce volume by 10 decibels.
 					clip.start();
 					Thread.sleep(clip.getMicrosecondLength()/1000);
 				}catch(Exception e){

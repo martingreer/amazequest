@@ -356,21 +356,4 @@ public class GameFrame extends JFrame {
 		button3.setVisible(false);
 		
 	}
-
-	
-	public void load(String fileName) {				// NOTE!! load-method in both GameFrame and Map
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-			loadedPlayer = (Player)in.readObject();
-			in.close();
-			System.out.println("Player loaded");
-		}
-		catch(Exception e) {
-			System.out.println("LOAD FAILED \n");
-			e.printStackTrace();
-			System.exit(0);
-
-		}
-
-	}
 }

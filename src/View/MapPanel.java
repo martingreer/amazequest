@@ -17,8 +17,14 @@ public class MapPanel extends JPanel {
 		private static final int MAP_SIZE = 20;
 		private static final int TILE_SIZE = 32;
 		private ImageResources res = new ImageResources();
+		private StatusPanel statusPanel;
 		
 		public MapPanel(){
+			initKeyListener();
+		}
+		
+		public MapPanel(StatusPanel statusPanel){
+			this.statusPanel = statusPanel;
 			initKeyListener();
 		}
 
@@ -67,7 +73,15 @@ public class MapPanel extends JPanel {
 							 map.pressedKey("up");
 						 else if (key == KeyEvent.VK_KP_DOWN || key == KeyEvent.VK_DOWN) 
 							 map.pressedKey("down");
+						
+						updateView();
 				}
 			});
+		}
+		
+		public void updateView(){
+			requestFocus(); // Denna kommer sätta fokus tillbaka tillbaka mappen när man trycker i inventoryt. ingen superbra lösning
+	    	repaint();
+	    	statusPanel.updatePanel(getMap().getPlayer(),getMap().getCurrentEnemy());
 		}
 }

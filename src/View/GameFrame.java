@@ -11,7 +11,6 @@ import java.nio.file.Files;
 
 import javax.swing.*;
 
-import Model.GameThread;
 import Model.ImageResources;
 import Model.Map;
 import Model.Player;
@@ -48,14 +47,14 @@ public class GameFrame extends JFrame {
 		setSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 		setResizable(true);
 		setLocationRelativeTo(null);
-		mapPanel = new MapPanel();
+		statusPanel = new StatusPanel();
+		mapPanel = new MapPanel(statusPanel);
 		add(mapPanel);
 		mapPanel.setVisible(false);
 		startMenuPanel = new JPanel(new GridBagLayout());
 		gc = new GridBagConstraints();
 		GridBagConstraints gc = new GridBagConstraints();
 		add(startMenuPanel,BorderLayout.CENTER);
-		statusPanel = new StatusPanel();
 		add(statusPanel, BorderLayout.SOUTH);
 		hideStatusPanel();
 		addMenu();
@@ -262,7 +261,7 @@ public class GameFrame extends JFrame {
 					startMenuPanel.setVisible(false);
 					showStatusPanel();
 					add(mapPanel,BorderLayout.CENTER);
-					(new Thread(new GameThread(mapPanel, statusPanel))).start();
+					//(new Thread(new GameThread(mapPanel, statusPanel))).start();
 				}
 			}
 		}); 
@@ -282,7 +281,7 @@ public class GameFrame extends JFrame {
 					startMenuPanel.setVisible(false);
 					showStatusPanel();
 					add(mapPanel,BorderLayout.CENTER);
-					(new Thread(new GameThread(mapPanel, statusPanel))).start();
+					//(new Thread(new GameThread(mapPanel, statusPanel))).start();
 				}
 
 			}

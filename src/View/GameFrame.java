@@ -35,8 +35,6 @@ public class GameFrame extends JFrame {
 	private JButton button3;
 	private JButton resetButton1;
 	private JButton resetButton2;
-	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
-	private static GameLogic mapRef = null;							// only here for load/save , remove if changed
 	private int playerChoice;
 	private GridBagConstraints gc;
 	
@@ -261,7 +259,6 @@ public class GameFrame extends JFrame {
 					startMenuPanel.setVisible(false);
 					showStatusPanel();
 					add(mapPanel,BorderLayout.CENTER);
-					//(new Thread(new GameThread(mapPanel, statusPanel))).start();
 				}
 			}
 		}); 
@@ -275,13 +272,7 @@ public class GameFrame extends JFrame {
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(2,playerChoice);
-					mapPanel.setVisible(true);
-					mapPanel.setFocusable(true);
-					startMenuPanel.setVisible(false);
-					showStatusPanel();
-					add(mapPanel,BorderLayout.CENTER);
-					//(new Thread(new GameThread(mapPanel, statusPanel))).start();
+					
 				}
 
 			}
@@ -289,9 +280,12 @@ public class GameFrame extends JFrame {
 		
 		button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
-
-
+				mapPanel.createMap(3,playerChoice);
+				mapPanel.setVisible(true);
+				mapPanel.setFocusable(true);
+				startMenuPanel.setVisible(false);
+				showStatusPanel();
+				add(mapPanel,BorderLayout.CENTER);
 			}
 		});
 		

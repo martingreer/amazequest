@@ -36,6 +36,7 @@ public class GameFrame extends JFrame {
 	private JButton resetButton1;
 	private JButton resetButton2;
 	private int playerChoice;
+	private int mapChoice;
 	private GridBagConstraints gc;
 	
 	public GameFrame (String title){
@@ -253,12 +254,9 @@ public class GameFrame extends JFrame {
 					// gör allt som ska göras när man trycker på player 1
 				}else{
 					// gör allt som ska göras när man trycker på map 1
-					mapPanel.createMap(1,playerChoice);
-					mapPanel.setVisible(true);
-					mapPanel.setFocusable(true);
-					startMenuPanel.setVisible(false);
-					showStatusPanel();
-					add(mapPanel,BorderLayout.CENTER);
+					mapChoice = 1;
+					chooseMapToBeCreated();
+					
 				}
 			}
 		}); 
@@ -269,10 +267,11 @@ public class GameFrame extends JFrame {
 				if(button2.getText().equals("Player 2")){
 					mapChoiceDisplay();
 					playerChoice = 2;
-					// gör allt som ska göras när man trycker på player 1
+					// gör allt som ska göras när man trycker på player 2
 				}else{
-					// gör allt som ska göras när man trycker på map 1
-					
+					// gör allt som ska göras när man trycker på map 2
+					mapChoice = 2;
+					chooseMapToBeCreated();
 				}
 
 			}
@@ -280,12 +279,9 @@ public class GameFrame extends JFrame {
 		
 		button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				mapPanel.createMap(3,playerChoice);
-				mapPanel.setVisible(true);
-				mapPanel.setFocusable(true);
-				startMenuPanel.setVisible(false);
-				showStatusPanel();
-				add(mapPanel,BorderLayout.CENTER);
+				// gör allt som ska göras när man trycker på map 3
+				mapChoice = 3;
+				chooseMapToBeCreated();
 			}
 		});
 		
@@ -348,5 +344,14 @@ public class GameFrame extends JFrame {
 		startMenuPanel.add(button3, gc);
 		button3.setVisible(false);
 		
+	}
+	
+	public void chooseMapToBeCreated(){
+		mapPanel.createMap(mapChoice,playerChoice);
+		mapPanel.setVisible(true);
+		mapPanel.setFocusable(true);
+		startMenuPanel.setVisible(false);
+		showStatusPanel();
+		add(mapPanel,BorderLayout.CENTER);
 	}
 }

@@ -22,18 +22,18 @@ import Model.Player;
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel {
 	private static final int INVPANELHEIGHT = 150;
-	private JProgressBar healthBar;
-	private JProgressBar experienceBar;
-	private JProgressBar enemyHealthBar;
-	private JLabel portraitLabel;
-	private JLabel playerLevelLabel;
-	private JLabel playerAttackLabel;
-	private JLabel playerHealthLabel;
-	private JLabel enemyLevelLabel;
-	private JLabel enemyAttackLabel;
-	private JLabel enemyHealthLabel;
-	private JLabel enemyPortrait;
-	private ImageResources res = new ImageResources();
+	private static JProgressBar healthBar;
+	private static JProgressBar experienceBar;
+	private static JProgressBar enemyHealthBar;
+	private static JLabel portraitLabel;
+	private static JLabel playerLevelLabel;
+	private static JLabel playerAttackLabel;
+	private static JLabel playerHealthLabel;
+	private static JLabel enemyLevelLabel;
+	private static JLabel enemyAttackLabel;
+	private static JLabel enemyHealthLabel;
+	private static JLabel enemyPortrait;
+	private static ImageResources res = new ImageResources();
 	
 	public StatusPanel(){
 		Dimension size = getPreferredSize();
@@ -131,7 +131,7 @@ public class StatusPanel extends JPanel {
 	}
 	
 
-	public void updatePanel(Player player, Enemy enemy){
+	public static void updatePanel(Player player, Enemy enemy){
 		healthBar.setMaximum(player.getMaxHp());
 		healthBar.setValue(player.getHp());
 		experienceBar.setValue(player.getExp());

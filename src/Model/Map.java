@@ -11,6 +11,7 @@ import java.util.*;
 import javax.swing.*;
 
 import View.GameFrame;
+import View.StatusPanel;
 
 /**
  * @author Namn
@@ -43,8 +44,10 @@ public class Map{
 		if(player == null){
 			player = new Player(1,5,10,10,"player"+playerNr,0);
 		}
+		player.healToFull();
 		tiles[1][1].setPlayer(player);
 		playerTile = tiles[1][1];
+		StatusPanel.updatePanel(player, currentEnemy);
 		discoverDarkness();
 		spawnObjectsInitiator(mapNr);
 	}
@@ -231,8 +234,6 @@ public class Map{
 				options[0]);
 
 		if(clicked == JOptionPane.OK_OPTION) {
-			int hp = player.getMaxHp() - player.getHp() ;
-			player.setHp(hp);
 			GameFrame.hideMapPanel(); 
 			GameFrame.hideStatusPanel();
 			GameFrame.showStartMenuPanel();

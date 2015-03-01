@@ -35,6 +35,11 @@ public class Player extends InteractiveObject implements Serializable {
 		}
 	}
 	
+	public void healToFull(){
+		int hp = getMaxHp() - getHp() ;
+		setHp(hp);
+	}
+	
 	public int getPlayerNr(){
 		if(getName().contains("2")){
 			return 2;

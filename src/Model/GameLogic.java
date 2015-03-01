@@ -14,13 +14,17 @@ import View.GameFrame;
 import View.StatusPanel;
 
 /**
- * @author Namn
+ * @author Name
+ * @author
+ * @author
+ * @author
+ * @author
  *
  * Description of class here.
  *
  */
 
-public class Map{
+public class GameLogic{
 	
 	private static final int MAP_SIZE = 20;
 	private int mapNr;
@@ -34,7 +38,7 @@ public class Map{
 	private Boolean doorOpen = false;
 	private int playerNr;
 	
-	public Map(int mapNr, int playerNr){
+	public GameLogic(int mapNr, int playerNr){
 		this.mapNr = mapNr;
 		this.playerNr = playerNr;
 		openFile();
@@ -256,8 +260,6 @@ public class Map{
 				options[0]);
 		
 		if(clicked == JOptionPane.OK_OPTION) {
-			int hp = player.getMaxHp() - player.getHp() ;
-			player.setHp(hp);
 			GameFrame.hideMapPanel();   
 			GameFrame.hideStatusPanel();
 			GameFrame.showStartMenuPanel();

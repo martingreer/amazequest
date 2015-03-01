@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import javax.swing.*;
 
 import Model.ImageResources;
-import Model.Map;
+import Model.GameLogic;
 import Model.Player;
 
 
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
 	private JButton resetButton1;
 	private JButton resetButton2;
 	private static Player loadedPlayer = null;		// only here for load/save , remove if changed
-	private static Map mapRef = null;							// only here for load/save , remove if changed
+	private static GameLogic mapRef = null;							// only here for load/save , remove if changed
 	private int playerChoice;
 	private GridBagConstraints gc;
 	
@@ -93,7 +93,7 @@ public class GameFrame extends JFrame {
 		startMenuPanel.add(button3, gc);
 		button3.setVisible(false);
 		
-		labelIcon1.setIcon(res.getImgIcon("playerBig"));
+		labelIcon1.setIcon(res.getImgIcon("player1Big"));
 		labelIcon2.setIcon(res.getImgIcon("player2Big"));
 		labelIcon3.setIcon(null);
 		choiceLabel.setText("Choose player");
@@ -169,7 +169,7 @@ public class GameFrame extends JFrame {
 		startMenuPanel.setVisible(true);
 	}
 	private void createLabels(){
-		labelIcon1 = new JLabel(res.getImgIcon("playerBig"));
+		labelIcon1 = new JLabel(res.getImgIcon("player1Big"));
 		labelIcon2 = new JLabel(res.getImgIcon("player2Big"));
 		labelIcon3 = new JLabel(""); //res.getImgIcon("test")
 		choiceLabel = new JLabel("Choose player");

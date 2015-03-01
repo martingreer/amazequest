@@ -6,13 +6,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 import Model.ImageResources;
-import Model.Map;
+import Model.GameLogic;
 import Model.Player;
 import Model.Tile;
 
 public class MapPanel extends JPanel {
 
-		private Map map;
+		private GameLogic map;
 		private static final boolean DEBUG = false;
 		private static final int MAP_SIZE = 20;
 		private static final int TILE_SIZE = 32;
@@ -29,10 +29,10 @@ public class MapPanel extends JPanel {
 		}
 
 		public void createMap(int mapNr, int playerNr){
-			map = new Map(mapNr,playerNr);
+			map = new GameLogic(mapNr,playerNr);
 		}
 		
-		public Map getMap(){
+		public GameLogic getMap(){
 			return map;
 		}
 		
@@ -80,8 +80,8 @@ public class MapPanel extends JPanel {
 		}
 		
 		public void updateView(){
-			requestFocus(); // Denna kommer sätta fokus tillbaka tillbaka mappen när man trycker i inventoryt. ingen superbra lösning
+			requestFocus();
 	    	repaint();
-	    	statusPanel.updatePanel(getMap().getPlayer(),getMap().getCurrentEnemy());
+	    	StatusPanel.updatePanel(getMap().getPlayer(),getMap().getCurrentEnemy());
 		}
 }

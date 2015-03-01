@@ -66,7 +66,7 @@ public class StatusPanel extends JPanel {
 	    enemyBarContainer.add(enemyHealthBar);
 	    
 	    JPanel playerPortraitContainer = new JPanel();	    
-	    portraitLabel = new JLabel(res.getImgIcon("playerPortrait2"));
+	    portraitLabel = new JLabel(res.getImgIcon("player1Portrait"));
 	    playerPortraitContainer.add(portraitLabel);
 	    
 	    JPanel playerStatusContainer = new JPanel();
@@ -130,7 +130,6 @@ public class StatusPanel extends JPanel {
 
 	}
 	
-
 	public static void updatePanel(Player player, Enemy enemy){
 		healthBar.setMaximum(player.getMaxHp());
 		healthBar.setValue(player.getHp());

@@ -33,6 +33,7 @@ public class StatusPanel extends JPanel {
 	private static JLabel enemyAttackLabel;
 	private static JLabel enemyHealthLabel;
 	private static JLabel enemyPortrait;
+	private static JLabel enemyLabel;
 	private static ImageResources res = new ImageResources();
 	
 	public StatusPanel(){
@@ -61,7 +62,7 @@ public class StatusPanel extends JPanel {
 
 	    JPanel enemyBarContainer = new JPanel();
 	    enemyBarContainer.setLayout(new GridLayout(3,1,0,2));    
-	    JLabel enemyLabel = new JLabel("Enemy\n");
+	    enemyLabel = new JLabel("Enemy\n");
 	    enemyBarContainer.add(enemyLabel);
 	    enemyBarContainer.add(enemyHealthBar);
 	    
@@ -139,16 +140,24 @@ public class StatusPanel extends JPanel {
 		playerHealthLabel.setText("Health: "+player.getHp()+"/"+player.getMaxHp());
 		portraitLabel.setIcon(res.getImgIcon("player"+player.getPlayerNr()+"Portrait"));
 		if(enemy != null){
+			enemyLabel.setVisible(true);
+			enemyHealthBar.setVisible(true);
 			enemyHealthBar.setMaximum(enemy.getMaxHp());
 			enemyHealthBar.setValue(enemy.getHp());
 			enemyAttackLabel.setText("Attack: "+enemy.getAttack());
 			enemyLevelLabel.setText("Level: "+enemy.getLevel());
+			enemyPortrait.setVisible(true);
 			enemyPortrait.setIcon(res.getImgIcon(enemy.getName() + "Portrait"));
 			enemyHealthLabel.setText("Health: "+enemy.getHp()+"/"+enemy.getMaxHp());
 		}
 		else{
-			enemyHealthBar.setValue(0);
-			enemyHealthLabel.setText("Health: 0/0");
+			enemyLabel.setVisible(false);
+			enemyHealthBar.setVisible(false);
+			enemyHealthLabel.setText("");
+			enemyPortrait.setVisible(false);
+			enemyLevelLabel.setText("");
+			enemyAttackLabel.setText("");
+			
 		}
 	}
 }

@@ -41,6 +41,7 @@ public class GameLogic{
 	public GameLogic(int mapNr, int playerNr){
 		this.mapNr = mapNr;
 		this.playerNr = playerNr;
+		currentEnemy = null;
 		openFile();
 		readFile();
 		closeFile();

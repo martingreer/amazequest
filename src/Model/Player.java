@@ -28,6 +28,7 @@ public class Player extends InteractiveObject implements Serializable {
 		exp = exp + change;
 		if(exp >= 100){			//how much exp is needed to level up
 			this.setLevel(1);
+			SoundManager.playSound("levelup1.wav");
 			exp = exp - 100;
 			this.setAttack(2);
 			this.setMaxHp(2);

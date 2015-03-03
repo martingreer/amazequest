@@ -277,10 +277,21 @@ public class GameLogic{
 
 	public void pickUpItem(Item item){
 		System.out.println("pickUpItem()");
+		
 		player.updateStats(item);
 	}
 
 	public void removeItem(Tile nextTile){
+		
+		if(nextTile.getInterObj().getName()=="sword"){
+			SoundManager.playSound("swordpickup.wav");
+		}
+		else if(nextTile.getInterObj().getName() == "shield"){
+			SoundManager.playSound("shieldpickup.wav");
+		}
+		else if(nextTile.getInterObj().getName() == "potion"){
+			SoundManager.playSound("drink.wav");
+		}
 		nextTile.setItem(null);
 	}
 

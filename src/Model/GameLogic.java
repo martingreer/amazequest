@@ -369,6 +369,10 @@ public class GameLogic{
 			Enemy enemy = new Enemy(4,4,40,40,"enemyLv4");
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
+		if(enemyType == "enemyLv5"){
+			Enemy enemy = new Enemy(5,5,50,50,"enemyLv5");
+			tiles[xPos][yPos].setEnemy(enemy);
+		}
 	}
 
 	public void spawnItem(int xPos, int yPos, String itemType){
@@ -400,7 +404,7 @@ public class GameLogic{
 		int xValue = rand.nextInt(MAP_SIZE-1) + 1;
 		int yValue = rand.nextInt(MAP_SIZE-1) + 1;
 
-		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3") {
+		if( type == "enemyLv1" || type == "enemyLv2" || type == "enemyLv3" || type == "enemyLv4" || type == "enemyLv5") {
 			for(int i = 0;  i < amount; i++) {
 
 				while(tiles[xValue][yValue].getCollision()) {

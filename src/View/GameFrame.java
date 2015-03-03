@@ -38,7 +38,6 @@ public class GameFrame extends JFrame {
 		mapPanel.setVisible(false);
 		startMenuPanel = new JPanel(new GridBagLayout());
 		gc = new GridBagConstraints();
-		GridBagConstraints gc = new GridBagConstraints();
 		add(startMenuPanel,BorderLayout.CENTER);
 		add(statusPanel, BorderLayout.SOUTH);
 		hideStatusPanel();

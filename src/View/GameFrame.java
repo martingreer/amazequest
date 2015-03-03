@@ -137,9 +137,9 @@ public class GameFrame extends JFrame {
         gc.gridy = 3;
 		startMenuPanel.add(button3, gc);
 		
-		labelIcon1.setIcon(res.getImgIcon("test"));
-		labelIcon2.setIcon(res.getImgIcon("test"));
-		labelIcon3.setIcon(res.getImgIcon("test"));
+		labelIcon1.setIcon(res.getImgIcon("thumbMap1"));
+		labelIcon2.setIcon(res.getImgIcon("thumbMap2"));
+		labelIcon3.setIcon(res.getImgIcon("thumbMap3"));
 		
         gc.gridx = 0;
         gc.gridy = 1;

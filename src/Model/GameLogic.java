@@ -1,7 +1,6 @@
 package Model;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,19 +13,22 @@ import View.GameFrame;
 import View.StatusPanel;
 
 /**
- * @author Name
- * @author
- * @author
- * @author
- * @author
+ * @author Martin Greer
+ * @version 2015-XX-XX
  *
  * Description of class here.
  *
  */
-
 public class GameLogic{
 	
+	/**
+	 * Number of tiles of the map in X and Y axis (always square shape)
+	 */
 	private static final int MAP_SIZE = 20;
+	
+	/**
+	 * Map ID (1/2/3)
+	 */
 	private int mapNr;
 	private Scanner m;
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
@@ -38,6 +40,12 @@ public class GameLogic{
 	private Boolean doorOpen = false;
 	private int playerNr;
 	
+	/**
+	 * Constructor that will read a map txt file and, if it exists, a saved player object
+	 * 
+	 * @param mapNr The ID of the map that the player selected
+	 * @param playerNr The ID of the chosen player
+	 */
 	public GameLogic(int mapNr, int playerNr){
 		this.mapNr = mapNr;
 		this.playerNr = playerNr;

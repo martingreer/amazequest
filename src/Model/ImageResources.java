@@ -42,7 +42,12 @@ public class ImageResources {
 		Image img = imgIcon.getImage();
 		return img;
 	}
-
+	/**
+	 * Checks if there are no enemies the map, if so,
+	 * opens the door. 
+	 * 
+	 * @return true if there is still an enemy on the map, otherwise false.
+	 */
 	public ImageIcon getImgIcon(String s){
 		return new ImageIcon(getPath(s));
 	}

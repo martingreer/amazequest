@@ -17,16 +17,13 @@ public class MapPanel extends JPanel {
 		private static final int MAP_SIZE = 20;
 		private static final int TILE_SIZE = 32;
 		private ImageResources res = new ImageResources();
-		private StatusPanel statusPanel;
+		
 		
 		public MapPanel(){
 			initKeyListener();
 		}
 		
-		public MapPanel(StatusPanel statusPanel){
-			this.statusPanel = statusPanel;
-			initKeyListener();
-		}
+
 
 		public void createMap(int mapNr, int playerNr){
 			map = new GameLogic(mapNr,playerNr);

@@ -33,7 +33,7 @@ public class GameFrame extends JFrame {
 		setResizable(true);
 		setLocationRelativeTo(null);
 		statusPanel = new StatusPanel();
-		mapPanel = new MapPanel(statusPanel);
+		mapPanel = new MapPanel();
 		add(mapPanel);
 		mapPanel.setVisible(false);
 		startMenuPanel = new JPanel(new GridBagLayout());

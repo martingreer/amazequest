@@ -5,16 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.nio.file.Files;
-
 import javax.swing.*;
-
 import Model.ImageResources;
-import Model.GameLogic;
-import Model.Player;
-
 
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
@@ -26,17 +18,11 @@ public class GameFrame extends JFrame {
 	private static StatusPanel statusPanel;
 	private static JPanel startMenuPanel;
 	private static MapPanel mapPanel;
-	private JLabel labelIcon1;
-	private JLabel labelIcon2;
-	private JLabel labelIcon3;
+	private JLabel labelIcon1, labelIcon2, labelIcon3;
 	private JLabel choiceLabel;
-	private JButton button1;
-	private JButton button2;
-	private JButton button3;
-	private JButton resetButton1;
-	private JButton resetButton2;
-	private int playerChoice;
-	private int mapChoice;
+	private JButton button1, button2, button3;
+	private JButton resetButton1, resetButton2;
+	private int playerChoice, mapChoice;
 	private GridBagConstraints gc;
 	
 	public GameFrame (String title){
@@ -59,7 +45,6 @@ public class GameFrame extends JFrame {
 		addMenu();
 		createLabels();
 		createButtons();
-		
 	}
 	
 	public void playerChoiceDisplay(){
@@ -89,6 +74,7 @@ public class GameFrame extends JFrame {
         gc.gridx = 1;
         gc.gridy = 5;
         gc.anchor = GridBagConstraints.NORTH;
+        
 		startMenuPanel.add(button3, gc);
 		button3.setVisible(false);
 		
@@ -167,6 +153,7 @@ public class GameFrame extends JFrame {
 	public static void showStartMenuPanel(){
 		startMenuPanel.setVisible(true);
 	}
+	
 	private void createLabels(){
 		labelIcon1 = new JLabel(res.getImgIcon("player1Big"));
 		labelIcon2 = new JLabel(res.getImgIcon("player2Big"));
@@ -193,14 +180,13 @@ public class GameFrame extends JFrame {
         gc.gridy = 5;
         startMenuPanel.add(labelIcon3, gc);
 	}
+	
 	private void addMenu(){
 		menuBar = new JMenuBar();
-
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
 		menuBar.add(fileMenu);
 
-		//Sub-choice of File menu
 		JMenuItem backMenuItem = new JMenuItem("Back", KeyEvent.VK_B);
 		backMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.ALT_MASK));
 		backMenuItem.addActionListener(new ActionListener(){
@@ -231,7 +217,6 @@ public class GameFrame extends JFrame {
 		});
 		helpMenu.add(versionMenuItem);
 
-		// Finally add bar to top of frame
 		setJMenuBar(menuBar);
 	}
 
@@ -247,7 +232,6 @@ public class GameFrame extends JFrame {
 		
 		button1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-
 				if(button1.getText().equals("Player 1")){
 					mapChoiceDisplay();
 					playerChoice = 1;
@@ -256,30 +240,24 @@ public class GameFrame extends JFrame {
 					// gör allt som ska göras när man trycker på map 1
 					mapChoice = 1;
 					chooseMapToBeCreated();
-					
 				}
 			}
 		}); 
 		
-
 		button2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				if(button2.getText().equals("Player 2")){
 					mapChoiceDisplay();
 					playerChoice = 2;
-					// gör allt som ska göras när man trycker på player 2
 				}else{
-					// gör allt som ska göras när man trycker på map 2
 					mapChoice = 2;
 					chooseMapToBeCreated();
 				}
-
 			}
 		});
 		
 		button3.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				// gör allt som ska göras när man trycker på map 3
 				mapChoice = 3;
 				chooseMapToBeCreated();
 			}
@@ -288,7 +266,6 @@ public class GameFrame extends JFrame {
 		resetButton1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				 try{
-			         // create new file
 			         File file = new File("./bin/SavedPlayer1");
 			         file.delete();
 			         JOptionPane.showMessageDialog(startMenuPanel,
@@ -296,7 +273,6 @@ public class GameFrame extends JFrame {
 			        		    "Player 1 reset",
 			        		    JOptionPane.INFORMATION_MESSAGE);
 			      }catch(Exception f){
-			         // if any error occurs
 			         f.printStackTrace();
 			      }
 			}
@@ -305,7 +281,6 @@ public class GameFrame extends JFrame {
 		resetButton2.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				 try{
-			         // create new file
 			         File file = new File("./bin/SavedPlayer2");
 			         file.delete();
 			         JOptionPane.showMessageDialog(startMenuPanel,
@@ -313,7 +288,6 @@ public class GameFrame extends JFrame {
 			        		    "Player 2 reset",
 			        		    JOptionPane.INFORMATION_MESSAGE);
 			      }catch(Exception f){
-			         // if any error occurs
 			         f.printStackTrace();
 			      }
 			}
@@ -343,7 +317,6 @@ public class GameFrame extends JFrame {
         gc.anchor = GridBagConstraints.NORTH;
 		startMenuPanel.add(button3, gc);
 		button3.setVisible(false);
-		
 	}
 	
 	public void chooseMapToBeCreated(){

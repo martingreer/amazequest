@@ -12,7 +12,7 @@ import Model.ImageResources;
 public class GameFrame extends JFrame {
 	private static final int WINDOW_SIZE_X = 20*32+16;
 	private static final int WINDOW_SIZE_Y = 20*32+208;
-	private static String VERSION = "A Maze Quest " + "\n" + "Version:" + " 1.0" + "\n" + "© Jonas Brothers";
+	private static String VERSION = "Amazequest " + "\n" + "Version:" + " 1.0" + "\n" + "© Jonas Brothers";
 	private ImageResources res = new ImageResources();
 	private JMenuBar menuBar;
 	private static StatusPanel statusPanel;

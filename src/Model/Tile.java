@@ -46,28 +46,28 @@ public class Tile {
 		return imgID;
 	}
 	/**
-	 * @param The current player.
+	 * @param player The current player.
 	 * Method sets this specific tile to the current player.
 	 */
 	public void setPlayer(Player player){
 		this.interactiveObject = player;
 	}
 	/**
-	 * @param The current enemy.
+	 * @param enemy The current enemy.
 	 * Method sets this specific tile to the current enemy.
 	 */
 	public void setEnemy(Enemy enemy){
 		this.interactiveObject = enemy;
 	}
 	/**
-	 * @param The current item.
+	 * @param item The current item.
 	 * Method sets this specific tile to the current item.
 	 */
 	public void setItem(Item item){
 		this.interactiveObject = item;
 	}
 	/**
-	 * @param The current darkness (true or false). 
+	 * @param value The current darkness (true or false). 
 	 * Method sets this specific tile to the current darkness.
 	 * If darkness is true then specific tile will be painted black. 
 	 */
@@ -75,7 +75,7 @@ public class Tile {
 		this.darkness = value;
 	}
 	/**
-	 * @param The current blood (true or false). 
+	 * @param value The current blood (true or false). 
 	 * Method sets this specific tile to the current blood.
 	 * If blood is true then specific tile will be painted in blood.
 	 */
@@ -170,7 +170,7 @@ public class Tile {
 		door = true;
 	}
 	/**
-	 * @param Image ID 
+	 * @param imgID The current Image ID 
 	 * Method changes the current image ID to the new image ID.
 	 */
 	public void setImgID(String imgID){

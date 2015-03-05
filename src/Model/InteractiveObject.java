@@ -79,7 +79,7 @@ public class InteractiveObject implements Serializable {
 		
 	}
 	/**
-	 * @param The new name of player, enemy or item.
+	 * @param name The new name of player, enemy or item.
 	 * Method  Sets player, enemy or item to the new name.
 	 */
 	public void setName(String name) {
@@ -88,7 +88,7 @@ public class InteractiveObject implements Serializable {
 			
 	}
 	/**
-	 * @param The new health of player, enemy or item.
+	 * @param newHp The new health of player, enemy or item.
 	 * Method Sets player, enemy or item to the new health.
 	 */
 	public void setHp(int newHp) {
@@ -96,7 +96,7 @@ public class InteractiveObject implements Serializable {
 		hp = newHp;
 	}
 	/**
-	 * @param The new health that changes the current health of player, enemy or item.
+	 * @param change The new health that changes the current health of player, enemy or item.
 	 * Method Adds the new health to the current health of player, enemy or item. 
 	 */
 	public void addHp(int change) {
@@ -104,7 +104,7 @@ public class InteractiveObject implements Serializable {
 		hp = hp + change;
 	}
 	/**
-	 * @param The new max health that changes the current max health of player, enemy or item.
+	 * @param change The new max health that changes the current max health of player, enemy or item.
 	 * Method Adds the new max health to the current max health of player, enemy or item. 
 	 */
 	public void addMaxHp(int change) {
@@ -112,7 +112,7 @@ public class InteractiveObject implements Serializable {
 		maxHp = maxHp + change;
 	}
 	/**
-	 * @param The new attack that changes the current attack of player, enemy or item.
+	 * @param change The new attack that changes the current attack of player, enemy or item.
 	 * Method Adds the new attack to the current attack of player, enemy or item. 
 	 */
 	public void addAttack(int change) {
@@ -120,7 +120,7 @@ public class InteractiveObject implements Serializable {
 		attack = attack + change;
 	}
 	/**
-	 * @param The new level that changes the current level of player, enemy or item. 
+	 * @param change The new level that changes the current level of player, enemy or item. 
 	 * Method adds the new level to the current level of player, enemy or item. 
 	 */
 	public void addLevel(int change) {

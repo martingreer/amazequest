@@ -13,7 +13,7 @@ public class Main{
 	
 
 	/**
-	 *@param does nothing , is needed for main method
+	 *@param args does nothing , is needed for main method
 	 */
 
 	public static void main(String[] args){

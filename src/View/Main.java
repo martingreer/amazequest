@@ -12,6 +12,9 @@ public class Main{
 	private static GameFrame gameFrame;
 	
 
+	/**
+	 *@param does nothing , is needed for main method
+	 */
 
 	public static void main(String[] args){
 		gameFrame = new GameFrame("Amazequest");

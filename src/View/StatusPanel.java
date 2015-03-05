@@ -11,7 +11,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 
 import Model.Enemy;
 import Model.ImageResources;
@@ -54,32 +53,32 @@ public class StatusPanel extends JPanel {
 	private static JLabel portraitLabel;
 	
 	/**
-	 * Player's level
+	 * Player's level.
 	 */
 	private static JLabel playerLevelLabel;
 	
 	/**
-	 * Player's attack-damage
+	 * Player's attack-damage.
 	 */
 	private static JLabel playerAttackLabel;
 	
 	/**
-	 * Player's health in text
+	 * Player's health in text.
 	 */
 	private static JLabel playerHealthLabel;
 	
 	/**
-	 * Enemy's level
+	 * Enemy's level.
 	 */
 	private static JLabel enemyLevelLabel;
 	
 	/**
-	 * Enemy's attack-damage
+	 * Enemy's attack-damage.
 	 */
 	private static JLabel enemyAttackLabel;
 	
 	/**
-	 * Enemy's health in text
+	 * Enemy's health in text.
 	 */
 	private static JLabel enemyHealthLabel;
 	
@@ -89,17 +88,17 @@ public class StatusPanel extends JPanel {
 	private static JLabel enemyPortrait;
 	
 	/**
-	 * Enemy's name
+	 * Enemy's name.
 	 */
 	private static JLabel enemyLabel;
 	
 	/**
-	 * Resource object to retrieve images
+	 * Resource object to retrieve images.
 	 */
 	private static ImageResources res = new ImageResources();
 	
 	/**
-	 * The constructor initialises the swing-objects and adds them to a gridbaglayout
+	 * The constructor initialises the swing-objects and adds them to a gridbaglayout.
 	 */
 	public StatusPanel(){
 		Dimension size = getPreferredSize();

@@ -8,23 +8,93 @@ import java.io.File;
 import javax.swing.*;
 import Model.ImageResources;
 
+/**
+ * Created by Main.
+ * JFrame that is the core view-class for the game.
+ * This class hold the 3 different panels of the game and shows/hides them based on the player's actions.
+ * 
+ * @author Johannes Uhr
+ * @version 2015-03-03
+ *
+ */
 @SuppressWarnings("serial")
 public class GameFrame extends JFrame {
+	
+	/**
+	 * Horizontal size of the frame.
+	 */
 	private static final int WINDOW_SIZE_X = 20*32+16;
+	
+	/**
+	 * Vertical size of the frame.
+	 */
 	private static final int WINDOW_SIZE_Y = 20*32+208;
+	
+	/**
+	 * Will be displayed when clicking Help->Version.
+	 */
 	private static String VERSION = "Amazequest " + "\n" + "Version:" + " 1.0" + "\n" + "© Jonas Brothers";
+	
+	/**
+	 * Resource-object to retrieve images.
+	 */
 	private ImageResources res = new ImageResources();
+	
+	/**
+	 * Menu bar of the game.
+	 */
 	private JMenuBar menuBar;
+	
+	/**
+	 * Status panel shown at the bottom of the frame.
+	 */
 	private static StatusPanel statusPanel;
+	
+	/**
+	 * Start menu panel, never shown together with map panel and status panel.
+	 */
 	private static JPanel startMenuPanel;
+	
+	/**
+	 * Map panel, never shown together with start menu panel.
+	 */
 	private static MapPanel mapPanel;
+	
+	/**
+	 * These labels will change if user is asked to choose player or maps.
+	 */
 	private JLabel labelIcon1, labelIcon2, labelIcon3;
+	
+	/**
+	 * Asks the user to either choose player or map.
+	 */
 	private JLabel choiceLabel;
+	
+	/**
+	 * These buttons will change if user is asked to choose player or maps.
+	 */
 	private JButton button1, button2, button3;
+	
+	/**
+	 * Used to reset the player states to start values.
+	 */
 	private JButton resetButton1, resetButton2;
+	
+	/**
+	 * Choices for player 1 or 2 and map 1, 2 or 3.
+	 */
 	private int playerChoice, mapChoice;
+	
+	/**
+	 * Used to set appropriate layout for the start menu panel.
+	 */
 	private GridBagConstraints gc;
 	
+	/**
+	 * Sets up the layout for the game. Initialises the panels with their labels and buttons. 
+	 * Hides the map panel and status panel while showing the start menu panel.
+	 * @param title Game title at the top of the window.
+	 */
 	public GameFrame (String title){
 		super(title);	
 		setLayout(new BorderLayout());
@@ -46,6 +116,9 @@ public class GameFrame extends JFrame {
 		createButtons();
 	}
 	
+	/**
+	 * Sets up the buttons and labels to display the state of the start menu panel where the user is asked to choose a player.
+	 */
 	public void playerChoiceDisplay(){
 		button1.setText("Player 1");
 		button2.setText("Player 2");
@@ -102,6 +175,9 @@ public class GameFrame extends JFrame {
         startMenuPanel.add(labelIcon3, gc);
 	}
 	
+	/**
+	 * Sets up the buttons and labels to display the state of the start menu panel where the user is asked to choose a map.
+	 */
 	public void mapChoiceDisplay(){
 		button1.setText("Map 1");
 		button2.setText("Map 2");
@@ -137,22 +213,37 @@ public class GameFrame extends JFrame {
         startMenuPanel.add(labelIcon3, gc);
 	}
 	
+	/**
+	 * Makes the status panel visible.
+	 */
 	public void showStatusPanel(){
 		statusPanel.setVisible(true);
 	}
 
+	/**
+	 * Makes the status panel invisible.
+	 */
 	public static void hideStatusPanel(){
 		statusPanel.setVisible(false);
 	}
 	
-	public static void hideMapPanel(){
-		mapPanel.setVisible(false);
-	}
-	
+	/**
+	 * Makes the map panel visible.
+	 */
 	public static void showStartMenuPanel(){
 		startMenuPanel.setVisible(true);
 	}
 	
+	/**
+	 * Makes the map panel invisible.
+	 */
+	public static void hideMapPanel(){
+		mapPanel.setVisible(false);
+	}
+	
+	/**
+	 * Initialises the labels in the start menu panel.
+	 */
 	private void createLabels(){
 		labelIcon1 = new JLabel(res.getImgIcon("player1Big"));
 		labelIcon2 = new JLabel(res.getImgIcon("player2Big"));
@@ -180,6 +271,9 @@ public class GameFrame extends JFrame {
         startMenuPanel.add(labelIcon3, gc);
 	}
 	
+	/**
+	 * Initialises the menu and adds it to the frame.
+	 */
 	private void addMenu(){
 		menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
@@ -219,6 +313,9 @@ public class GameFrame extends JFrame {
 		setJMenuBar(menuBar);
 	}
 
+	/**
+	 * Initialises the buttons with appropriate action listeners  and adds them to the start menu.
+	 */
 	private void createButtons(){
 		button1 = new JButton("Player 1");
 		button2 = new JButton("Player 2");
@@ -318,6 +415,11 @@ public class GameFrame extends JFrame {
 		button3.setVisible(false);
 	}
 	
+	/**
+	 * Creates a map in the map panel when the user chooses which map to play.
+	 * Hides the start menu panel.
+	 * Shows the status panel and adds the map panel to the frame.
+	 */
 	public void chooseMapToBeCreated(){
 		mapPanel.createMap(mapChoice,playerChoice);
 		mapPanel.setVisible(true);

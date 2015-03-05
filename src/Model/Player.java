@@ -1,8 +1,5 @@
 package Model;
-import java.awt.Image;
 import java.io.Serializable;
-import javax.swing.ImageIcon;
-import java.util.ArrayList;
 
 /**
  *	This class is initiated in the constructor of GameLogic and is responsible of keeping 
@@ -82,7 +79,7 @@ public class Player extends InteractiveObject implements Serializable {
 	}
 	
 	/**
-	 * Sets the playerhealth hp to its maxHp
+	 * Sets the player's hp to its maxHp
 	 */
 	public void healToFull(){
 		setHp(getMaxHp());

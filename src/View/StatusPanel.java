@@ -1,6 +1,5 @@
 package View;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -12,42 +11,104 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import javax.swing.SwingConstants;
 
 import Model.Enemy;
 import Model.ImageResources;
 import Model.Player;
 
-
+/**
+ * View-class that is created by the GameFrame.
+ * The class is a JPanel that displays info about the player and the enemy thats currently being fought.
+ * 
+ * @author Johannes Uhr
+ * @version 2015-03-03
+ *
+ */
 @SuppressWarnings("serial")
 public class StatusPanel extends JPanel {
+	
+	/**
+	 * Height of the JPanel.
+	 */
 	private static final int INVPANELHEIGHT = 150;
+	
+	/**
+	 * Player's health.
+	 */
 	private static JProgressBar healthBar;
+	
+	/**
+	 * Player's current exp.
+	 */
 	private static JProgressBar experienceBar;
+	
+	/**
+	 * Current enemy's health.
+	 */
 	private static JProgressBar enemyHealthBar;
+	
+	/**
+	 * Player's portrait as an ImageIcon.
+	 */
 	private static JLabel portraitLabel;
+	
+	/**
+	 * Player's level.
+	 */
 	private static JLabel playerLevelLabel;
+	
+	/**
+	 * Player's attack-damage.
+	 */
 	private static JLabel playerAttackLabel;
+	
+	/**
+	 * Player's health in text.
+	 */
 	private static JLabel playerHealthLabel;
+	
+	/**
+	 * Enemy's level.
+	 */
 	private static JLabel enemyLevelLabel;
+	
+	/**
+	 * Enemy's attack-damage.
+	 */
 	private static JLabel enemyAttackLabel;
+	
+	/**
+	 * Enemy's health in text.
+	 */
 	private static JLabel enemyHealthLabel;
+	
+	/**
+	 * Enemy's portrait as an ImageIcon.
+	 */
 	private static JLabel enemyPortrait;
+	
+	/**
+	 * Enemy's name.
+	 */
 	private static JLabel enemyLabel;
+	
+	/**
+	 * Resource object to retrieve images.
+	 */
 	private static ImageResources res = new ImageResources();
 	
+	/**
+	 * The constructor initialises the swing-objects and adds them to a gridbaglayout.
+	 */
 	public StatusPanel(){
 		Dimension size = getPreferredSize();
 	    size.height = INVPANELHEIGHT;
 	    setPreferredSize(size);
 	    setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-	    
 	    setLayout(new GridBagLayout());
 	    
-	    
-	    experienceBar = new JProgressBar(0,100);
+	    experienceBar = new JProgressBar();
 	    experienceBar.setForeground(new Color(125, 0, 255));
-	    experienceBar.setValue(30);
 	    healthBar = new JProgressBar();
 	    healthBar.setForeground(Color.RED);
 	    enemyHealthBar = new JProgressBar();
@@ -98,9 +159,7 @@ public class StatusPanel extends JPanel {
 	    gc.anchor = GridBagConstraints.WEST;
 	    gc.weightx = 1;
 	    gc.weighty = 1;
-	    
 	    gc.gridwidth = 2;
-	    
         gc.gridx = 0;
         gc.gridy = 0;
         add(playerBarContainer, gc);
@@ -131,6 +190,12 @@ public class StatusPanel extends JPanel {
 
 	}
 	
+	/**
+	 * Update the swing-objects in the panel to values gathered from the current player and enemy.
+	 * 
+	 * @param player Reference to the current Player-object.
+	 * @param enemy Reference to the enemy that is being fought at that time.
+	 */
 	public static void updatePanel(Player player, Enemy enemy){
 		healthBar.setMaximum(player.getMaxHp());
 		healthBar.setValue(player.getHp());

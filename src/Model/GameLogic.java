@@ -369,6 +369,7 @@ public class GameLogic{
 			GameFrame.showStartMenuPanel();
 		}
 	}
+	
 	/**
 	 * This function is called when the player has beaten a map level and entered the door.
 	 * An "applause" sound is played when the player enters the door.
@@ -376,7 +377,6 @@ public class GameLogic{
 	 * A dialog window opens up letting the player choose a new map.
 	 * Upon clicking OK the player is taken to the map selection screen
 	 */
-	
 	private void finishGame(){
 		SoundManager.playSound("applause.wav");
 		System.out.println("Game finished! Back to choose map menu.");
@@ -398,6 +398,7 @@ public class GameLogic{
 			GameFrame.showStartMenuPanel();
 		}
 	}
+	
 	/**
 	 * This function is called when the player collides with an item on the screen.
 	 * colliding with the item gives the player new stats depending on what item was picked up.y
@@ -408,13 +409,13 @@ public class GameLogic{
 		
 		player.updateStats(item);
 	}
+	
 	/**
 	 * This function is called when the player collides with an item on the screen.
 	 * Colliding with the items will remove it from the map.
 	 * Depending on what item is removed a different sound will play.
 	 * @param nextTile The tile that the player is trying to move to.
 	 */
-
 	public void removeItem(Tile nextTile){
 		
 		if(nextTile.getInterObj().getName()=="sword"){
@@ -428,12 +429,12 @@ public class GameLogic{
 		}
 		nextTile.setItem(null);
 	}
+	
 	/**
 	 * This function checks if the tile that the player wants to move to is empty.
 	 * If it is empty the player can then move to that tile.
 	 * @param nextTile The tile that the player is trying to move to.
 	 */
-
 	private void movePlayerTo(Tile nextTile) {
 		
 		if(nextTile.isEmpty() && !nextTile.getCollision()) {
@@ -444,6 +445,7 @@ public class GameLogic{
 			System.out.println("movePayerTo() failed");
 		}
 	}
+	
 	/**
 	 * This function calls the spawnObjectsRandomly() function to spawn objects on the map
 	 * depending on what difficulty level the map has.
@@ -485,6 +487,7 @@ public class GameLogic{
 		}
 
 	}
+	
 	/**
 	 * This function sets different tiles to spawn enemies on if the tiles are empty.
 	 * Different types of enemies are spawned.
@@ -493,7 +496,6 @@ public class GameLogic{
 	 * @param yPos The y-position of the enemy.
 	 * @param enemyType The type of enemy.
 	 */
-
 	public void spawnEnemy(int xPos, int yPos, String enemyType){
 
 		if(tiles[xPos][yPos].getCollision()){
@@ -525,6 +527,7 @@ public class GameLogic{
 			tiles[xPos][yPos].setEnemy(enemy);
 		}
 	}
+	
 	/**
 	 * This function spawn different kinds of items on tiles if they are empty.
 	 * The attack, health and damage of the item is the decided in this function.
@@ -532,7 +535,6 @@ public class GameLogic{
 	 * @param yPos the y-position of the item.
 	 * @param itemType what kind of item is spawned.
 	 */
-
 	public void spawnItem(int xPos, int yPos, String itemType){
 		//Item(level,attack,hp,name)
 		
@@ -556,6 +558,7 @@ public class GameLogic{
 			tiles[xPos][yPos].setItem(item);
 		}
 	}
+	
 	/**
 	 * This function chooses empty tiles randomly to spawn objects on.
 	 * @param type The type of object is spawned.

@@ -16,6 +16,7 @@ import javax.sound.sampled.FloatControl;
  * while the sound is playing.
  * 
  * @author Martin Greer
+ * @version 2015-03-03
  * 
  */
 public class SoundManager {

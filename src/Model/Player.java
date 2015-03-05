@@ -53,15 +53,21 @@ public class Player extends InteractiveObject implements Serializable {
 		
 	}
 	/**
-	 * Getter for the players experience
+	 * Setter for the player experience
 	 * 
-	 * @return The players experience as an int.
+	 * @param value,  the new value for exp.
 	 */
 	public void setExp(int value){
 			
 			exp = value;
 	}
 	
+	/**
+	 * Adder for player experience.
+	 * exp over 100 leads to level up, which will give the player a bonus to the stats.
+	 * 
+	 * @param change,  the value of change is added to the existing exp.
+	 */
 	public void addExp(int change){
 		
 		exp += change;
@@ -75,10 +81,18 @@ public class Player extends InteractiveObject implements Serializable {
 		}
 	}
 	
+	/**
+	 * Sets the playerhealth hp to its maxHp
+	 */
 	public void healToFull(){
 		setHp(getMaxHp());
 	}
 	
+	/**
+	 * Getter for the player's identifying number which is parsed from the playername.
+	 * 
+	 * @return The player's number.
+	 */
 	public int getPlayerNr(){
 		if(getName().contains("2")){
 			return 2;
@@ -86,6 +100,12 @@ public class Player extends InteractiveObject implements Serializable {
 		else
 			return 1;
 	}
+	
+	/**
+	 * Adds values from an item object to the player's fields. 
+	 * 
+	 * @param item, the item that has been picked up.
+	 */
 	public void updateStats(Item item){
 		
 		this.addHp(item.getHp());
@@ -96,6 +116,14 @@ public class Player extends InteractiveObject implements Serializable {
 		}
 	}
 	
+	/**
+	 * The player will deal one hit to the enemy. If enemy is still 
+	 * alive it will deal one hit to the player.
+	 * 
+	 * Stats for both player and enemy will be updated.
+	 * 
+	 * @param nextTile,  this tile contains the enemy 
+	 */
 	public void exchangeHitsWithEnemy(Tile nextTile){
 		
 		Enemy enemy = (Enemy)nextTile.getInterObj();

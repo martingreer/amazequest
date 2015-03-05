@@ -54,22 +54,26 @@ public class InteractiveObject implements Serializable {
 			this.name = name;
 			
 	}
-	public void setHp(int change) {
+	public void setHp(int newHp) {
+		
+		hp = newHp;
+	}
+	public void addHp(int change) {
 		
 		hp = hp + change;
 	}
 	
-	public void setMaxHp(int change) {
+	public void addMaxHp(int change) {
 		
 		maxHp = maxHp + change;
 	}
 		
-	public void setAttack(int change) {
+	public void addAttack(int change) {
 		
 		attack = attack + change;
 	}
 	
-	public void setLevel(int change) {
+	public void addLevel(int change) {
 		
 		level = level + change;
 	}

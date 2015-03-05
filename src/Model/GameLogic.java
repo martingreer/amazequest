@@ -320,7 +320,7 @@ public class GameLogic{
 		System.out.println("fighting");
 		player.exchangeHitsWithEnemy(nextTile);
 		if((nextTile.getInterObj().getHp()) <= 0 ){					//check enemy Hp, remove if <= 0.
-			player.setExp(((Enemy)nextTile.getInterObj()).getExpReward()); 	//player get experience,  enemylevel * 10
+			player.addExp(((Enemy)nextTile.getInterObj()).getExpReward()); 	//player get experience,  enemylevel * 10
 			nextTile.setEnemy(null);
 			nextTile.setBlood(true);
 			currentEnemy = null;

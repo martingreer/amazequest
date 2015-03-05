@@ -12,7 +12,7 @@ public class Item extends InteractiveObject{
 	 * @param attack the attack of the item
 	 * @param maxHp the max health points of the item
 	 * @param hp the health points of the item
-	 * @param name the name of the item
+	 * @param name the name of the item.
 	 */
 	public Item(int level, int attack, int maxHp, int hp, String name) {
 		super(level, attack, maxHp, hp, name);

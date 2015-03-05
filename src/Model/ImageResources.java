@@ -29,9 +29,9 @@ public class ImageResources {
 	}
 	
 	/**
-	 * This method scans the txt-file for an ID and if found, returns the path connected to the ID.
+	 * Scans the txt-file for an ID and if found, returns the path connected to the ID.
 	 * 
-	 * @param String that resembles the keyword connected to a path.
+	 * @param ID String that resembles the keyword connected to a path.
 	 * @return String of the path to wanted image.
 	 */
 	public String getPath(String ID){
@@ -55,9 +55,9 @@ public class ImageResources {
 	}
 
 	/**
-	 * This method returns the Image of the path connected to the parameter.
+	 * Returns the Image of the path connected to the parameter.
 	 * 
-	 * @param String that resembles the keyword connected to a path.
+	 * @param s String that resembles the keyword connected to a path.
 	 * @return Image that is connected to parameter.
 	 */
 	public Image getImg(String s){
@@ -67,9 +67,9 @@ public class ImageResources {
 	}
 
 	/**
-	 * This method returns the ImageIcon of the path connected to the parameter.
+	 * Returns the ImageIcon of the path connected to the parameter.
 	 * 
-	 * @param String that resembles the keyword connected to a path.
+	 * @param s String that resembles the keyword connected to a path.
 	 * @return Image that is connected to parameter.
 	 */
 	public ImageIcon getImgIcon(String s){

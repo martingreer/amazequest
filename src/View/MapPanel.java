@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 
 import Model.ImageResources;
 import Model.GameLogic;
-import Model.Player;
 import Model.Tile;
 
 /**
@@ -20,6 +19,7 @@ import Model.Tile;
  * @author Henrik Numé
  * @version 2015-03-05
  */
+@SuppressWarnings("serial")
 public class MapPanel extends JPanel {
 	
 		/**
@@ -58,8 +58,8 @@ public class MapPanel extends JPanel {
 		/**
 		 * Creates a new map , the type is decided from mapNr and playerNr  
 		 * 
-		 *  @param mapNr The number of the map to be created
-		 *  @param playerNr The number of the player to be used in the map
+		 * @param mapNr The number of the map to be created
+		 * @param playerNr The number of the player to be used in the map
 		 */
 		public void createMap(int mapNr, int playerNr){
 			map = new GameLogic(mapNr,playerNr);
@@ -77,8 +77,6 @@ public class MapPanel extends JPanel {
 		/**
 		 * This will paint the whole map by going through a double array(MAP_SIZE*MAP_SIZE) of tiles which is returned by map.
 		 * For each tile all of its content will be drawn on the MapPanel on at the time.
-		 * 
-		 * @param Graphics g
 		 */
 		public void paint(Graphics g){
 			if(DEBUG){System.out.println("DEBUG: Attempting to draw the board.");}
@@ -102,7 +100,6 @@ public class MapPanel extends JPanel {
 		
 		/**
 		 *	Initiate a Key Listener to be used for moving the player
-		 * 	Arrow keys will be mapped to player movement (left,right,up,down)
 		 */
 		private void initKeyListener(){
 			addKeyListener(new KeyAdapter() {
@@ -110,7 +107,12 @@ public class MapPanel extends JPanel {
 				public void keyPressed(KeyEvent e) {
 					myKeyEvt(e, "keyPressed");
 				}
-
+				
+				/**
+				 * Arrow keys will be mapped to player movement (left,right,up,down)
+				 * @param e	The keyevent that will decide direction of movement
+				 * @param text ...
+				 */
 				private void myKeyEvt(KeyEvent e, String text) {			
 						int key = e.getKeyCode();
 						if (key == KeyEvent.VK_KP_LEFT || key == KeyEvent.VK_LEFT) 

@@ -6,10 +6,30 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Used for reading sound files and playing them. It is required that the sound file is
+ * of type "wav" and has a maximum of 16-bit quality in order to be played.
+ * The sound file must be located in the "res/Sounds/" folder inside the application
+ * folder. 
+ * 
+ * The engine for playing the sound is inside a thread so that the game doesn't pause
+ * while the sound is playing.
+ * 
+ * @author Martin Greer
+ * 
+ */
 public class SoundManager {
 	
+	/**
+	 * The audio file as a File object.
+	 */
 	static File AudioFile;
 	
+	/**
+	 * The function to call for playing a sound. 
+	 * 
+	 * @param file The name of the file to play, including file type. Example: "sound.wav"
+	 */
 	public static synchronized void playSound(String file) {
 		
 		AudioFile = new File("./res/Sounds/" + file);

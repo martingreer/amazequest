@@ -13,38 +13,77 @@ import View.GameFrame;
 import View.StatusPanel;
 
 /**
+ * This class is initiated when starting a new game and creates the logical structure of the map
+ * and its objects. It is also the core of all the in-game logical functions.
+ * 
  * @author Martin Greer
- * @version 2015-XX-XX
- *
- * Description of class here.
+ * @version 2015-03-03
  *
  */
 public class GameLogic{
 	
 	/**
-	 * Number of tiles of the map in X and Y axis (always square shape)
+	 * Number of tiles of the map in X and Y axis (always square shape).
 	 */
 	private static final int MAP_SIZE = 20;
 	
 	/**
-	 * Map ID (1/2/3)
+	 * Map ID (1/2/3).
 	 */
 	private int mapNr;
+	
+	/**
+	 * File scanner.
+	 */
 	private Scanner m;
+	
+	/**
+	 * Array that contains each tile on the map.
+	 */
 	private Tile[][] tiles = new Tile[MAP_SIZE][MAP_SIZE];
+	
+	/**
+	 * The user-controlled player.
+	 */
 	private Player player;
+	
+	/**
+	 * The enemy that the player is currently interacting with.
+	 */
 	private Enemy currentEnemy;
+	
+	/**
+	 * Keeps track of which tile the player is currently on.
+	 */
 	private Tile playerTile;
+	
+	/**
+	 * Keeps track of which tile the door is located on. 
+	 */
 	private Tile doorTile;
+	
+	/**
+	 * A random number generator.
+	 */
 	private Random rand = new Random();
+	
+	/**
+	 * Keeps track of the status of the door (true = open, false = closed).
+	 */
 	private Boolean doorOpen = false;
+	
+	/**
+	 * The player ID (1 or 2).
+	 */
 	private int playerNr;
 	
 	/**
-	 * Constructor that will read a map txt file and, if it exists, a saved player object
+	 * Constructor that will read a map text file and, if it exists, a saved player object.
+	 * Creates a new player with base stats if a save file does not exist. The player always
+	 * spawns on a default tile on game start (top left corner).
 	 * 
-	 * @param mapNr The ID of the map that the player selected
-	 * @param playerNr The ID of the chosen player
+	 * @param mapNr The ID of the map that the player selected.
+	 * @param playerNr The ID of the chosen player character.
 	 */
 	public GameLogic(int mapNr, int playerNr){
 		this.mapNr = mapNr;
@@ -65,6 +104,13 @@ public class GameLogic{
 		spawnObjectsInitiator(mapNr);
 	}
 	
+	/**
+	 * Saves the current state of the player object into a local file on the
+	 * users file system. This function is only called when a map is completed
+	 * by walking through the open door.
+	 * 
+	 * @param playerId The ID of the player character to be saved.
+	 */
 	public void save(int playerId) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("./bin/SavedPlayer" + playerId));
@@ -77,6 +123,13 @@ public class GameLogic{
         }
     }
    
+	/**
+	 * Attempts to load a player state from a local file and puts those values
+	 * into the current player object. This function is only called upon map
+	 * creation.
+	 * 
+	 * @param playerId The ID of the player character to be loaded.
+	 */
     public void load(int playerId) {
         try {
         	player = null;
@@ -87,13 +140,18 @@ public class GameLogic{
                 in.close();
                 System.out.println("Player loaded");     
         	}
-
         } catch (Exception e) {
         	System.out.println("LOAD FAILED \n");
             e.printStackTrace();
 		}
     }
     
+    /**
+     * Registers which direction the player wants to go next and calls the function
+     * that decides which action to perform for the next tile.
+     * 
+     * @param key The key that was pressed.
+     */
 	public void pressedKey(String key){
 		if(key.equals("left")){
 			decideAction(tiles[playerTile.getXPos() - 1][playerTile.getYPos()]);
@@ -113,18 +171,36 @@ public class GameLogic{
 		}
 	}
 	
+	/**
+	 * Getter for the current enemy that the player is interacting with.
+	 * 
+	 * @return The current enemy as an Enemy object.
+	 */
 	public Enemy getCurrentEnemy(){
 		return currentEnemy;
 	}
 	
+	/**
+	 * Getter for the tiles array.
+	 * 
+	 * @return The tiles array.
+	 */
 	public Tile[][] getTiles(){
 		return tiles;
 	}
 	
+	/**
+	 * Getter for the player character.
+	 * 
+	 * @return The player as a Player object.
+	 */
 	public Player getPlayer(){
 		return player;
 	}
 	
+	/**
+	 * Opens the map framework file that matches the map choice in the Choose Map menu.  
+	 */
 	public void openFile(){
 		try{
 			m =  new Scanner(new File("./res/map_"+mapNr+".txt"));
@@ -133,6 +209,10 @@ public class GameLogic{
 		}
 	}
 
+	/**
+	 * Reads the opened map file and creates the logical two-dimensional
+	 * record of which static objects exist on each tile.
+	 */
 	public void readFile(){
 		char[] c;
 		while(m.hasNext()){
@@ -158,10 +238,18 @@ public class GameLogic{
 		}
 	}
 
+	/**
+	 * Closes the file.
+	 */
 	public void closeFile(){
 		m.close();
 	}
 
+	/**
+	 * Gives visibility to each tile in a "diamond" shape around the player.
+	 * This will remove the darkness layer from those tiles that is initially
+	 * painted over the whole map.
+	 */
 	public void discoverDarkness(){
 		int x = playerTile.getXPos();
 		int y = playerTile.getYPos();
@@ -189,6 +277,13 @@ public class GameLogic{
 		}
 	}
 
+	/**
+	 * Decides which action to perform depending on which interactive object exists on the next tile
+	 * the player wants to move to. If no interactive object exists there, attempt to move the
+	 * player to the tile.
+	 * 
+	 * @param nextTile The tile that the player is trying to move to.
+	 */
 	public void decideAction(Tile nextTile){
 		if(nextTile.containsEnemy()){
 			fight(nextTile);
@@ -207,6 +302,20 @@ public class GameLogic{
 		}
 	}
 
+	/**
+	 * This function is called when an enemy exists on the next tile. The player will fight
+	 * with the enemy and their stats will be used to reduce HP etc. A random number generator
+	 * is used to play different punching sounds.
+	 * 
+	 * Here it's also checked if either the enemy and player have zero or negative HP, which means it's
+	 * being killed and the appropriate actions are taken.
+	 * 
+	 * Every time an enemy is killed, we check if all the enemies are dead with a function call and
+	 * if the function returns true, the variable that keeps track of this is also set to true and
+	 * the "open door" sound is played. 
+	 * 
+	 * @param nextTile The tile that the player is trying to move to.
+	 */
 	public void fight(Tile nextTile){
 		System.out.println("fighting");
 		player.exchangeHitsWithEnemy(nextTile);
@@ -231,6 +340,14 @@ public class GameLogic{
 		}
 	}
 
+	/**
+	 * This function is called when the player gets zero or negative HP.
+	 * A "boo" sound is played to indicate this and a dialog window pops up
+	 * informing the user of what happened. In this dialog there is a button to
+	 * press which brings you back to the "Choose Map" menu.
+	 * 
+	 * No player progress will be saved upon death.
+	 */
 	private void playerDeath(){
 		SoundManager.playSound("boo.wav");
 		System.out.println("Player is dead");

@@ -19,7 +19,6 @@ public class Enemy extends InteractiveObject {
 	 * @param maxHp The max health of the enemy	
 	 * @param hp The health of the enemy
 	 * @param name The name of the enemy
-	 * @param exp The experience of the enemy
 	 */
 	public Enemy(int level, int attack, int maxHp, int hp, String name) {
 		

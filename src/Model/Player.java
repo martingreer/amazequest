@@ -29,12 +29,12 @@ public class Player extends InteractiveObject implements Serializable {
 	/**
 	 * Constructor that will create a new Player object with the given values as start values.
 	 * 
-	 * @param level,	the level of the player
-	 * @param attack,	the attack of the player
-	 * @param maxHp,	the max health of the player	
-	 * @param hp,		the health of the player
-	 * @param name,		the name of the player
-	 * @param exp,		the experience of the player
+	 * @param level	The level of the player
+	 * @param attack The attack of the player
+	 * @param maxHp The max health of the player	
+	 * @param hp The health of the player
+	 * @param name The name of the player
+	 * @param exp The experience of the player
 	 */
 	public Player(int level, int attack, int maxHp, int hp, String name, int exp) {
 		
@@ -55,7 +55,7 @@ public class Player extends InteractiveObject implements Serializable {
 	/**
 	 * Setter for the player experience
 	 * 
-	 * @param value,  the new value for exp.
+	 * @param value The new value for exp.
 	 */
 	public void setExp(int value){
 			
@@ -66,7 +66,7 @@ public class Player extends InteractiveObject implements Serializable {
 	 * Adder for player experience.
 	 * exp over 100 leads to level up, which will give the player a bonus to the stats.
 	 * 
-	 * @param change,  the value of change is added to the existing exp.
+	 * @param change The value of change is added to the existing exp.
 	 */
 	public void addExp(int change){
 		
@@ -91,7 +91,7 @@ public class Player extends InteractiveObject implements Serializable {
 	/**
 	 * Getter for the player's identifying number which is parsed from the playername.
 	 * 
-	 * @return The player's number.
+	 * @return The player's number as an int.
 	 */
 	public int getPlayerNr(){
 		if(getName().contains("2")){
@@ -104,7 +104,7 @@ public class Player extends InteractiveObject implements Serializable {
 	/**
 	 * Adds values from an item object to the player's fields. 
 	 * 
-	 * @param item, the item that has been picked up.
+	 * @param item The item that has been picked up.
 	 */
 	public void updateStats(Item item){
 		
@@ -122,7 +122,7 @@ public class Player extends InteractiveObject implements Serializable {
 	 * 
 	 * Stats for both player and enemy will be updated.
 	 * 
-	 * @param nextTile,  this tile contains the enemy 
+	 * @param nextTile This tile should contain the enemy 
 	 */
 	public void exchangeHitsWithEnemy(Tile nextTile){
 		

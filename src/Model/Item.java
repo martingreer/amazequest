@@ -1,7 +1,7 @@
 package Model;
 /**
  * This class is respnsible for all the item objects in the game. 
- * Keeps track of all stats related to the item objects.
+ * Keeps track of all stats related to the item objects.  
  * @author Jonas Arvidsson
  * @version 2015-03-05
  */

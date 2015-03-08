@@ -33,7 +33,7 @@ public class GameFrame extends JFrame {
 	/**
 	 * Will be displayed when clicking Help->Version.
 	 */
-	private static String VERSION = "Amazequest " + "\n" + "Version:" + " 1.0" + "\n" + "© Jonas Brothers";
+	private static String VERSION = "Amazequest " + "\n" + "Version:" + " 1.0" + "\n" + "Grupp 1 DAT055";
 	
 	/**
 	 * Resource-object to retrieve images.
